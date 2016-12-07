@@ -1,0 +1,26 @@
+﻿@{
+    if ((Request.IsAuthenticated))
+    {
+        <div class="menu">
+            <div id="nav" class="nav group page__nav">
+                <div class="group">
+                    <button class="dropbtn" onclick="location.href='@Url.Action("Index", "Home")'">Back</button>
+                    @*<button class="dropbtn" onclick="javascript:history.go(-1)">Back</button>*@
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Add Inventory Item</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action("BottleChart", "Maintenance")'">Bottle Chart</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Loss Factors</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Location Chart</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Item Type</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Item Status</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action("UnitOfMeasures", "Maintenance")'">Unit of Measure</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Form</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Item Type Master</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Brand Code Chart</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Storage Conditions</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action()'">Quarntine Types</button>
+                    <button class="dropbtn" onclick="location.href='@Url.Action("Index", "Maintenance")'">Users</button>
+                </div>
+            </div>
+        </div>
+    }
+}
