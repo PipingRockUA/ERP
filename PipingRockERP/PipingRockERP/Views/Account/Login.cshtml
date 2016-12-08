@@ -23,13 +23,13 @@
                             <div class="main-login-form">
                                 @Html.LabelFor(m => m.Username)
                                 <div>
-                                    @Html.TextBoxFor(m => m.Username)
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div>
                                 @Html.LabelFor(m => m.Password)
                                 <div>
-                                    @Html.PasswordFor(m => m.Password)
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                 </div>
                             </div>
                             <br />

@@ -249,9 +249,43 @@ namespace PipingRockERP.Controllers
             db.SaveChanges();
             return RedirectToAction("BottleChart");
         }
+        #endregion
+
+        #region Quarantine Types
+        public ActionResult QuarantineTypes()
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            var quarantineTypes = (from QuarantineType in db.QuarantineTypes select QuarantineType).ToList();
+
+            return View(quarantineTypes);
+        }
+
+        public ActionResult EditQuarantineType(string qtId)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+            int ID = Int32.Parse(qtId);
+
+            var qt = (from QuarantineType in db.QuarantineTypes
+                          where QuarantineType.QuarantineTypeId == ID
+                          select QuarantineType).ToList();
+
+            ViewBag.Bottle = qt;
+
+            return View();
+        }
+
+        public ActionResult QuarantineTypeSubmitAdd(string qtname)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            var qt = new QuarantineType() { QuarantineType1 = qtname };
+            db.QuarantineTypes.Add(qt);
+
+            return RedirectToAction("QuarantineTypes");
+        }
+
+        #endregion
 
     }
-    #endregion
-
-
 }

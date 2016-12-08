@@ -516,6 +516,7 @@
     <Content Include="Views\Maintenance\BottleChart.cshtml" />
     <Content Include="Views\Maintenance\AddBottle.cshtml" />
     <Content Include="Views\Maintenance\EditBottle.cshtml" />
+    <Content Include="Views\Maintenance\QuarantineTypes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

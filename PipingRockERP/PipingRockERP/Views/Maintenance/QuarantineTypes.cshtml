@@ -1,0 +1,33 @@
+﻿@model List<QuarantineType>
+
+@{
+    ViewBag.Title = "QuarantineTypes";
+}
+@Html.Partial("_MaintenancePartial")
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+</head>
+<aside style="margin-top:10px">
+    <div class="panel" style="border:1px solid">
+        <div style="margin-left: 20px">
+            <h4>Maintenance > Quarantine Types</h4>
+            <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("AddQuarantineType", "Maintenance")'">Add</button>
+        </div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Quarantine Type</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="10%">@item.QuarantineTypeId</td>
+                    <td width="40%">@item.QuarantineType1</td>
+                    <td width="30%">@Html.ActionLink("Edit", "EditQuarantineType", "Maintenance", new { userId = item.QuarantineTypeId.ToString() }, null)</td>
+                    @*<td width="5%"><input class="btn-edit" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Home")'" /></td>*@
+                </tr>
+            }
+        </table>
+    </div>
+</aside>
