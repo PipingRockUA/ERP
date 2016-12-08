@@ -10,15 +10,6 @@ namespace PipingRockERP.Controllers
 {
     public class MaintenanceController : Controller
     {
-        public ActionResult UnitOfMeasures()
-        {
-            PipingRockUAEntities db = new PipingRockUAEntities();
-
-            var measures = (from UnitOfMeasure in db.UnitOfMeasures select UnitOfMeasure).ToList();
-
-            return View(measures);
-        }
-
         public ActionResult Index()
         {
             PipingRockUAEntities db = new PipingRockUAEntities();
@@ -28,17 +19,42 @@ namespace PipingRockERP.Controllers
             return View(users);
         }
 
-        public ActionResult BottleChart()
+        public ActionResult Add(string param)
+        {
+            return View(param);
+        }
+
+        public ActionResult UnitOfMeasures()
         {
             PipingRockUAEntities db = new PipingRockUAEntities();
-            var bottles = (from Bottle in db.Bottles select Bottle).ToList();
 
-            ViewBag.Bottles = bottles;
+            var measures = (from UnitOfMeasure in db.UnitOfMeasures select UnitOfMeasure).ToList();
+
+            return View(measures);
+        }
+
+        #region Users Profiles
+        public ActionResult AddUser()
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            var roles = (from UserRole in db.UserRoles
+                         select UserRole).ToList();
+
+            ViewBag.Roles = roles;
 
             return View();
         }
 
-        #region Edit Users Profiles
+        public ActionResult AddUserRole(int userId, int roleId)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            db.AddRoleUserID(userId, roleId);
+
+            return RedirectToAction("Edit", new { userId = userId.ToString() });
+        }
+
         public ActionResult Edit(string userId)
         {
             PipingRockUAEntities db = new PipingRockUAEntities();
@@ -48,6 +64,7 @@ namespace PipingRockERP.Controllers
                          join User_UserRole in db.User_UserRole on User.UserId equals User_UserRole.UserId
                          join UserRole in db.UserRoles on User_UserRole.UserRoleId equals UserRole.UserRoleId
                          where User_UserRole.UserId == ID
+                         orderby UserRole.UserRoleId
                          select new UsersAndRolesModel
                          {
                              UserID = User.UserId,
@@ -76,47 +93,6 @@ namespace PipingRockERP.Controllers
 
             return View();
         }
-        #endregion
-
-        public ActionResult EditBottle(string bottleId)
-        {
-            PipingRockUAEntities db = new PipingRockUAEntities();
-            int ID = Int32.Parse(bottleId);
-
-            var bottle = (from Bottle in db.Bottles
-                          where Bottle.BottleId == ID
-                          select Bottle).ToList();
-
-            ViewBag.Bottle = bottle;
-
-            return View();
-        }
-
-        public ActionResult Add(string param)
-        {
-            return View(param);
-        }
-
-        public ActionResult AddUser()
-        {
-            PipingRockUAEntities db = new PipingRockUAEntities();
-      
-            var roles = (from UserRole in db.UserRoles
-                              select UserRole).ToList();
-
-            ViewBag.Roles = roles;
-
-            return View();
-        }
-
-        public ActionResult AddUserRole(int userId, int roleId)
-        {
-            PipingRockUAEntities db = new PipingRockUAEntities();
-
-            db.AddRoleUserID(userId, roleId);
-
-            return RedirectToAction("Edit", new { userId = userId.ToString() });
-        }
 
         public ActionResult RemoveUserRole(int userId, int roleId)
         {
@@ -128,7 +104,7 @@ namespace PipingRockERP.Controllers
 
             foreach (var row in usersAndRole)
             {
-                db.User_UserRole.Remove(row);               
+                db.User_UserRole.Remove(row);
             }
 
             db.SaveChanges();
@@ -146,10 +122,36 @@ namespace PipingRockERP.Controllers
 
             db.AddUser(userName);
             var userId = (from User in db.Users
-                         where User.UserName == userName
-                         select User.UserId).Single();
+                          where User.UserName == userName
+                          select User.UserId).Single();
             db.AddRoleUserID(userId, roleId);
             return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Bottle Chart
+        public ActionResult BottleChart()
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+            var bottles = (from Bottle in db.Bottles select Bottle).ToList();
+
+            ViewBag.Bottles = bottles;
+
+            return View();
+        }
+
+        public ActionResult EditBottle(string bottleId)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+            int ID = Int32.Parse(bottleId);
+
+            var bottle = (from Bottle in db.Bottles
+                          where Bottle.BottleId == ID
+                          select Bottle).ToList();
+
+            ViewBag.Bottle = bottle;
+
+            return View();
         }
 
         public ActionResult SubmitBottleAdd(string BottleItemKey,
@@ -158,9 +160,6 @@ namespace PipingRockERP.Controllers
                                               int BottlesLargeTray,
                                               int WrappedBottlesTrayLarge,
                                               int WrappedBottlesTraySmall,
-                                              int ItemStatusId,
-                                              int ItemTypeId,
-                                              int ItemTypeDetailId,
                                               decimal BottleLength,
                                               decimal BottleWidth,
                                               decimal BottleHieght,
@@ -179,9 +178,9 @@ namespace PipingRockERP.Controllers
                 BottlesLargeTray = BottlesLargeTray,
                 WrappedBottlesTrayLarge = WrappedBottlesTrayLarge,
                 WrappedBottlesTraySmall = WrappedBottlesTraySmall,
-                ItemStatusId = ItemStatusId,
-                ItemTypeId = ItemTypeId,
-                ItemTypeDetailId = ItemTypeDetailId,
+                ItemStatusId = 3,
+                ItemTypeId = 2,
+                ItemTypeDetailId = 1,
                 BottleLength = (decimal)BottleLength,
                 BottleWidth = (decimal)BottleWidth,
                 BottleHieght = (decimal)BottleHieght,
@@ -208,9 +207,6 @@ namespace PipingRockERP.Controllers
                                               int BottlesLargeTray,
                                               int WrappedBottlesTrayLarge,
                                               int WrappedBottlesTraySmall,
-                                              int ItemStatusId,
-                                              int ItemTypeId,
-                                              int ItemTypeDetailId,
                                               decimal BottleLength,
                                               decimal BottleWidth,
                                               decimal BottleHieght,
@@ -233,9 +229,9 @@ namespace PipingRockERP.Controllers
             bottle.BottlesLargeTray = BottlesLargeTray;
             bottle.WrappedBottlesTrayLarge = WrappedBottlesTrayLarge;
             bottle.WrappedBottlesTraySmall = WrappedBottlesTraySmall;
-            bottle.ItemStatusId = ItemStatusId;
-            bottle.ItemTypeId = ItemTypeId;
-            bottle.ItemTypeDetailId = ItemTypeDetailId;
+            bottle.ItemStatusId = 3;
+            bottle.ItemTypeId = 2;
+            bottle.ItemTypeDetailId = 1;
             bottle.BottleLength = (decimal)BottleLength;
             bottle.BottleWidth = (decimal)BottleWidth;
             bottle.BottleHieght = (decimal)BottleHieght;
@@ -255,4 +251,7 @@ namespace PipingRockERP.Controllers
         }
 
     }
+    #endregion
+
+
 }
