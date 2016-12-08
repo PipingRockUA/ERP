@@ -307,8 +307,67 @@ namespace PipingRockERP.Controllers
             db.SaveChanges();
             return RedirectToAction("QuarantineTypes");
         }
-
         #endregion
 
+        #region Storage Conditions
+        public ActionResult StorageConditions()
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            var sc = (from StorageCondition in db.StorageConditions select StorageCondition).ToList();
+
+            return View(sc);
+        }
+
+        public ActionResult EditStorageCondition(string scId)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+            int ID = Int32.Parse(scId);
+
+            var sc = (from StorageCondition in db.StorageConditions
+                      where StorageCondition.StorageConditionId == ID
+                      select StorageCondition).ToList();
+
+            ViewBag.StorageCondition = sc;
+
+            return View();
+        }
+
+        public ActionResult SubmitStorageConditionAdd(string scname, string scdesc)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            var sc = new StorageCondition()
+            {
+                StorageCondition1 = scname,
+                StorageConditionDescription = scdesc,
+                StorageConditionAddedDate = DateTime.Now,
+                StorageConditionChangedDate = DateTime.Now,
+                StorageConditionModifiedById = 0,
+                isDeleted = false
+            };
+            db.StorageConditions.Add(sc);
+            db.SaveChanges();
+            return RedirectToAction("StorageConditions");
+        }
+
+        public ActionResult SubmitStorageConditionUpdate(string scId, string scname, string scdesc)
+        {
+            PipingRockUAEntities db = new PipingRockUAEntities();
+
+            int ID = Int32.Parse(scId);
+            var sc = (from StorageCondition in db.StorageConditions
+                      where StorageCondition.StorageConditionId == ID
+                      select StorageCondition).Single();
+
+            sc.StorageCondition1 = scname;
+            sc.StorageConditionDescription = scdesc;
+            sc.StorageConditionChangedDate = DateTime.Now;
+
+            db.Entry(sc).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("StorageConditions");
+        }
+        #endregion
     }
 }

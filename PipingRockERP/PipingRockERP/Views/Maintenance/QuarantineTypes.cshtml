@@ -23,8 +23,8 @@
             {
                 <tr>
                     <td width="10%">@item.QuarantineTypeId</td>
-                    <td width="40%">@item.QuarantineType1</td>
-                    <td width="30%">@Html.ActionLink("Edit", "EditQuarantineType", "Maintenance", new { qtId = item.QuarantineTypeId.ToString() }, null)</td>
+                    <td width="50%">@item.QuarantineType1</td>
+                    <td width="20%">@Html.ActionLink("Edit", "EditQuarantineType", "Maintenance", new { qtId = item.QuarantineTypeId.ToString() }, null)</td>
                     @*<td width="5%"><input class="btn-edit" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Home")'" /></td>*@
                 </tr>
             }
