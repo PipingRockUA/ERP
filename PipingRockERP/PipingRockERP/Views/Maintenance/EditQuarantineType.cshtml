@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "EditQuarantineType";
+}
+@Html.Partial("_MaintenancePartial")
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+</head>
+<aside style="margin-top:10px">
+    <div class="panel" style="border:1px solid">
+        <div style="margin-left: 20px">
+            <h4>Maintenance > Edit Quarantine Type</h4>
+        </div>
+        @using (Html.BeginForm("SubmitQuarantineTypeUpdate", "Maintenance", new { qtId = @ViewBag.QuarantineType[0].QuarantineTypeId }, FormMethod.Post, null))
+        {
+            <input style="margin-left:18px; max-width:90px" class="btn btn-success" type="submit" id="SubmitBottleUpdate" value="Update" />
+            <table>
+                <tr>
+                    <td>Quarantine Type ID</td>
+                    <td><div id="qtId" name="qtId">@ViewBag.QuarantineType[0].QuarantineTypeId</div></td>
+                </tr>
+                <tr>
+                    <td>Quarantine Type</td>
+                    <td><input class="form-control" type="text" id="qtname" name="qtname" value="@ViewBag.QuarantineType[0].QuarantineType1" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+</aside>
