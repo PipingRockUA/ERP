@@ -21,7 +21,7 @@ namespace PipingRockERP
         }
     
         public int RawMaterialId { get; set; }
-        public string ItemKey { get; set; }
+        public string RawMaterialItemKey { get; set; }
         public string RawMaterialDescriptionShort { get; set; }
         public string RawMaterialDescriptionMedium { get; set; }
         public string RawMaterialDescriptionLong { get; set; }

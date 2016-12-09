@@ -17,7 +17,7 @@ namespace PipingRockERP
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ItemSubType()
         {
-            this.Supplies = new HashSet<Supply>();
+            this.MasterCaseOrTrays = new HashSet<MasterCaseOrTray>();
         }
     
         public int ItemSubTypeId { get; set; }
@@ -35,6 +35,6 @@ namespace PipingRockERP
     
         public virtual ItemType ItemType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ICollection<MasterCaseOrTray> MasterCaseOrTrays { get; set; }
     }
 }

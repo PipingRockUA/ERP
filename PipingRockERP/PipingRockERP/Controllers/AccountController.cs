@@ -19,7 +19,7 @@
         /// <summary>  
         /// Database Store property.    
         /// </summary>  
-        private PipingRockNewEntities databaseManager = new PipingRockNewEntities();
+        private PipingRockEntities databaseManager = new PipingRockEntities();
         #endregion
         #region Default Constructor    
         /// <summary>  
@@ -69,7 +69,7 @@
             {
                 if (ModelState.IsValid)
                 {
-                    var db = new PipingRockNewEntities();
+                    var db = new PipingRockEntities();
                     //var userName = db.Users.Where(x => x.UserName == model.Username).Select(x => x.UserName);
                     //if (userName.ToString() != "")
                     string userName = model.Username;

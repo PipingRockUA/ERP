@@ -12,17 +12,17 @@ namespace PipingRockERP
     using System;
     using System.Collections.Generic;
     
-    public partial class Supply
+    public partial class MasterCaseOrTray
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supply()
+        public MasterCaseOrTray()
         {
             this.FinishedGoods = new HashSet<FinishedGood>();
         }
     
-        public int SuppliesId { get; set; }
-        public string SuppliesItemKey { get; set; }
-        public string SuppliesDesc { get; set; }
+        public int MasterCaseOrTrayId { get; set; }
+        public string MasterCaseOrTrayItemKey { get; set; }
+        public string MasterCaseOrTrayDesc { get; set; }
         public int ItemTypeId { get; set; }
         public int ItemSubTypeId { get; set; }
         public int QuantityPerLayer { get; set; }
@@ -33,10 +33,10 @@ namespace PipingRockERP
         public int NumberBoxesHigh { get; set; }
         public int NumberBoxesMed { get; set; }
         public int NumberBoxesLow { get; set; }
-        public System.DateTime SuppliesAddedDate { get; set; }
-        public System.DateTime SuppliesChangedDate { get; set; }
-        public Nullable<System.DateTime> SuppliesDeletedDate { get; set; }
-        public int SuppliesModifiedById { get; set; }
+        public System.DateTime MasterCaseOrTrayAddedDate { get; set; }
+        public System.DateTime MasterCaseOrTrayChangedDate { get; set; }
+        public Nullable<System.DateTime> MasterCaseOrTrayDeletedDate { get; set; }
+        public int MasterCaseOrTrayModifiedById { get; set; }
         public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

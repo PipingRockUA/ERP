@@ -22,8 +22,7 @@
                 <th>WB Tray Small</th>
                 <th>WB Tray Large</th>
                 <th>Changed Date</th>
-                <th>Item Type Id</th>
-                <th>Item Type Detail Id</th>
+                <th>Bottle Cubic Inches</th>
                 <th>Action</th>
             </tr>
             @foreach (var item in ViewBag.Bottles)
@@ -37,8 +36,7 @@
                     <td>@item.WrappedBottlesTraySmall</td>
                     <td>@item.WrappedBottlesTrayLarge</td>
                     <td>@item.BottleChangedDate</td>
-                    <td>@item.ItemTypeId</td>
-                    <td>@item.ItemTypeDetailId</td>
+                    <td>@item.BottleCubicInches</td>
                     <td>@Html.ActionLink("Edit", "EditBottle", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                 </tr>
             }

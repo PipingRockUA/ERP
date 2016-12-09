@@ -29,16 +29,30 @@ namespace PipingRockERP
         public int WrappedBottlesTraySmall { get; set; }
         public int ItemStatusId { get; set; }
         public int ItemTypeId { get; set; }
-        public int ItemTypeDetailId { get; set; }
-        public decimal BottleLength { get; set; }
-        public decimal BottleWidth { get; set; }
-        public decimal BottleHieght { get; set; }
+        public int ItemSubTypeId { get; set; }
+        public decimal BottleLengthInches { get; set; }
+        public decimal BottleWidthInches { get; set; }
+        public decimal BottleHieghtInches { get; set; }
         public decimal BottleCubicInches { get; set; }
-        public decimal BottleLengthWrapped { get; set; }
-        public decimal BottleWidthWrapped { get; set; }
-        public decimal BottleDepthWrapped { get; set; }
-        public decimal BottleCubicInchWrapped { get; set; }
+        public decimal BottleLengthCm { get; set; }
+        public decimal BottleWidthCm { get; set; }
+        public decimal BottleHieghtCm { get; set; }
+        public decimal BottleCubicCm { get; set; }
+        public decimal BottleLengthWrappedInches { get; set; }
+        public decimal BottleWidthWrappedInches { get; set; }
+        public decimal BottleDepthWrappedInches { get; set; }
+        public decimal BottleCubicInchWrappedInches { get; set; }
+        public decimal BottleLengthWrappedCm { get; set; }
+        public decimal BottleWidthWrappedCm { get; set; }
+        public decimal BottleDepthWrappedCm { get; set; }
+        public decimal BottleCubicInchWrappedCm { get; set; }
         public decimal BottleLabelSquareInches { get; set; }
+        public decimal LabelSquareInches { get; set; }
+        public decimal LabelSquareCm { get; set; }
+        public string BottleSize { get; set; }
+        public int PrintFrames { get; set; }
+        public int NumberOfPrintingPositions { get; set; }
+        public bool is3rdParty { get; set; }
         public System.DateTime BottleAddedDate { get; set; }
         public System.DateTime BottleChangedDate { get; set; }
         public Nullable<System.DateTime> BottleDeletedDate { get; set; }

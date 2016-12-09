@@ -5,6 +5,14 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/App/Scripts/DimensionsUtils.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            handleDimensionsUpdate($("#BottleLength"), $("#BottleWidth"), $("#BottleHieght"), $("#BottleCubicInches"));
+            handleDimensionsUpdate($("#BottleLengthWrapped"), $("#BottleWidthWrapped"), $("#BottleDepthWrapped"), $("#BottleCubicInchWrapped"));
+        });
+    </script>
 </head>
 <aside style="margin-top:10px">
     <div class="panel" style="border:1px solid">
@@ -29,55 +37,55 @@
                 </tr>
                 <tr>
                     <td>Bottles Small Tray</td>
-                    <td><input class="form-control" type="tel" required pattern="[0-9]+" id="BottlesSmallTray" name="BottlesSmallTray" value="@ViewBag.Bottle[0].BottlesSmallTray" /></td>
+                    <td><input class="form-control" type="text" required pattern="[0-9]+" id="BottlesSmallTray" name="BottlesSmallTray" value="@ViewBag.Bottle[0].BottlesSmallTray" /></td>
                 </tr>
                 <tr>
                     <td>Bottles Large Tray</td>
-                    <td><input class="form-control" type="tel" required pattern="[0-9]+" id="BottlesLargeTray" name="BottlesLargeTray" value="@ViewBag.Bottle[0].BottlesLargeTray" /></td>
+                    <td><input class="form-control" type="text" required pattern="[0-9]+" id="BottlesLargeTray" name="BottlesLargeTray" value="@ViewBag.Bottle[0].BottlesLargeTray" /></td>
                 </tr>
                 <tr>
                     <td>Wrapped Bottles Tray Small</td>
-                    <td><input class="form-control" ttype="tel" required pattern="[0-9]+" id="WrappedBottlesTraySmall" name="WrappedBottlesTraySmall" value="@ViewBag.Bottle[0].WrappedBottlesTraySmall" /></td>
+                    <td><input class="form-control" ttype="text" required pattern="[0-9]+" id="WrappedBottlesTraySmall" name="WrappedBottlesTraySmall" value="@ViewBag.Bottle[0].WrappedBottlesTraySmall" /></td>
                 </tr>
                 <tr>
                     <td>Wrapped Bottles Tray Large</td>
-                    <td><input class="form-control" type="tel" required pattern="[0-9]+" id="WrappedBottlesTrayLarge" name="WrappedBottlesTrayLarge" value="@ViewBag.Bottle[0].WrappedBottlesTrayLarge" /></td>
+                    <td><input class="form-control" type="text" required pattern="[0-9]+" id="WrappedBottlesTrayLarge" name="WrappedBottlesTrayLarge" value="@ViewBag.Bottle[0].WrappedBottlesTrayLarge" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Length</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?"  id="BottleLength" name="BottleLength" value="@ViewBag.Bottle[0].BottleLength" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLength" name="BottleLength" value="@ViewBag.Bottle[0].BottleLength" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Width</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleWidth" name="BottleWidth" value="@ViewBag.Bottle[0].BottleWidth" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleWidth" name="BottleWidth" value="@ViewBag.Bottle[0].BottleWidth" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Hieght</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleHieght" name="BottleHieght" value="@ViewBag.Bottle[0].BottleHieght" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleHieght" name="BottleHieght" value="@ViewBag.Bottle[0].BottleHieght" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Cubic Inches</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleCubicInches" name="BottleCubicInches" value="@ViewBag.Bottle[0].BottleCubicInches" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleCubicInches" name="BottleCubicInches" value="@ViewBag.Bottle[0].BottleCubicInches" readonly="readonly"/></td>
                 </tr>
                 <tr>
                     <td>Bottle Length Wrapped</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleLengthWrapped" name="BottleLengthWrapped" value="@ViewBag.Bottle[0].BottleLengthWrapped" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLengthWrapped" name="BottleLengthWrapped" value="@ViewBag.Bottle[0].BottleLengthWrapped" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Width Wrapped</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleWidthWrapped" name="BottleWidthWrapped" value="@ViewBag.Bottle[0].BottleWidthWrapped" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleWidthWrapped" name="BottleWidthWrapped" value="@ViewBag.Bottle[0].BottleWidthWrapped" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Depth Wrapped</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" step="0.001" id="BottleDepthWrapped" name="BottleDepthWrapped" value="@ViewBag.Bottle[0].BottleDepthWrapped" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" step="0.001" id="BottleDepthWrapped" name="BottleDepthWrapped" value="@ViewBag.Bottle[0].BottleDepthWrapped" /></td>
                 </tr>
                 <tr>
                     <td>Bottle Cubic Inch Wrapped</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleCubicInchWrapped" name="BottleCubicInchWrapped" value="@ViewBag.Bottle[0].BottleCubicInchWrapped" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleCubicInchWrapped" name="BottleCubicInchWrapped" value="@ViewBag.Bottle[0].BottleCubicInchWrapped" readonly="readonly"/></td>
                 </tr>
                 <tr>
                     <td>Bottle Label Square Inches</td>
-                    <td><input class="form-control" type="tel" required pattern="\d+([,][0-9]{1,3})?" id="BottleLabelSquareInches" name="BottleLabelSquareInches" value="@ViewBag.Bottle[0].BottleLabelSquareInches" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLabelSquareInches" name="BottleLabelSquareInches" value="@ViewBag.Bottle[0].BottleLabelSquareInches" /></td>
                 </tr>
             </table>
         }

@@ -25,6 +25,8 @@ namespace PipingRockERP
         public string ItemType1 { get; set; }
         public string ItemTypeCode { get; set; }
         public string ItemTypeDescription { get; set; }
+        public decimal LossFactorCost { get; set; }
+        public decimal LossFactorInventory { get; set; }
         public System.DateTime ItemTypeAddedDate { get; set; }
         public System.DateTime ItemTypeChangedDate { get; set; }
         public Nullable<System.DateTime> ItemTypeDeletedDate { get; set; }

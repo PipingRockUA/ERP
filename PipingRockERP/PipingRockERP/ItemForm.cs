@@ -21,8 +21,8 @@ namespace PipingRockERP
         }
     
         public int ItemFormId { get; set; }
-        public string ItemForm1 { get; set; }
-        public string ItemFormDescription { get; set; }
+        public string ItemFormExternal { get; set; }
+        public string ItemFormWarehouse { get; set; }
         public System.DateTime ItemFormAddedDate { get; set; }
         public System.DateTime ItemFormChangedDate { get; set; }
         public Nullable<System.DateTime> ItemFormDeletedDate { get; set; }

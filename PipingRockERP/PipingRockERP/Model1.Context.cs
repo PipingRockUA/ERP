@@ -15,10 +15,10 @@ namespace PipingRockERP
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class PipingRockUAEntities : DbContext
+    public partial class PipingRockEntities : DbContext
     {
-        public PipingRockUAEntities()
-            : base("name=PipingRockUAEntities")
+        public PipingRockEntities()
+            : base("name=PipingRockEntities")
         {
         }
     
@@ -38,6 +38,7 @@ namespace PipingRockERP
         public virtual DbSet<ItemStatu> ItemStatus { get; set; }
         public virtual DbSet<ItemSubType> ItemSubTypes { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
+        public virtual DbSet<MasterCaseOrTray> MasterCaseOrTrays { get; set; }
         public virtual DbSet<PackagingLevel> PackagingLevels { get; set; }
         public virtual DbSet<QcTest> QcTests { get; set; }
         public virtual DbSet<QuarantineType> QuarantineTypes { get; set; }
@@ -45,7 +46,6 @@ namespace PipingRockERP
         public virtual DbSet<Ref_GDSN_UoM> Ref_GDSN_UoM { get; set; }
         public virtual DbSet<ReportSort> ReportSorts { get; set; }
         public virtual DbSet<StorageCondition> StorageConditions { get; set; }
-        public virtual DbSet<Supply> Supplies { get; set; }
         public virtual DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<Vendor_RawMaterial> Vendor_RawMaterial { get; set; }
@@ -309,16 +309,7 @@ namespace PipingRockERP
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUser", userNameParameter);
         }
-
-        public virtual ObjectResult<GetNonActiveRoles_Result> GetNonActiveUserRoles(Nullable<int> userId)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNonActiveRoles_Result>("GetNonActiveUserRoles", userIdParameter);
-        }
-
+    
         public virtual ObjectResult<GetAllRoles_Result> GetAllRoles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllRoles_Result>("GetAllRoles");
@@ -331,6 +322,15 @@ namespace PipingRockERP
                 new ObjectParameter("UserName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers_Result>("GetAllUsers", userNameParameter);
+        }
+    
+        public virtual ObjectResult<GetNonActiveRoles_Result> GetNonActiveRoles(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNonActiveRoles_Result>("GetNonActiveRoles", userIDParameter);
         }
     
         public virtual ObjectResult<GetUser_Result> GetUser(string userName)

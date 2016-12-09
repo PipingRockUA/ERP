@@ -20,7 +20,6 @@ namespace PipingRockERP
         public string FinishedGoodDescriptionMedium { get; set; }
         public string FinishedGoodDescriptionLong { get; set; }
         public int ItemStatusId { get; set; }
-        public int ItemFormId { get; set; }
         public int ItemTypeId { get; set; }
         public int BrandId { get; set; }
         public int BulkId { get; set; }
@@ -39,8 +38,9 @@ namespace PipingRockERP
         public Nullable<decimal> EachDepthInches { get; set; }
         public Nullable<decimal> EachWeightOz { get; set; }
         public Nullable<decimal> EachWeightGrams { get; set; }
-        public int SuppliesId { get; set; }
+        public int MasterCaseOrTrayId { get; set; }
         public string FinishedGoodMakeBuy { get; set; }
+        public int VendorId { get; set; }
         public bool isTaxableNYS { get; set; }
         public bool isTaxableCanada { get; set; }
         public bool ReceivingBoxLabelsRequired { get; set; }
@@ -50,6 +50,9 @@ namespace PipingRockERP
         public decimal PctOfLifeForRetesting { get; set; }
         public int QuarantineTypeId { get; set; }
         public bool areMultipleBinsRequired { get; set; }
+        public bool isLotTracked { get; set; }
+        public string PalletHeight { get; set; }
+        public bool isWrapped { get; set; }
         public System.DateTime FinishedGoodAddedDate { get; set; }
         public System.DateTime FinishedGoodChangedDate { get; set; }
         public Nullable<System.DateTime> FinishedGoodDeletedDate { get; set; }
@@ -60,8 +63,8 @@ namespace PipingRockERP
         public virtual Brand Brand { get; set; }
         public virtual Bulk Bulk { get; set; }
         public virtual ItemStatu ItemStatu { get; set; }
+        public virtual MasterCaseOrTray MasterCaseOrTray { get; set; }
         public virtual PackagingLevel PackagingLevel { get; set; }
         public virtual QcTest QcTest { get; set; }
-        public virtual Supply Supply { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace PipingRockERP
         }
     
         public int BulkId { get; set; }
-        public string ItemKey { get; set; }
+        public string BulkItemKey { get; set; }
         public string BulkDescriptionShort { get; set; }
         public string BulkDescriptionMedium { get; set; }
         public string BulkDescriptionLong { get; set; }
