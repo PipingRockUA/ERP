@@ -1258,7 +1258,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetAllBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
-        <Function Name="GetAllQuarantineTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
+        <Function Name="GetAllQuarantine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
         <Function Name="GetAllStorageConditions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
         <Function Name="GetBrandByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="BrandID" Type="int" Mode="In" />
@@ -3084,7 +3084,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <EntitySet Name="MasterCaseOrTrays" EntityType="Self.MasterCaseOrTray" />
           <EntitySet Name="PackagingLevels" EntityType="Self.PackagingLevel" />
           <EntitySet Name="QcTests" EntityType="Self.QcTest" />
-          <EntitySet Name="QuarantineTypes" EntityType="Self.QuarantineType" />
+          <EntitySet Name="Quarantine" EntityType="Self.QuarantineType" />
           <EntitySet Name="RawMaterials" EntityType="Self.RawMaterial" />
           <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" />
           <EntitySet Name="ReportSorts" EntityType="Self.ReportSort" />
@@ -3140,7 +3140,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <End Role="Bulk" EntitySet="Bulks" />
           </AssociationSet>
           <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-            <End Role="QuarantineType" EntitySet="QuarantineTypes" />
+            <End Role="QuarantineType" EntitySet="Quarantine" />
             <End Role="Bulk" EntitySet="Bulks" />
           </AssociationSet>
           <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
@@ -3253,7 +3253,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel.GetAllBrands_Result)" />
-          <FunctionImport Name="GetAllQuarantineTypes" ReturnType="Collection(PipingRockModel.GetAllQuarantineTypes_Result)" />
+          <FunctionImport Name="GetAllQuarantine" ReturnType="Collection(PipingRockModel.GetAllQuarantine_Result)" />
           <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel.GetAllStorageConditions_Result)" />
           <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel.GetBrandByID_Result)">
             <Parameter Name="BrandID" Mode="In" Type="Int32" />
@@ -3324,7 +3324,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="GetAllQuarantineTypes_Result">
+        <ComplexType Name="GetAllQuarantine_Result">
           <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
           <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
@@ -3730,7 +3730,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuarantineTypes">
+          <EntitySetMapping Name="Quarantine">
             <EntityTypeMapping TypeName="PipingRockModel.QuarantineType">
               <MappingFragment StoreEntitySet="QuarantineType">
                 <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
@@ -4341,9 +4341,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel.Store.GetAllQuarantineTypes">
+          <FunctionImportMapping FunctionImportName="GetAllQuarantine" FunctionName="PipingRockModel.Store.GetAllQuarantine">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantineTypes_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantine_Result">
                 <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
                 <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
                 <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />

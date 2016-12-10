@@ -333,11 +333,11 @@ namespace PipingRockERP.Controllers
         #endregion
 
         #region Quarantine Types
-        public ActionResult QuarantineTypes()
+        public ActionResult Quarantine()
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            var quarantineTypes = (from QuarantineType in db.QuarantineTypes select QuarantineType).ToList();
+            var quarantineTypes = (from QuarantineType in db.Quarantine select QuarantineType).ToList();
 
             return View(quarantineTypes);
         }
@@ -347,7 +347,7 @@ namespace PipingRockERP.Controllers
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(qtId);
 
-            var qt = (from QuarantineType in db.QuarantineTypes
+            var qt = (from QuarantineType in db.Quarantine
                           where QuarantineType.QuarantineTypeId == ID
                           select QuarantineType).ToList();
 
@@ -367,9 +367,9 @@ namespace PipingRockERP.Controllers
                 QuarantineTypeModifiedById = 0,
                 isDeleted = false
         };
-            db.QuarantineTypes.Add(qt);
+            db.Quarantine.Add(qt);
             db.SaveChanges();
-            return RedirectToAction("QuarantineTypes");
+            return RedirectToAction("Quarantine");
         }
 
         public ActionResult SubmitQuarantineTypeUpdate(string qtId, string qtname)
@@ -377,7 +377,7 @@ namespace PipingRockERP.Controllers
             PipingRockEntities db = new PipingRockEntities();
 
             int ID = Int32.Parse(qtId);
-            var qt = (from QuarantineType in db.QuarantineTypes
+            var qt = (from QuarantineType in db.Quarantine
                           where QuarantineType.QuarantineTypeId == ID
                           select QuarantineType).Single();
 
@@ -386,7 +386,7 @@ namespace PipingRockERP.Controllers
 
             db.Entry(qt).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("QuarantineTypes");
+            return RedirectToAction("Quarantine");
         }
         #endregion
 

@@ -11,7 +11,7 @@ namespace PipingRockERP
 {
     using System;
     
-    public partial class GetAllQuarantineTypes_Result
+    public partial class GetAllQuarantine_Result
     {
         public int QuarantineTypeId { get; set; }
         public string QuarantineType { get; set; }

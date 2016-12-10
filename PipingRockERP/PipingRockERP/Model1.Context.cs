@@ -41,7 +41,7 @@ namespace PipingRockERP
         public virtual DbSet<MasterCaseOrTray> MasterCaseOrTrays { get; set; }
         public virtual DbSet<PackagingLevel> PackagingLevels { get; set; }
         public virtual DbSet<QcTest> QcTests { get; set; }
-        public virtual DbSet<QuarantineType> QuarantineTypes { get; set; }
+        public virtual DbSet<QuarantineType> Quarantine { get; set; }
         public virtual DbSet<RawMaterial> RawMaterials { get; set; }
         public virtual DbSet<Ref_GDSN_UoM> Ref_GDSN_UoM { get; set; }
         public virtual DbSet<ReportSort> ReportSorts { get; set; }
@@ -204,9 +204,9 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllBrands_Result>("GetAllBrands");
         }
     
-        public virtual ObjectResult<GetAllQuarantineTypes_Result> GetAllQuarantineTypes()
+        public virtual ObjectResult<GetAllQuarantine_Result> GetAllQuarantine()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllQuarantineTypes_Result>("GetAllQuarantineTypes");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllQuarantine_Result>("GetAllQuarantine");
         }
     
         public virtual ObjectResult<GetAllStorageConditions_Result> GetAllStorageConditions()

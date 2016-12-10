@@ -292,7 +292,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="QuarantineTypes">
+    <EntitySetMapping Name="Quarantine">
       <EntityTypeMapping TypeName="PipingRockModel.QuarantineType">
         <MappingFragment StoreEntitySet="QuarantineType">
           <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
@@ -903,9 +903,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel.Store.GetAllQuarantineTypes">
+    <FunctionImportMapping FunctionImportName="GetAllQuarantine" FunctionName="PipingRockModel.Store.GetAllQuarantine">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantineTypes_Result">
+        <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantine_Result">
           <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
           <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
           <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
