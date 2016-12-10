@@ -1253,7 +1253,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
     <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetAllBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
-  <Function Name="GetAllQuarantine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
+  <Function Name="GetAllQuarantineTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
   <Function Name="GetAllStorageConditions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
   <Function Name="GetBrandByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="BrandID" Type="int" Mode="In" />
