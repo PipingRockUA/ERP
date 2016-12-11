@@ -117,7 +117,7 @@
           <Property Name="ExpirationMonths" Type="int" Nullable="false" />
           <Property Name="RetestingMonths" Type="int" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="int" Nullable="false" />
+          <Property Name="QuarantineId" Type="int" Nullable="false" />
           <Property Name="BulkAddedDate" Type="datetime" Nullable="false" />
           <Property Name="BulkChangedDate" Type="datetime" Nullable="false" />
           <Property Name="BulkDeletedDate" Type="datetime" />
@@ -162,7 +162,7 @@
           <Property Name="QcTestId" Type="int" Nullable="false" />
           <Property Name="ExpirationMonths" Type="int" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="int" Nullable="false" />
+          <Property Name="QuarantineId" Type="int" Nullable="false" />
           <Property Name="areMultipleBinsRequired" Type="bit" Nullable="false" />
           <Property Name="isLotTracked" Type="bit" Nullable="false" />
           <Property Name="PalletHeight" Type="nvarchar" MaxLength="10" />
@@ -282,16 +282,16 @@
           <Property Name="QcTestModifiedById" Type="int" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="QuarantineType">
+        <EntityType Name="Quarantine">
           <Key>
-            <PropertyRef Name="QuarantineTypeId" />
+            <PropertyRef Name="QuarantineId" />
           </Key>
-          <Property Name="QuarantineTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="QuarantineType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="QuarantineTypeAddedDate" Type="datetime" Nullable="false" />
-          <Property Name="QuarantineTypeChangedDate" Type="datetime" Nullable="false" />
-          <Property Name="QuarantineTypeDeletedDate" Type="datetime" />
-          <Property Name="QuarantineTypeModifiedById" Type="int" Nullable="false" />
+          <Property Name="QuarantineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quarantine" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="QuarantineAddedDate" Type="datetime" Nullable="false" />
+          <Property Name="QuarantineChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="QuarantineDeletedDate" Type="datetime" />
+          <Property Name="QuarantineModifiedById" Type="int" Nullable="false" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RawMaterial">
@@ -315,7 +315,7 @@
           <Property Name="ExpirationMonths" Type="int" Nullable="false" />
           <Property Name="RetestingMonths" Type="int" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="int" Nullable="false" />
+          <Property Name="QuarantineId" Type="int" Nullable="false" />
           <Property Name="RawMaterialAddedDate" Type="datetime" Nullable="false" />
           <Property Name="RawMaterialChangedDate" Type="datetime" Nullable="false" />
           <Property Name="RawMaterialDeletedDate" Type="datetime" />
@@ -939,15 +939,15 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bulk_QuarantineType">
-          <End Role="QuarantineType" Type="Self.QuarantineType" Multiplicity="1" />
+        <Association Name="FK_Bulk_Quarantine">
+          <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
           <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="QuarantineType">
-              <PropertyRef Name="QuarantineTypeId" />
+            <Principal Role="Quarantine">
+              <PropertyRef Name="QuarantineId" />
             </Principal>
             <Dependent Role="Bulk">
-              <PropertyRef Name="QuarantineTypeId" />
+              <PropertyRef Name="QuarantineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1250,21 +1250,21 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Parameter Name="BrandCode" Type="nvarchar" Mode="In" />
           <Parameter Name="Brand" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="AddQuarantineType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
-          <Parameter Name="QuarantineType" Type="nvarchar" Mode="In" />
+        <Function Name="AddQuarantine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+          <Parameter Name="Quarantine" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="AddStorageCondition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="StorageCondition" Type="nvarchar" Mode="In" />
           <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetAllBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
-        <Function Name="GetAllQuarantineTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
+        <Function Name="GetAllQuarantines" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
         <Function Name="GetAllStorageConditions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md" />
         <Function Name="GetBrandByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="BrandID" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetQuarantineTypeByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
-          <Parameter Name="QuarantineTypeID" Type="int" Mode="In" />
+        <Function Name="GetQuarantineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+          <Parameter Name="QuarantineID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetStorageConditionByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="StorageConditionID" Type="int" Mode="In" />
@@ -1274,9 +1274,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Parameter Name="BrandCode" Type="nvarchar" Mode="In" />
           <Parameter Name="Brand" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="UpdateQuarantineTypeByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
-          <Parameter Name="QuarantineTypeID" Type="int" Mode="In" />
-          <Parameter Name="QuarantineType" Type="nvarchar" Mode="In" />
+        <Function Name="UpdateQuarantineByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+          <Parameter Name="QuarantineID" Type="int" Mode="In" />
+          <Parameter Name="Quarantine" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UpdateStorageConditionByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="StorageConditionID" Type="int" Mode="In" />
@@ -1333,7 +1333,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <EntitySet Name="MasterCaseOrTray" EntityType="Self.MasterCaseOrTray" Schema="md" store:Type="Tables" />
           <EntitySet Name="PackagingLevel" EntityType="Self.PackagingLevel" Schema="md" store:Type="Tables" />
           <EntitySet Name="QcTest" EntityType="Self.QcTest" Schema="md" store:Type="Tables" />
-          <EntitySet Name="QuarantineType" EntityType="Self.QuarantineType" Schema="md" store:Type="Tables" />
+          <EntitySet Name="Quarantine" EntityType="Self.Quarantine" Schema="md" store:Type="Tables" />
           <EntitySet Name="RawMaterial" EntityType="Self.RawMaterial" Schema="md" store:Type="Tables" />
           <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" Schema="md" store:Type="Tables" />
           <EntitySet Name="ReportSort" EntityType="Self.ReportSort" Schema="md" store:Type="Tables" />
@@ -1717,8 +1717,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <End Role="QcTest" EntitySet="QcTest" />
             <End Role="Bulk" EntitySet="Bulk" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-            <End Role="QuarantineType" EntitySet="QuarantineType" />
+          <AssociationSet Name="FK_Bulk_Quarantine" Association="Self.FK_Bulk_Quarantine">
+            <End Role="Quarantine" EntitySet="Quarantine" />
             <End Role="Bulk" EntitySet="Bulk" />
           </AssociationSet>
           <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
@@ -1932,7 +1932,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
           <Property Name="RetestingMonths" Type="Int32" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuarantineId" Type="Int32" Nullable="false" />
           <Property Name="BulkAddedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BulkChangedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BulkDeletedDate" Type="DateTime" Precision="3" />
@@ -1942,7 +1942,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <NavigationProperty Name="ItemStatu" Relationship="Self.FK_Bulk_ItemStatus" FromRole="Bulk" ToRole="ItemStatus" />
           <NavigationProperty Name="ItemType" Relationship="Self.FK_Bulk_ItemType" FromRole="Bulk" ToRole="ItemType" />
           <NavigationProperty Name="QcTest" Relationship="Self.FK_Bulk_QcTest" FromRole="Bulk" ToRole="QcTest" />
-          <NavigationProperty Name="QuarantineType" Relationship="Self.FK_Bulk_QuarantineType" FromRole="Bulk" ToRole="QuarantineType" />
+          <NavigationProperty Name="Quarantine" Relationship="Self.FK_Bulk_Quarantine" FromRole="Bulk" ToRole="Quarantine" />
           <NavigationProperty Name="StorageCondition" Relationship="Self.FK_Bulk_StorageCondition" FromRole="Bulk" ToRole="StorageCondition" />
           <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Bulk" FromRole="Bulk" ToRole="FinishedGood" />
         </EntityType>
@@ -1984,7 +1984,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="QcTestId" Type="Int32" Nullable="false" />
           <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuarantineId" Type="Int32" Nullable="false" />
           <Property Name="areMultipleBinsRequired" Type="Boolean" Nullable="false" />
           <Property Name="isLotTracked" Type="Boolean" Nullable="false" />
           <Property Name="PalletHeight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -2125,18 +2125,18 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <NavigationProperty Name="QcTest11" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest" ToRole="QcTest1" />
           <NavigationProperty Name="QcTest2" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest1" ToRole="QcTest" />
         </EntityType>
-        <EntityType Name="QuarantineType">
+        <EntityType Name="Quarantine">
           <Key>
-            <PropertyRef Name="QuarantineTypeId" />
+            <PropertyRef Name="QuarantineId" />
           </Key>
-          <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuarantineType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="QuarantineTypeAddedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="QuarantineTypeChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="QuarantineTypeDeletedDate" Type="DateTime" Precision="3" />
-          <Property Name="QuarantineTypeModifiedById" Type="Int32" Nullable="false" />
+          <Property Name="QuarantineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quarantine1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuarantineAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuarantineChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuarantineDeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="QuarantineModifiedById" Type="Int32" Nullable="false" />
           <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_QuarantineType" FromRole="QuarantineType" ToRole="Bulk" />
+          <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_Quarantine" FromRole="Quarantine" ToRole="Bulk" />
         </EntityType>
         <EntityType Name="RawMaterial">
           <Key>
@@ -2159,7 +2159,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
           <Property Name="RetestingMonths" Type="Int32" Nullable="false" />
           <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-          <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuarantineId" Type="Int32" Nullable="false" />
           <Property Name="RawMaterialAddedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RawMaterialChangedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RawMaterialDeletedDate" Type="DateTime" Precision="3" />
@@ -2853,15 +2853,15 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bulk_QuarantineType">
-          <End Role="QuarantineType" Type="Self.QuarantineType" Multiplicity="1" />
+        <Association Name="FK_Bulk_Quarantine">
+          <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
           <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="QuarantineType">
-              <PropertyRef Name="QuarantineTypeId" />
+            <Principal Role="Quarantine">
+              <PropertyRef Name="QuarantineId" />
             </Principal>
             <Dependent Role="Bulk">
-              <PropertyRef Name="QuarantineTypeId" />
+              <PropertyRef Name="QuarantineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3084,7 +3084,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <EntitySet Name="MasterCaseOrTrays" EntityType="Self.MasterCaseOrTray" />
           <EntitySet Name="PackagingLevels" EntityType="Self.PackagingLevel" />
           <EntitySet Name="QcTests" EntityType="Self.QcTest" />
-          <EntitySet Name="QuarantineTypes" EntityType="Self.QuarantineType" />
+          <EntitySet Name="Quarantines" EntityType="Self.Quarantine" />
           <EntitySet Name="RawMaterials" EntityType="Self.RawMaterial" />
           <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" />
           <EntitySet Name="ReportSorts" EntityType="Self.ReportSort" />
@@ -3139,8 +3139,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <End Role="QcTest" EntitySet="QcTests" />
             <End Role="Bulk" EntitySet="Bulks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-            <End Role="QuarantineType" EntitySet="QuarantineTypes" />
+          <AssociationSet Name="FK_Bulk_Quarantine" Association="Self.FK_Bulk_Quarantine">
+            <End Role="Quarantine" EntitySet="Quarantines" />
             <End Role="Bulk" EntitySet="Bulks" />
           </AssociationSet>
           <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
@@ -3245,21 +3245,21 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <Parameter Name="BrandCode" Mode="In" Type="String" />
             <Parameter Name="Brand" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AddQuarantineType">
-            <Parameter Name="QuarantineType" Mode="In" Type="String" />
+          <FunctionImport Name="AddQuarantine">
+            <Parameter Name="Quarantine" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddStorageCondition">
             <Parameter Name="StorageCondition" Mode="In" Type="String" />
             <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel.GetAllBrands_Result)" />
-          <FunctionImport Name="GetAllQuarantineTypes" ReturnType="Collection(PipingRockModel.GetAllQuarantineTypes_Result)" />
+          <FunctionImport Name="GetAllQuarantines" ReturnType="Collection(PipingRockModel.GetAllQuarantines_Result)" />
           <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel.GetAllStorageConditions_Result)" />
           <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel.GetBrandByID_Result)">
             <Parameter Name="BrandID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetQuarantineTypeByID" ReturnType="Collection(PipingRockModel.GetQuarantineTypeByID_Result)">
-            <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetQuarantineByID" ReturnType="Collection(PipingRockModel.GetQuarantineByID_Result)">
+            <Parameter Name="QuarantineID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel.GetStorageConditionByID_Result)">
             <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
@@ -3269,9 +3269,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <Parameter Name="BrandCode" Mode="In" Type="String" />
             <Parameter Name="Brand" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateQuarantineTypeByID">
-            <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
-            <Parameter Name="QuarantineType" Mode="In" Type="String" />
+          <FunctionImport Name="UpdateQuarantineByID">
+            <Parameter Name="QuarantineID" Mode="In" Type="Int32" />
+            <Parameter Name="Quarantine" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UpdateStorageConditionByID">
             <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
@@ -3324,13 +3324,13 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="GetAllQuarantineTypes_Result">
-          <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-          <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
+        <ComplexType Name="GetAllQuarantines_Result">
+          <Property Type="Int32" Name="QuarantineId" Nullable="false" />
+          <Property Type="String" Name="Quarantine" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="QuarantineAddedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="QuarantineChangedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="QuarantineDeletedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="QuarantineModifiedById" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GetAllStorageConditions_Result">
@@ -3353,13 +3353,13 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="GetQuarantineTypeByID_Result">
-          <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-          <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
+        <ComplexType Name="GetQuarantineByID_Result">
+          <Property Type="Int32" Name="QuarantineId" Nullable="false" />
+          <Property Type="String" Name="Quarantine" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="QuarantineAddedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="QuarantineChangedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="QuarantineDeletedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="QuarantineModifiedById" Nullable="false" />
           <Property Type="Boolean" Name="isDeleted" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GetStorageConditionByID_Result">
@@ -3555,7 +3555,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
                 <ScalarProperty Name="RetestingMonths" ColumnName="RetestingMonths" />
                 <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
                 <ScalarProperty Name="BulkAddedDate" ColumnName="BulkAddedDate" />
                 <ScalarProperty Name="BulkChangedDate" ColumnName="BulkChangedDate" />
                 <ScalarProperty Name="BulkDeletedDate" ColumnName="BulkDeletedDate" />
@@ -3601,7 +3601,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="QcTestId" ColumnName="QcTestId" />
                 <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
                 <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
                 <ScalarProperty Name="areMultipleBinsRequired" ColumnName="areMultipleBinsRequired" />
                 <ScalarProperty Name="isLotTracked" ColumnName="isLotTracked" />
                 <ScalarProperty Name="PalletHeight" ColumnName="PalletHeight" />
@@ -3730,15 +3730,15 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuarantineTypes">
-            <EntityTypeMapping TypeName="PipingRockModel.QuarantineType">
-              <MappingFragment StoreEntitySet="QuarantineType">
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-                <ScalarProperty Name="QuarantineType1" ColumnName="QuarantineType" />
-                <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-                <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-                <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-                <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+          <EntitySetMapping Name="Quarantines">
+            <EntityTypeMapping TypeName="PipingRockModel.Quarantine">
+              <MappingFragment StoreEntitySet="Quarantine">
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+                <ScalarProperty Name="Quarantine1" ColumnName="Quarantine" />
+                <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+                <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+                <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+                <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3763,7 +3763,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
                 <ScalarProperty Name="RetestingMonths" ColumnName="RetestingMonths" />
                 <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
                 <ScalarProperty Name="RawMaterialAddedDate" ColumnName="RawMaterialAddedDate" />
                 <ScalarProperty Name="RawMaterialChangedDate" ColumnName="RawMaterialChangedDate" />
                 <ScalarProperty Name="RawMaterialDeletedDate" ColumnName="RawMaterialDeletedDate" />
@@ -4325,7 +4325,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PipingRockModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PipingRockModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="AddBrand" FunctionName="PipingRockModel.Store.AddBrand" />
-          <FunctionImportMapping FunctionImportName="AddQuarantineType" FunctionName="PipingRockModel.Store.AddQuarantineType" />
+          <FunctionImportMapping FunctionImportName="AddQuarantine" FunctionName="PipingRockModel.Store.AddQuarantine" />
           <FunctionImportMapping FunctionImportName="AddStorageCondition" FunctionName="PipingRockModel.Store.AddStorageCondition" />
           <FunctionImportMapping FunctionImportName="GetAllBrands" FunctionName="PipingRockModel.Store.GetAllBrands">
             <ResultMapping>
@@ -4341,15 +4341,15 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel.Store.GetAllQuarantineTypes">
+          <FunctionImportMapping FunctionImportName="GetAllQuarantines" FunctionName="PipingRockModel.Store.GetAllQuarantines">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantineTypes_Result">
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-                <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
-                <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-                <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-                <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-                <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantines_Result">
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+                <ScalarProperty Name="Quarantine" ColumnName="Quarantine" />
+                <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+                <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+                <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+                <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -4382,15 +4382,15 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetQuarantineTypeByID" FunctionName="PipingRockModel.Store.GetQuarantineTypeByID">
+          <FunctionImportMapping FunctionImportName="GetQuarantineByID" FunctionName="PipingRockModel.Store.GetQuarantineByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel.GetQuarantineTypeByID_Result">
-                <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-                <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
-                <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-                <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-                <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-                <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+              <ComplexTypeMapping TypeName="PipingRockModel.GetQuarantineByID_Result">
+                <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+                <ScalarProperty Name="Quarantine" ColumnName="Quarantine" />
+                <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+                <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+                <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+                <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -4410,7 +4410,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateBrandByID" FunctionName="PipingRockModel.Store.UpdateBrandByID" />
-          <FunctionImportMapping FunctionImportName="UpdateQuarantineTypeByID" FunctionName="PipingRockModel.Store.UpdateQuarantineTypeByID" />
+          <FunctionImportMapping FunctionImportName="UpdateQuarantineByID" FunctionName="PipingRockModel.Store.UpdateQuarantineByID" />
           <FunctionImportMapping FunctionImportName="UpdateStorageConditionByID" FunctionName="PipingRockModel.Store.UpdateStorageConditionByID" />
           <FunctionImportMapping FunctionImportName="AddRoleUserID" FunctionName="PipingRockModel.Store.AddRoleUserID" />
           <FunctionImportMapping FunctionImportName="AddUser" FunctionName="PipingRockModel.Store.AddUser" />

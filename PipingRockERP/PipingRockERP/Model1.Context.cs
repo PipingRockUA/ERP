@@ -41,7 +41,7 @@ namespace PipingRockERP
         public virtual DbSet<MasterCaseOrTray> MasterCaseOrTrays { get; set; }
         public virtual DbSet<PackagingLevel> PackagingLevels { get; set; }
         public virtual DbSet<QcTest> QcTests { get; set; }
-        public virtual DbSet<QuarantineType> QuarantineTypes { get; set; }
+        public virtual DbSet<Quarantine> Quarantines { get; set; }
         public virtual DbSet<RawMaterial> RawMaterials { get; set; }
         public virtual DbSet<Ref_GDSN_UoM> Ref_GDSN_UoM { get; set; }
         public virtual DbSet<ReportSort> ReportSorts { get; set; }
@@ -177,13 +177,13 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddBrand", brandCodeParameter, brandParameter);
         }
     
-        public virtual int AddQuarantineType(string quarantineType)
+        public virtual int AddQuarantine(string quarantineType)
         {
             var quarantineTypeParameter = quarantineType != null ?
-                new ObjectParameter("QuarantineType", quarantineType) :
-                new ObjectParameter("QuarantineType", typeof(string));
+                new ObjectParameter("Quarantine", quarantineType) :
+                new ObjectParameter("Quarantine", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddQuarantineType", quarantineTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddQuarantine", quarantineTypeParameter);
         }
     
         public virtual int AddStorageCondition(string storageCondition, string storageConditionDescription)
@@ -204,9 +204,9 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllBrands_Result>("GetAllBrands");
         }
     
-        public virtual ObjectResult<GetAllQuarantineTypes_Result> GetAllQuarantineTypes()
+        public virtual ObjectResult<GetAllQuarantines_Result> GetAllQuarantines()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllQuarantineTypes_Result>("GetAllQuarantineTypes");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllQuarantines_Result>("GetAllQuarantines");
         }
     
         public virtual ObjectResult<GetAllStorageConditions_Result> GetAllStorageConditions()
@@ -223,13 +223,13 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBrandByID_Result>("GetBrandByID", brandIDParameter);
         }
     
-        public virtual ObjectResult<GetQuarantineTypeByID_Result> GetQuarantineTypeByID(Nullable<int> quarantineTypeID)
+        public virtual ObjectResult<GetQuarantineByID_Result> GetQuarantineByID(Nullable<int> quarantineTypeID)
         {
             var quarantineTypeIDParameter = quarantineTypeID.HasValue ?
-                new ObjectParameter("QuarantineTypeID", quarantineTypeID) :
-                new ObjectParameter("QuarantineTypeID", typeof(int));
+                new ObjectParameter("QuarantineID", quarantineTypeID) :
+                new ObjectParameter("QuarantineID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetQuarantineTypeByID_Result>("GetQuarantineTypeByID", quarantineTypeIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetQuarantineByID_Result>("GetQuarantineByID", quarantineTypeIDParameter);
         }
     
         public virtual ObjectResult<GetStorageConditionByID_Result> GetStorageConditionByID(Nullable<int> storageConditionID)
@@ -258,17 +258,17 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateBrandByID", brandIDParameter, brandCodeParameter, brandParameter);
         }
     
-        public virtual int UpdateQuarantineTypeByID(Nullable<int> quarantineTypeID, string quarantineType)
+        public virtual int UpdateQuarantineByID(Nullable<int> quarantineTypeID, string quarantineType)
         {
             var quarantineTypeIDParameter = quarantineTypeID.HasValue ?
-                new ObjectParameter("QuarantineTypeID", quarantineTypeID) :
-                new ObjectParameter("QuarantineTypeID", typeof(int));
+                new ObjectParameter("QuarantineID", quarantineTypeID) :
+                new ObjectParameter("QuarantineID", typeof(int));
     
             var quarantineTypeParameter = quarantineType != null ?
-                new ObjectParameter("QuarantineType", quarantineType) :
-                new ObjectParameter("QuarantineType", typeof(string));
+                new ObjectParameter("Quarantine", quarantineType) :
+                new ObjectParameter("Quarantine", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateQuarantineTypeByID", quarantineTypeIDParameter, quarantineTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateQuarantineByID", quarantineTypeIDParameter, quarantineTypeParameter);
         }
     
         public virtual int UpdateStorageConditionByID(Nullable<int> storageConditionID, string storageCondition, string storageConditionDescription)

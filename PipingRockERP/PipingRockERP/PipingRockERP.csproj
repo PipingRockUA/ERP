@@ -414,7 +414,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="src\img\logo.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -445,9 +447,9 @@
     <Content Include="Views\Maintenance\BottleChart.cshtml" />
     <Content Include="Views\Maintenance\AddBottle.cshtml" />
     <Content Include="Views\Maintenance\EditBottle.cshtml" />
-    <Content Include="Views\Maintenance\QuarantineTypes.cshtml" />
-    <Content Include="Views\Maintenance\EditQuarantineType.cshtml" />
-    <Content Include="Views\Maintenance\AddQuarantineType.cshtml" />
+    <Content Include="Views\Maintenance\Quarantines.cshtml" />
+    <Content Include="Views\Maintenance\EditQuarantine.cshtml" />
+    <Content Include="Views\Maintenance\AddQuarantine.cshtml" />
     <Content Include="Views\Maintenance\StorageConditions.cshtml" />
     <Content Include="Views\Maintenance\AddStorageCondition.cshtml" />
     <Content Include="Views\Maintenance\EditStorageCondition.cshtml" />

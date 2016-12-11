@@ -191,7 +191,8 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            var bottle = new Bottle() {
+            var bottle = new Bottle()
+            {
                 BottleItemKey = BottleItemKey,
                 BottleDescription = BottleDescription,
                 BottlesSmallTray = BottlesSmallTray,
@@ -236,6 +237,7 @@ namespace PipingRockERP.Controllers
                 BottleModifiedById = 1,
                 isDeleted = false
             };
+
             db.Bottles.Add(bottle);
             db.SaveChanges();
             return RedirectToAction("BottleChart");
@@ -333,60 +335,60 @@ namespace PipingRockERP.Controllers
         #endregion
 
         #region Quarantine Types
-        public ActionResult QuarantineTypes()
+        public ActionResult Quarantines()
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            var quarantineTypes = (from QuarantineType in db.QuarantineTypes select QuarantineType).ToList();
+            var quarantineTypes = (from Quarantine in db.Quarantines select Quarantine).ToList();
 
             return View(quarantineTypes);
         }
 
-        public ActionResult EditQuarantineType(string qtId)
+        public ActionResult EditQuarantine(string qtId)
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(qtId);
 
-            var qt = (from QuarantineType in db.QuarantineTypes
-                          where QuarantineType.QuarantineTypeId == ID
-                          select QuarantineType).ToList();
+            var qt = (from Quarantine in db.Quarantines
+                          where Quarantine.QuarantineId == ID
+                          select Quarantine).ToList();
 
-            ViewBag.QuarantineType = qt;
+            ViewBag.Quarantine = qt;
 
             return View();
         }
 
-        public ActionResult SubmitQuarantineTypeAdd(string qtname)
+        public ActionResult SubmitQuarantineAdd(string qtname)
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            var qt = new QuarantineType() {
-                QuarantineType1 = qtname,
-                QuarantineTypeAddedDate = DateTime.Now,
-                QuarantineTypeChangedDate = DateTime.Now,
-                QuarantineTypeModifiedById = 0,
+            var qt = new Quarantine() {
+                Quarantine1 = qtname,
+                QuarantineAddedDate = DateTime.Now,
+                QuarantineChangedDate = DateTime.Now,
+                QuarantineModifiedById = 0,
                 isDeleted = false
         };
-            db.QuarantineTypes.Add(qt);
+            db.Quarantines.Add(qt);
             db.SaveChanges();
-            return RedirectToAction("QuarantineTypes");
+            return RedirectToAction("Quarantines");
         }
 
-        public ActionResult SubmitQuarantineTypeUpdate(string qtId, string qtname)
+        public ActionResult SubmitQuarantineUpdate(string qtId, string qtname)
         {
             PipingRockEntities db = new PipingRockEntities();
 
             int ID = Int32.Parse(qtId);
-            var qt = (from QuarantineType in db.QuarantineTypes
-                          where QuarantineType.QuarantineTypeId == ID
-                          select QuarantineType).Single();
+            var qt = (from Quarantine in db.Quarantines
+                          where Quarantine.QuarantineId == ID
+                          select Quarantine).Single();
 
-            qt.QuarantineType1 = qtname;
-            qt.QuarantineTypeChangedDate = DateTime.Now;
+            qt.Quarantine1 = qtname;
+            qt.QuarantineChangedDate = DateTime.Now;
 
             db.Entry(qt).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("QuarantineTypes");
+            return RedirectToAction("Quarantines");
         }
         #endregion
 

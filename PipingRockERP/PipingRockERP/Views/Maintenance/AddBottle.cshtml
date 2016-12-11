@@ -9,10 +9,14 @@
     <script type="text/javascript" src="~/App/Scripts/DimensionsUtils.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            handleDimensionsUpdate($("#BottleLengthInches"), $("#BottleWidthInches"), $("#BottleHieghtInches"), $("#BottleCubicInches"));
-            handleDimensionsUpdate($("#BottleLengthWrappedInches"), $("#BottleWidthWrappedInches"), $("#BottleDepthWrappedInches"), $("#BottleCubicInchWrappedInches"));
-            handleDimensionsUpdate($("#BottleLengthCm"), $("#BottleWidthCm"), $("#BottleHieghtCm"), $("#BottleCubicCm"));
-            handleDimensionsUpdate($("#BottleLengthWrappedCm"), $("#BottleWidthWrappedCm"), $("#BottleDepthWrappedCm"), $("#BottleCubicInchWrappedCm"));
+            handleDimensionsUpdate($("#BottleLengthInches"), $("#BottleWidthInches"), $("#BottleHieghtInches"), $("#BottleCubicInches"), $("#BottleLengthCm"), $("#BottleWidthCm"), $("#BottleHieghtCm"), $("#BottleCubicCm"));
+            handleDimensionsUpdate($("#BottleLengthWrappedInches"), $("#BottleWidthWrappedInches"), $("#BottleDepthWrappedInches"), $("#BottleCubicInchWrappedInches"), $("#BottleLengthWrappedCm"), $("#BottleWidthWrappedCm"), $("#BottleDepthWrappedCm"), $("#BottleCubicInchWrappedCm"));
+            //handleDimensionsUpdate($("#BottleLengthInches"), $("#BottleWidthInches"), $("#BottleHieghtInches"), $("#BottleCubicInches"));
+            //handleDimensionsUpdate($("#BottleLengthWrappedInches"), $("#BottleWidthWrappedInches"), $("#BottleDepthWrappedInches"), $("#BottleCubicInchWrappedInches"));
+            //handleDimensionsUpdate($("#BottleLengthCm"), $("#BottleWidthCm"), $("#BottleHieghtCm"), $("#BottleCubicCm"));
+            //handleDimensionsUpdate($("#BottleLengthWrappedCm"), $("#BottleWidthWrappedCm"), $("#BottleDepthWrappedCm"), $("#BottleCubicInchWrappedCm"));
+
+            //handleDimensionsInput($("#BottleLengthInches"), $("#BottleLengthCm"));
         });
     </script>
 </head>
@@ -99,9 +103,25 @@
                 </tr>
                 <tr>
                     <td>Bottle Label Square In</td>
-                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLabelSquareInchesInches" name="BottleLabelSquareInchesInches" value="0" /></td>
-                    <td>Bottle Label Square Cm</td>
-                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLabelSquareInchesCm" name="BottleLabelSquareInchesCm" value="0" /></td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="BottleLabelSquareInches" name="BottleLabelSquareInches" value="0" /></td>
+                </tr>
+                <tr>
+                    <td>Label Square In</td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="LabelSquareInches" name="LabelSquareInches" value="0"/></td>
+                    <td>Label Square Cm</td>
+                    <td><input class="form-control" type="text" required pattern="\d+([\.|\,][0-9]{1,3})?" id="LabelSquareCm" name="LabelSquareCm" value="0"/></td>
+                </tr>
+                <tr>
+                    <td>Bottle Size</td>
+                    <td><input class="form-control" type="text" id="BottleSize" name="BottleSize" value="N/A" /></td>
+                </tr>
+                <tr>
+                    <td>Print Frames</td>
+                    <td><input class="form-control" type="text" required pattern="[0-9]+" id="PrintFrames" name="PrintFrames" value="0" /></td>
+                </tr>
+                <tr>
+                    <td>Number of Print Position</td>
+                    <td><input class="form-control" type="text" required pattern="[0-9]+" id="NumberOfPrintingPositions" name="NumberOfPrintingPositions" value="0" /></td>
                 </tr>
             </table>
         }

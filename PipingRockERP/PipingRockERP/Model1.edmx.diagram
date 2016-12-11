@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="PipingRockModel.MasterCaseOrTray" Width="1.5" PointX="3" PointY="29.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PipingRockModel.PackagingLevel" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="PipingRockModel.QcTest" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="PipingRockModel.QuarantineType" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PipingRockModel.Quarantine" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PipingRockModel.RawMaterial" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PipingRockModel.Ref_GDSN_UoM" Width="1.5" PointX="12.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PipingRockModel.ReportSort" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
@@ -47,7 +47,7 @@
         <AssociationConnector Association="PipingRockModel.FK_Bulk_ItemStatus" ManuallyRouted="false" />
         <AssociationConnector Association="PipingRockModel.FK_Bulk_ItemType" ManuallyRouted="false" />
         <AssociationConnector Association="PipingRockModel.FK_Bulk_QcTest" ManuallyRouted="false" />
-        <AssociationConnector Association="PipingRockModel.FK_Bulk_QuarantineType" ManuallyRouted="false" />
+        <AssociationConnector Association="PipingRockModel.FK_Bulk_Quarantine" ManuallyRouted="false" />
         <AssociationConnector Association="PipingRockModel.FK_Bulk_StorageCondition" ManuallyRouted="false" />
         <AssociationConnector Association="PipingRockModel.FK_FinishedGood_Bulk" ManuallyRouted="false" />
         <AssociationConnector Association="PipingRockModel.FK_FinishedGood_ItemStatus" ManuallyRouted="false" />

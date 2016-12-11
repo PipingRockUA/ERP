@@ -11,14 +11,14 @@ namespace PipingRockERP
 {
     using System;
     
-    public partial class GetAllQuarantineTypes_Result
+    public partial class GetAllQuarantines_Result
     {
-        public int QuarantineTypeId { get; set; }
-        public string QuarantineType { get; set; }
-        public System.DateTime QuarantineTypeAddedDate { get; set; }
-        public System.DateTime QuarantineTypeChangedDate { get; set; }
-        public Nullable<System.DateTime> QuarantineTypeDeletedDate { get; set; }
-        public int QuarantineTypeModifiedById { get; set; }
+        public int QuarantineId { get; set; }
+        public string Quarantine { get; set; }
+        public System.DateTime QuarantineAddedDate { get; set; }
+        public System.DateTime QuarantineChangedDate { get; set; }
+        public Nullable<System.DateTime> QuarantineDeletedDate { get; set; }
+        public int QuarantineModifiedById { get; set; }
         public bool isDeleted { get; set; }
     }
 }

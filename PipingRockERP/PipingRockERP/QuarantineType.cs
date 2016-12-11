@@ -12,20 +12,20 @@ namespace PipingRockERP
     using System;
     using System.Collections.Generic;
     
-    public partial class QuarantineType
+    public partial class Quarantine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QuarantineType()
+        public Quarantine()
         {
             this.Bulks = new HashSet<Bulk>();
         }
     
-        public int QuarantineTypeId { get; set; }
-        public string QuarantineType1 { get; set; }
-        public System.DateTime QuarantineTypeAddedDate { get; set; }
-        public System.DateTime QuarantineTypeChangedDate { get; set; }
-        public Nullable<System.DateTime> QuarantineTypeDeletedDate { get; set; }
-        public int QuarantineTypeModifiedById { get; set; }
+        public int QuarantineId { get; set; }
+        public string Quarantine1 { get; set; }
+        public System.DateTime QuarantineAddedDate { get; set; }
+        public System.DateTime QuarantineChangedDate { get; set; }
+        public Nullable<System.DateTime> QuarantineDeletedDate { get; set; }
+        public int QuarantineModifiedById { get; set; }
         public bool isDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

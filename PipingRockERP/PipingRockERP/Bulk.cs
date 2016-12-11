@@ -38,7 +38,7 @@ namespace PipingRockERP
         public int ExpirationMonths { get; set; }
         public int RetestingMonths { get; set; }
         public decimal PctOfLifeForRetesting { get; set; }
-        public int QuarantineTypeId { get; set; }
+        public int QuarantineId { get; set; }
         public System.DateTime BulkAddedDate { get; set; }
         public System.DateTime BulkChangedDate { get; set; }
         public Nullable<System.DateTime> BulkDeletedDate { get; set; }
@@ -49,7 +49,7 @@ namespace PipingRockERP
         public virtual ItemStatu ItemStatu { get; set; }
         public virtual ItemType ItemType { get; set; }
         public virtual QcTest QcTest { get; set; }
-        public virtual QuarantineType QuarantineType { get; set; }
+        public virtual Quarantine Quarantine { get; set; }
         public virtual StorageCondition StorageCondition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FinishedGood> FinishedGoods { get; set; }

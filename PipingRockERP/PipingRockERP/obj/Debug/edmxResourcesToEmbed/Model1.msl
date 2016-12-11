@@ -117,7 +117,7 @@
           <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
           <ScalarProperty Name="RetestingMonths" ColumnName="RetestingMonths" />
           <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
           <ScalarProperty Name="BulkAddedDate" ColumnName="BulkAddedDate" />
           <ScalarProperty Name="BulkChangedDate" ColumnName="BulkChangedDate" />
           <ScalarProperty Name="BulkDeletedDate" ColumnName="BulkDeletedDate" />
@@ -163,7 +163,7 @@
           <ScalarProperty Name="QcTestId" ColumnName="QcTestId" />
           <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
           <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
           <ScalarProperty Name="areMultipleBinsRequired" ColumnName="areMultipleBinsRequired" />
           <ScalarProperty Name="isLotTracked" ColumnName="isLotTracked" />
           <ScalarProperty Name="PalletHeight" ColumnName="PalletHeight" />
@@ -292,15 +292,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="QuarantineTypes">
-      <EntityTypeMapping TypeName="PipingRockModel.QuarantineType">
-        <MappingFragment StoreEntitySet="QuarantineType">
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-          <ScalarProperty Name="QuarantineType1" ColumnName="QuarantineType" />
-          <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-          <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-          <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-          <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+    <EntitySetMapping Name="Quarantines">
+      <EntityTypeMapping TypeName="PipingRockModel.Quarantine">
+        <MappingFragment StoreEntitySet="Quarantine">
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+          <ScalarProperty Name="Quarantine1" ColumnName="Quarantine" />
+          <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+          <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+          <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+          <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
           <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -325,7 +325,7 @@
           <ScalarProperty Name="ExpirationMonths" ColumnName="ExpirationMonths" />
           <ScalarProperty Name="RetestingMonths" ColumnName="RetestingMonths" />
           <ScalarProperty Name="PctOfLifeForRetesting" ColumnName="PctOfLifeForRetesting" />
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
           <ScalarProperty Name="RawMaterialAddedDate" ColumnName="RawMaterialAddedDate" />
           <ScalarProperty Name="RawMaterialChangedDate" ColumnName="RawMaterialChangedDate" />
           <ScalarProperty Name="RawMaterialDeletedDate" ColumnName="RawMaterialDeletedDate" />
@@ -887,7 +887,7 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PipingRockModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PipingRockModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="AddBrand" FunctionName="PipingRockModel.Store.AddBrand" />
-    <FunctionImportMapping FunctionImportName="AddQuarantineType" FunctionName="PipingRockModel.Store.AddQuarantineType" />
+    <FunctionImportMapping FunctionImportName="AddQuarantine" FunctionName="PipingRockModel.Store.AddQuarantine" />
     <FunctionImportMapping FunctionImportName="AddStorageCondition" FunctionName="PipingRockModel.Store.AddStorageCondition" />
     <FunctionImportMapping FunctionImportName="GetAllBrands" FunctionName="PipingRockModel.Store.GetAllBrands">
       <ResultMapping>
@@ -903,15 +903,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel.Store.GetAllQuarantineTypes">
+    <FunctionImportMapping FunctionImportName="GetAllQuarantines" FunctionName="PipingRockModel.Store.GetAllQuarantines">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantineTypes_Result">
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-          <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
-          <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-          <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-          <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-          <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+        <ComplexTypeMapping TypeName="PipingRockModel.GetAllQuarantines_Result">
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+          <ScalarProperty Name="Quarantine" ColumnName="Quarantine" />
+          <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+          <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+          <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+          <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
           <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -944,15 +944,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetQuarantineTypeByID" FunctionName="PipingRockModel.Store.GetQuarantineTypeByID">
+    <FunctionImportMapping FunctionImportName="GetQuarantineByID" FunctionName="PipingRockModel.Store.GetQuarantineByID">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="PipingRockModel.GetQuarantineTypeByID_Result">
-          <ScalarProperty Name="QuarantineTypeId" ColumnName="QuarantineTypeId" />
-          <ScalarProperty Name="QuarantineType" ColumnName="QuarantineType" />
-          <ScalarProperty Name="QuarantineTypeAddedDate" ColumnName="QuarantineTypeAddedDate" />
-          <ScalarProperty Name="QuarantineTypeChangedDate" ColumnName="QuarantineTypeChangedDate" />
-          <ScalarProperty Name="QuarantineTypeDeletedDate" ColumnName="QuarantineTypeDeletedDate" />
-          <ScalarProperty Name="QuarantineTypeModifiedById" ColumnName="QuarantineTypeModifiedById" />
+        <ComplexTypeMapping TypeName="PipingRockModel.GetQuarantineByID_Result">
+          <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
+          <ScalarProperty Name="Quarantine" ColumnName="Quarantine" />
+          <ScalarProperty Name="QuarantineAddedDate" ColumnName="QuarantineAddedDate" />
+          <ScalarProperty Name="QuarantineChangedDate" ColumnName="QuarantineChangedDate" />
+          <ScalarProperty Name="QuarantineDeletedDate" ColumnName="QuarantineDeletedDate" />
+          <ScalarProperty Name="QuarantineModifiedById" ColumnName="QuarantineModifiedById" />
           <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -972,7 +972,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateBrandByID" FunctionName="PipingRockModel.Store.UpdateBrandByID" />
-    <FunctionImportMapping FunctionImportName="UpdateQuarantineTypeByID" FunctionName="PipingRockModel.Store.UpdateQuarantineTypeByID" />
+    <FunctionImportMapping FunctionImportName="UpdateQuarantineByID" FunctionName="PipingRockModel.Store.UpdateQuarantineByID" />
     <FunctionImportMapping FunctionImportName="UpdateStorageConditionByID" FunctionName="PipingRockModel.Store.UpdateStorageConditionByID" />
     <FunctionImportMapping FunctionImportName="AddRoleUserID" FunctionName="PipingRockModel.Store.AddRoleUserID" />
     <FunctionImportMapping FunctionImportName="AddUser" FunctionName="PipingRockModel.Store.AddUser" />

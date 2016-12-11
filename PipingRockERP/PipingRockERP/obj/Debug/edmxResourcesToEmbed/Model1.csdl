@@ -117,7 +117,7 @@
     <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
     <Property Name="RetestingMonths" Type="Int32" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" />
     <Property Name="BulkAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BulkChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BulkDeletedDate" Type="DateTime" Precision="3" />
@@ -127,7 +127,7 @@
     <NavigationProperty Name="ItemStatu" Relationship="Self.FK_Bulk_ItemStatus" FromRole="Bulk" ToRole="ItemStatus" />
     <NavigationProperty Name="ItemType" Relationship="Self.FK_Bulk_ItemType" FromRole="Bulk" ToRole="ItemType" />
     <NavigationProperty Name="QcTest" Relationship="Self.FK_Bulk_QcTest" FromRole="Bulk" ToRole="QcTest" />
-    <NavigationProperty Name="QuarantineType" Relationship="Self.FK_Bulk_QuarantineType" FromRole="Bulk" ToRole="QuarantineType" />
+    <NavigationProperty Name="Quarantine" Relationship="Self.FK_Bulk_Quarantine" FromRole="Bulk" ToRole="Quarantine" />
     <NavigationProperty Name="StorageCondition" Relationship="Self.FK_Bulk_StorageCondition" FromRole="Bulk" ToRole="StorageCondition" />
     <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Bulk" FromRole="Bulk" ToRole="FinishedGood" />
   </EntityType>
@@ -169,7 +169,7 @@
     <Property Name="QcTestId" Type="Int32" Nullable="false" />
     <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" />
     <Property Name="areMultipleBinsRequired" Type="Boolean" Nullable="false" />
     <Property Name="isLotTracked" Type="Boolean" Nullable="false" />
     <Property Name="PalletHeight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -310,18 +310,18 @@
     <NavigationProperty Name="QcTest11" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest" ToRole="QcTest1" />
     <NavigationProperty Name="QcTest2" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest1" ToRole="QcTest" />
   </EntityType>
-  <EntityType Name="QuarantineType">
+  <EntityType Name="Quarantine">
     <Key>
-      <PropertyRef Name="QuarantineTypeId" />
+      <PropertyRef Name="QuarantineId" />
     </Key>
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="QuarantineType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="QuarantineTypeAddedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="QuarantineTypeChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="QuarantineTypeDeletedDate" Type="DateTime" Precision="3" />
-    <Property Name="QuarantineTypeModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quarantine1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuarantineAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="QuarantineChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="QuarantineDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="QuarantineModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_QuarantineType" FromRole="QuarantineType" ToRole="Bulk" />
+    <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_Quarantine" FromRole="Quarantine" ToRole="Bulk" />
   </EntityType>
   <EntityType Name="RawMaterial">
     <Key>
@@ -344,7 +344,7 @@
     <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
     <Property Name="RetestingMonths" Type="Int32" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" />
     <Property Name="RawMaterialAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="RawMaterialChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="RawMaterialDeletedDate" Type="DateTime" Precision="3" />
@@ -1038,15 +1038,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Bulk_QuarantineType">
-    <End Role="QuarantineType" Type="Self.QuarantineType" Multiplicity="1" />
+  <Association Name="FK_Bulk_Quarantine">
+    <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
     <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="QuarantineType">
-        <PropertyRef Name="QuarantineTypeId" />
+      <Principal Role="Quarantine">
+        <PropertyRef Name="QuarantineId" />
       </Principal>
       <Dependent Role="Bulk">
-        <PropertyRef Name="QuarantineTypeId" />
+        <PropertyRef Name="QuarantineId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1269,7 +1269,7 @@
     <EntitySet Name="MasterCaseOrTrays" EntityType="Self.MasterCaseOrTray" />
     <EntitySet Name="PackagingLevels" EntityType="Self.PackagingLevel" />
     <EntitySet Name="QcTests" EntityType="Self.QcTest" />
-    <EntitySet Name="QuarantineTypes" EntityType="Self.QuarantineType" />
+    <EntitySet Name="Quarantines" EntityType="Self.Quarantine" />
     <EntitySet Name="RawMaterials" EntityType="Self.RawMaterial" />
     <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" />
     <EntitySet Name="ReportSorts" EntityType="Self.ReportSort" />
@@ -1324,8 +1324,8 @@
       <End Role="QcTest" EntitySet="QcTests" />
       <End Role="Bulk" EntitySet="Bulks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-      <End Role="QuarantineType" EntitySet="QuarantineTypes" />
+    <AssociationSet Name="FK_Bulk_Quarantine" Association="Self.FK_Bulk_Quarantine">
+      <End Role="Quarantine" EntitySet="Quarantines" />
       <End Role="Bulk" EntitySet="Bulks" />
     </AssociationSet>
     <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
@@ -1430,21 +1430,21 @@
       <Parameter Name="BrandCode" Mode="In" Type="String" />
       <Parameter Name="Brand" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="AddQuarantineType">
-      <Parameter Name="QuarantineType" Mode="In" Type="String" />
+    <FunctionImport Name="AddQuarantine">
+      <Parameter Name="Quarantine" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AddStorageCondition">
       <Parameter Name="StorageCondition" Mode="In" Type="String" />
       <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel.GetAllBrands_Result)" />
-    <FunctionImport Name="GetAllQuarantineTypes" ReturnType="Collection(PipingRockModel.GetAllQuarantineTypes_Result)" />
+    <FunctionImport Name="GetAllQuarantines" ReturnType="Collection(PipingRockModel.GetAllQuarantines_Result)" />
     <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel.GetAllStorageConditions_Result)" />
     <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel.GetBrandByID_Result)">
       <Parameter Name="BrandID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetQuarantineTypeByID" ReturnType="Collection(PipingRockModel.GetQuarantineTypeByID_Result)">
-      <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
+    <FunctionImport Name="GetQuarantineByID" ReturnType="Collection(PipingRockModel.GetQuarantineByID_Result)">
+      <Parameter Name="QuarantineID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel.GetStorageConditionByID_Result)">
       <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
@@ -1454,9 +1454,9 @@
       <Parameter Name="BrandCode" Mode="In" Type="String" />
       <Parameter Name="Brand" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UpdateQuarantineTypeByID">
-      <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
-      <Parameter Name="QuarantineType" Mode="In" Type="String" />
+    <FunctionImport Name="UpdateQuarantineByID">
+      <Parameter Name="QuarantineID" Mode="In" Type="Int32" />
+      <Parameter Name="Quarantine" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UpdateStorageConditionByID">
       <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
@@ -1509,13 +1509,13 @@
     <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="GetAllQuarantineTypes_Result">
-    <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-    <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
+  <ComplexType Name="GetAllQuarantines_Result">
+    <Property Type="Int32" Name="QuarantineId" Nullable="false" />
+    <Property Type="String" Name="Quarantine" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="QuarantineAddedDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="QuarantineChangedDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="QuarantineDeletedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="QuarantineModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetAllStorageConditions_Result">
@@ -1538,13 +1538,13 @@
     <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="GetQuarantineTypeByID_Result">
-    <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-    <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
+  <ComplexType Name="GetQuarantineByID_Result">
+    <Property Type="Int32" Name="QuarantineId" Nullable="false" />
+    <Property Type="String" Name="Quarantine" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="QuarantineAddedDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="QuarantineChangedDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="QuarantineDeletedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="QuarantineModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetStorageConditionByID_Result">

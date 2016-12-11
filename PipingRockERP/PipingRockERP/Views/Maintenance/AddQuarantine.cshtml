@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "AddQuarantineType";
+    ViewBag.Title = "AddQuarantine";
 }
 @Html.Partial("_MaintenancePartial")
 
@@ -11,9 +11,9 @@
         <div style="margin-left: 20px">
             <h4>Maintenance > Add Quarantine Type</h4>
         </div>
-        @using (Html.BeginForm("SubmitQuarantineTypeAdd", "Maintenance"))
+        @using (Html.BeginForm("SubmitQuarantineAdd", "Maintenance"))
         {
-            <input style="margin-left:18px; max-width:90px" class="btn btn-success" type="submit" id="SubmitQuarantineTypeAdd" value="Add" />
+            <input style="margin-left:18px; max-width:90px" class="btn btn-success" type="submit" id="SubmitQuarantineAdd" value="Add" />
             <table>
                 <tr>
                     <td>Quarantine Type ID</td>

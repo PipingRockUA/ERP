@@ -48,7 +48,7 @@ namespace PipingRockERP
         public int QcTestId { get; set; }
         public int ExpirationMonths { get; set; }
         public decimal PctOfLifeForRetesting { get; set; }
-        public int QuarantineTypeId { get; set; }
+        public int QuarantineId { get; set; }
         public bool areMultipleBinsRequired { get; set; }
         public bool isLotTracked { get; set; }
         public string PalletHeight { get; set; }
