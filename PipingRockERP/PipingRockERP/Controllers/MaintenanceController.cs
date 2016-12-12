@@ -12,11 +12,7 @@ namespace PipingRockERP.Controllers
     {
         public ActionResult Index()
         {
-            PipingRockEntities db = new PipingRockEntities();
-
-            var users = (from User in db.Users select User).ToList();
-
-            return View(users);
+            return View();
         }
 
         public ActionResult Add(string param)
@@ -34,6 +30,15 @@ namespace PipingRockERP.Controllers
         }
 
         #region Users Profiles
+        public ActionResult Users()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            var users = (from User in db.Users select User).ToList();
+
+            return View(users);
+        }
+
         public ActionResult AddUser()
         {
             PipingRockEntities db = new PipingRockEntities();
@@ -450,6 +455,67 @@ namespace PipingRockERP.Controllers
             db.Entry(sc).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("StorageConditions");
+        }
+        #endregion
+
+        #region Brands
+        public ActionResult Brands()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            var brands = (from Brand in db.Brands select Brand).ToList();
+
+            return View(brands);
+        }
+
+        public ActionResult EditBrand(string brandId)
+        {
+            PipingRockEntities db = new PipingRockEntities();
+            int ID = Int32.Parse(brandId);
+
+            var brand = (from Brand in db.Brands
+                      where Brand.BrandID == ID
+                      select Brand).ToList();
+
+            ViewBag.Brand = brand;
+
+            return View();
+        }
+
+        public ActionResult SubmitBrandAdd(string brandName, string brandCode)
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            var brand = new Brand()
+            {
+                Brand1 = brandName,
+                BrandCode = brandCode,
+                BrandAddedDate = DateTime.Now,
+                BrandChangedDate = DateTime.Now,
+                BrandModifiedById = 0,
+                isDeleted = false
+            };
+            db.Brands.Add(brand);
+            db.SaveChanges();
+            return RedirectToAction("Brands");
+        }
+
+        public ActionResult SubmitBrandUpdate(string brandId, string brandName, string brandCode)
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            int ID = Int32.Parse(brandId);
+            var brand = (from Brand in db.Brands
+                      where Brand.BrandID == ID
+                      select Brand).Single();
+
+            brand.Brand1 = brandName;
+            brand.BrandCode = brandCode;
+            brand.BrandChangedDate = DateTime.Now;
+
+            db.Entry(brand).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Brands");
         }
         #endregion
     }

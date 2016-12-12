@@ -453,6 +453,10 @@
     <Content Include="Views\Maintenance\StorageConditions.cshtml" />
     <Content Include="Views\Maintenance\AddStorageCondition.cshtml" />
     <Content Include="Views\Maintenance\EditStorageCondition.cshtml" />
+    <Content Include="Views\Maintenance\Brands.cshtml" />
+    <Content Include="Views\Maintenance\AddBrand.cshtml" />
+    <Content Include="Views\Maintenance\EditBrand.cshtml" />
+    <Content Include="Views\Maintenance\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
