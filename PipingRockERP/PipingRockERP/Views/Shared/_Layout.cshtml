@@ -11,26 +11,23 @@
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
 </head>
 
-<header>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#b0c3f4">
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#b0c3f4; height:41px;">
         <div class="container">
             @*<div class="navbar-collapse collapse">*@
             <div>
                 <img src="~/src/img/logo.png" height="40" />
-                <div class="dropdown" style="float:right">
+                <div class="dropdown" style="margin-left:10px;">
                     <select class="language-box">
                         <option value="English">English</option>
                         <option value="Spanish">Spanish</option>
                     </select>
                 </div>
                 @Html.Partial("_LoginPartial")
-
             </div>
         </div>
     </div>
     @*@Html.Partial("_IndexPartial")*@
-</header>
-<body>
     <div class="container body-content">
         @RenderBody()
         <hr />
