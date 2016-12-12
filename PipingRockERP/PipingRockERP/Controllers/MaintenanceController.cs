@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
+using System.Web.UI.WebControls;
+using System.Web.UI;
+using System.IO;
 
 namespace PipingRockERP.Controllers
 {
@@ -20,6 +23,7 @@ namespace PipingRockERP.Controllers
             return View(param);
         }
 
+        #region Units of Measures
         public ActionResult UnitOfMeasures()
         {
             PipingRockEntities db = new PipingRockEntities();
@@ -28,6 +32,39 @@ namespace PipingRockERP.Controllers
 
             return View(measures);
         }
+
+        public ActionResult ExportUnitOfMeasures()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            GridView gv = new GridView();
+            gv.DataSource = (from UnitOfMeasure in db.UnitOfMeasures
+                             select new 
+                             {
+                                 ID = UnitOfMeasure.UnitOfMeasureId,
+                                 UnitOfMeasure = UnitOfMeasure.UnitOfMeasure1,
+                                 Abbreviation = UnitOfMeasure.UnitOfMeasureAbbreviation,
+                                 AddedDate = UnitOfMeasure.UnitOfMeasureAddedDate,
+                                 ChangedDate = UnitOfMeasure.UnitOfMeasureChangedDate,
+                                 DeletedDate = UnitOfMeasure.UnitOfMeasureDeletedDate,
+                                 ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
+                                 isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
+                             }).ToList();
+            gv.GridLines = GridLines.Both;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=UnitOfMeasures.xls");
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return RedirectToAction("UnitOfMeasures");
+        }
+        #endregion
 
         #region Users Profiles
         public ActionResult Users()
@@ -337,6 +374,68 @@ namespace PipingRockERP.Controllers
             db.SaveChanges();
             return RedirectToAction("BottleChart");
         }
+
+        public ActionResult ExportBottle()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            GridView gv = new GridView();
+            gv.DataSource = (from Bottle in db.Bottles
+                             select new
+                             {
+                                 ID = Bottle.BottleId,
+                                 ItemKey = Bottle.BottleItemKey,
+                                 Description = Bottle.BottleDescription,
+                                 BottlesSmallTray = Bottle.BottlesSmallTray,
+                                 BottlesLargeTray = Bottle.BottlesLargeTray,
+                                 WrappedBottlesTraySmall = Bottle.WrappedBottlesTraySmall,
+                                 WrappedBottlesTrayLarge = Bottle.WrappedBottlesTrayLarge,
+                                 ItemStatusId = Bottle.ItemStatusId,
+                                 ItemTypeId = Bottle.ItemTypeId,
+                                 ItemSubTypeId = Bottle.ItemSubTypeId,
+                                 BottleLengthInches = Bottle.BottleLengthInches,
+                                 BottleWidthInches = Bottle.BottleWidthInches,
+                                 BottleHieghtInches = Bottle.BottleHieghtInches,
+                                 BottleCubicInches = Bottle.BottleCubicInches,
+                                 BottleLengthCm = Bottle.BottleLengthCm,
+                                 BottleWidthCm = Bottle.BottleWidthCm,
+                                 BottleHieghtCm = Bottle.BottleHieghtCm,
+                                 BottleCubicCm = Bottle.BottleCubicCm,
+                                 BottleLengthWrappedInches = Bottle.BottleLengthWrappedInches,
+                                 BottleWidthWrappedInches = Bottle.BottleWidthWrappedInches,
+                                 BottleDepthWrappedInches = Bottle.BottleDepthWrappedInches,
+                                 BottleCubicInchWrappedInches = Bottle.BottleCubicInchWrappedInches,
+                                 BottleLengthWrappedCm = Bottle.BottleLengthWrappedCm,
+                                 BottleWidthWrappedCm = Bottle.BottleWidthWrappedCm,
+                                 BottleDepthWrappedCm = Bottle.BottleDepthWrappedCm,
+                                 BottleCubicInchWrappedCm = Bottle.BottleCubicInchWrappedCm,
+                                 BottleLabelSquareInches = Bottle.BottleLabelSquareInches,
+                                 LabelSquareInches = Bottle.LabelSquareInches,
+                                 LabelSquareCm = Bottle.LabelSquareCm,
+                                 BottleSize = Bottle.BottleSize,
+                                 PrintFrames = Bottle.PrintFrames,
+                                 NumberOfPrintingPositions = Bottle.NumberOfPrintingPositions,
+                                 is3rdParty = (Bottle.is3rdParty ? 1 : 0),
+                                 AddedDate = Bottle.BottleAddedDate,
+                                 ChangedDate = Bottle.BottleChangedDate,
+                                 DeletedDate = Bottle.BottleDeletedDate,
+                                 ModifiedById = Bottle.BottleModifiedById,
+                                 isDeleted = (Bottle.isDeleted ? 1 : 0)
+                             }).ToList();
+            gv.GridLines = GridLines.Both;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=Bottles.xls");
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return RedirectToAction("BottleChart");
+        }
         #endregion
 
         #region Quarantine Types
@@ -393,6 +492,38 @@ namespace PipingRockERP.Controllers
 
             db.Entry(qt).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            return RedirectToAction("Quarantines");
+        }
+
+        public ActionResult ExportQuarantine()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            GridView gv = new GridView();
+            gv.DataSource = (from Quarantine in db.Quarantines
+                             select new
+                             {
+                                 Id = Quarantine.QuarantineId,
+                                 Quarantine = Quarantine.Quarantine1,
+                                 AddedDate = Quarantine.QuarantineAddedDate,
+                                 ChangedDate = Quarantine.QuarantineChangedDate,
+                                 DeletedDate = Quarantine.QuarantineDeletedDate,
+                                 ModifiedById = Quarantine.QuarantineModifiedById,
+                                 isDeleted = (Quarantine.isDeleted ? 1 : 0)
+
+                             }).ToList();
+            gv.GridLines = GridLines.Both;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=Quarantines.xls");
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
             return RedirectToAction("Quarantines");
         }
         #endregion
@@ -456,6 +587,38 @@ namespace PipingRockERP.Controllers
             db.SaveChanges();
             return RedirectToAction("StorageConditions");
         }
+
+        public ActionResult ExportStorageConditions()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            GridView gv = new GridView();
+            gv.DataSource = (from StorageCondition in db.StorageConditions
+                             select new
+                             {
+                                 ID = StorageCondition.StorageConditionId,
+                                 StorageCondition = StorageCondition.StorageCondition1,
+                                 Description = StorageCondition.StorageConditionDescription,
+                                 AddedDate = StorageCondition.StorageConditionAddedDate,
+                                 ChangedDate = StorageCondition.StorageConditionChangedDate,
+                                 DeletedDate = StorageCondition.StorageConditionDeletedDate,
+                                 ModifiedById = StorageCondition.StorageConditionModifiedById,
+                                 isDeleted = (StorageCondition.isDeleted ? 1 : 0)
+                             }).ToList();
+            gv.GridLines = GridLines.Both;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=StorageConditions.xls");
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return RedirectToAction("StorageConditions");
+        }
         #endregion
 
         #region Brands
@@ -515,6 +678,38 @@ namespace PipingRockERP.Controllers
 
             db.Entry(brand).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            return RedirectToAction("Brands");
+        }
+
+        public ActionResult ExportBrand()
+        {
+            PipingRockEntities db = new PipingRockEntities();
+
+            GridView gv = new GridView();
+            gv.DataSource = (from Brand in db.Brands
+                             select new
+                             {
+                                 ID = Brand.BrandID,
+                                 BrandCode = Brand.BrandCode,
+                                 Brand = Brand.Brand1,
+                                 AddedDate = Brand.BrandAddedDate,
+                                 ChangedDate = Brand.BrandChangedDate,
+                                 DeletedDate = Brand.BrandDeletedDate,
+                                 ModifiedById = Brand.BrandModifiedById,
+                                 isDeleted = (Brand.isDeleted ? 1 : 0)
+                             }).ToList();
+            gv.GridLines = GridLines.Both;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=Brands.xls");
+            Response.ContentType = "application/ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
             return RedirectToAction("Brands");
         }
         #endregion
