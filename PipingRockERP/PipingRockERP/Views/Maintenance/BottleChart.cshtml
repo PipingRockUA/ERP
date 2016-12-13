@@ -15,31 +15,43 @@
         </div>
         <table class="table">
             <tr>
-                <th>Id</th>
+                @*<th>Id</th>*@
+                <th>font-size</th>
                 <th>Item Key</th>
                 <th>Description</th>
                 <th>Small Tray</th>
                 <th>Large Tray</th>
-                <th>WB Tray Small</th>
-                <th>WB Tray Large</th>
+                @*<th>WB Tray Small</th>*@
+                @*<th>WB Tray Large</th>*@
                 <th>Changed Date</th>
                 <th>Bottle Cubic Inches</th>
                 <th>Action</th>
             </tr>
+            @{ 
+                int s = 13;
+                int sp = s;
+                string px = "px";
+                string size = sp + px;
+            }
             @foreach (var item in ViewBag.Bottles)
             {
-                <tr>
-                    <td>@item.BottleId</td>
+                size = sp + px;
+                <tr style="font-size:@size">
+                    @*<td>@item.BottleId</td>*@
+                    <td>@size</td>
                     <td>@item.BottleItemKey</td>
                     <td>@item.BottleDescription</td>
                     <td>@item.BottlesSmallTray</td>
                     <td>@item.BottlesLargeTray</td>
-                    <td>@item.WrappedBottlesTraySmall</td>
-                    <td>@item.WrappedBottlesTrayLarge</td>
+                    @*<td>@item.WrappedBottlesTraySmall</td>*@
+                    @*<td>@item.WrappedBottlesTrayLarge</td>*@
                     <td>@item.BottleChangedDate</td>
                     <td>@item.BottleCubicInches</td>
                     <td>@Html.ActionLink("Edit", "EditBottle", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                 </tr>
+                s = s + 1;
+                sp = s;
+                if (s > 18) { sp = 13; }
             }
         </table>
     </div>
