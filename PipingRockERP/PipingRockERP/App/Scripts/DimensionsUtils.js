@@ -75,6 +75,7 @@ function handleDimensionsInput($inputInches, $inputCm) {
     });
 }
 
+
 //function handleDimensionsUpdate($inputX, $inputY, $inputZ, $inputResult) {
 //    var calculatedDimensions = 0;
 //    var inputX,

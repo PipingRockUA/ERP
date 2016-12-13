@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
 </head>
 <aside style="margin-top:10px">
-    <div class="panel" style="border:1px solid">
+    <div class="panel" @*style="border:1px solid"*@>
         <div style="margin-left: 20px">
             <h4>Maintenance > Bottle Chart</h4>
             <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "AddBottle" })'">Add</button>
@@ -15,16 +15,14 @@
         </div>
         <table class="table">
             <tr>
-                @*<th>Id</th>*@
-                <th>font-size</th>
-                <th>Item Key</th>
-                <th>Description</th>
+                <th>Id</th>
+                @*<th>font-size</th>*@
+                <th id="hiddingEls">Item Key</th>
+                <th id="hiddingElm">Description</th>
                 <th>Small Tray</th>
                 <th>Large Tray</th>
-                @*<th>WB Tray Small</th>*@
-                @*<th>WB Tray Large</th>*@
-                <th>Changed Date</th>
-                <th>Bottle Cubic Inches</th>
+                <th id="hiddingEll">Changed Date</th>
+                <th id="hiddingEls">Bottle Cubic Inches</th>
                 <th>Action</th>
             </tr>
             @{ 
@@ -37,16 +35,14 @@
             {
                 size = sp + px;
                 <tr style="font-size:@size">
-                    @*<td>@item.BottleId</td>*@
-                    <td>@size</td>
-                    <td>@item.BottleItemKey</td>
-                    <td>@item.BottleDescription</td>
+                    <td>@item.BottleId</td>
+                    @*<td>@size</td>*@
+                    <td id="hiddingEls">@item.BottleItemKey</td>
+                    <td id="hiddingElm">@item.BottleDescription</td>
                     <td>@item.BottlesSmallTray</td>
                     <td>@item.BottlesLargeTray</td>
-                    @*<td>@item.WrappedBottlesTraySmall</td>*@
-                    @*<td>@item.WrappedBottlesTrayLarge</td>*@
-                    <td>@item.BottleChangedDate</td>
-                    <td>@item.BottleCubicInches</td>
+                    <td id="hiddingEll">@item.BottleChangedDate</td>
+                    <td id="hiddingEls">@item.BottleCubicInches</td>
                     <td>@Html.ActionLink("Edit", "EditBottle", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                 </tr>
                 s = s + 1;

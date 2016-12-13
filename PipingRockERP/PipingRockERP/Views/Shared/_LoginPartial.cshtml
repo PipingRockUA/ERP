@@ -8,14 +8,14 @@
         }))
         {
             <ul class="nav navbar-nav navbar-left">
-                <li>
+                <li style="display: inline;">
                     <a><div>Logged in as @User.Identity.Name</div></a> 
                        @*Html.ActionLink("Logged in as " + User.Identity.Name, "Index", "Home", routeValues: null, htmlAttributes: new
                {
                    title = "Manage"
                })*@
                 </li>
-                <li> <a href="javascript:document.getElementById('logoutForm').submit()">(Logout)</a></li>
+                <li style="display: inline;"> <a href="javascript:document.getElementById('logoutForm').submit()">(Logout)</a></li>
             </ul>
         }
     } 

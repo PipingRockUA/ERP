@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
 </head>
 <aside style="margin-top:10px">
-    <div class="panel" style="border:1px solid">
+    <div class="panel" @*style="border:1px solid"*@>
         <div style="margin-left: 20px">
             <h4>Maintenance > Storage Condition</h4>
             <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "AddStorageCondition" })'">Add</button>
@@ -16,7 +16,7 @@
         </div>
         <table class="table">
             <tr>
-                <th>font-size</th>
+                @*<th>font-size</th>*@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -32,8 +32,9 @@
             {
                 size = sp + px;
                 <tr  style="font-size:@size">
-                    <td width="5%">@size</td>
-                    <td width="5%">@item.StorageConditionId</td>
+                    @*<td width="5%">@size</td>
+                    <td width="5%">@item.StorageConditionId</td>*@
+                    <td width="10%">@item.StorageConditionId</td>
                     <td width="30%">@item.StorageCondition1</td>
                     <td width="30%">@item.StorageConditionDescription</td>
                     <td width="10%">@Html.ActionLink("Edit", "EditStorageCondition", "Maintenance", new { scId = item.StorageConditionId.ToString() }, null)</td>

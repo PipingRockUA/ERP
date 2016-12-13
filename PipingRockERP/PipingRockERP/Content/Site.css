@@ -1,4 +1,20 @@
-﻿@media {
+﻿@media only screen and (max-width: 920px) {
+    #hiddingEll{
+        display:none;
+    }
+}
+@media only screen and (max-width: 768px) {
+    #hiddingElm{
+        display:none;
+    }
+}
+@media only screen and (max-width: 490px) {
+    #hiddingEls{
+        display:none;
+    }
+}
+
+@media {
     body {
         padding-top: 50px;
         padding-bottom: 20px;
