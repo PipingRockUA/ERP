@@ -14,9 +14,8 @@
             <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportBottle", "Maintenance")'">Export</button>
         </div>
         <table class="table">
-            <tr>
+            <tr style="font-size:16px">
                 <th>Id</th>
-                @*<th>font-size</th>*@
                 <th id="hiddingEls">Item Key</th>
                 <th id="hiddingElm">Description</th>
                 <th>Small Tray</th>
@@ -25,30 +24,22 @@
                 <th id="hiddingEls">Bottle Cubic Inches</th>
                 <th>Action</th>
             </tr>
-            @{ 
-                int s = 13;
-                int sp = s;
-                string px = "px";
-                string size = sp + px;
-            }
             @foreach (var item in ViewBag.Bottles)
             {
-                size = sp + px;
-                <tr style="font-size:@size">
+                <tr style="font-size:16px">
                     <td>@item.BottleId</td>
-                    @*<td>@size</td>*@
                     <td id="hiddingEls">@item.BottleItemKey</td>
                     <td id="hiddingElm">@item.BottleDescription</td>
                     <td>@item.BottlesSmallTray</td>
                     <td>@item.BottlesLargeTray</td>
-                    <td id="hiddingEll">@item.BottleChangedDate</td>
+                    <td id="hiddingEll">@item.BottleChangedDate.ToString("MM'/'dd'/'yyyy")</td>
                     <td id="hiddingEls">@item.BottleCubicInches</td>
                     <td>@Html.ActionLink("Edit", "EditBottle", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                 </tr>
-                s = s + 1;
-                sp = s;
-                if (s > 18) { sp = 13; }
             }
         </table>
     </div>
 </aside>
+<footer>
+    <p style="text-align:center; font-size:16px">Total Pages:1 Records:@ViewBag.Bottles.Count</p>
+</footer>

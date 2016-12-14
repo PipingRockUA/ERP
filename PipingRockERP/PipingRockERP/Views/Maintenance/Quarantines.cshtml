@@ -15,14 +15,14 @@
             <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportQuarantine", "Maintenance")'">Export</button>
         </div>
         <table class="table">
-            <tr>
+            <tr style="font-size:16px">
                 <th>ID</th>
                 <th>Quarantine Type</th>
                 <th>Action</th>
             </tr>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr style="font-size:16px">
                     <td width="10%">@item.QuarantineId</td>
                     <td width="50%">@item.Quarantine1</td>
                     <td width="20%">@Html.ActionLink("Edit", "EditQuarantine", "Maintenance", new { qtId = item.QuarantineId.ToString() }, null)</td>
@@ -32,3 +32,6 @@
         </table>
     </div>
 </aside>
+<footer>
+    <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
+</footer>

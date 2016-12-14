@@ -15,35 +15,25 @@
             <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportStorageConditions", "Maintenance")'">Export</button>
         </div>
         <table class="table">
-            <tr>
-                @*<th>font-size</th>*@
+            <tr style="font-size:16px">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Action</th>
             </tr>
-            @{
-                int s = 13;
-                int sp = s;
-                string px = "px";
-                string size = sp + px;
-            }
             @foreach (var item in Model)
             {
-                size = sp + px;
-                <tr  style="font-size:@size">
-                    @*<td width="5%">@size</td>
-                    <td width="5%">@item.StorageConditionId</td>*@
+                <tr style="font-size:16px">
                     <td width="10%">@item.StorageConditionId</td>
                     <td width="30%">@item.StorageCondition1</td>
                     <td width="30%">@item.StorageConditionDescription</td>
                     <td width="10%">@Html.ActionLink("Edit", "EditStorageCondition", "Maintenance", new { scId = item.StorageConditionId.ToString() }, null)</td>
                     @*<td width="5%"><input class="btn-edit" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Home")'" /></td>*@
                 </tr>
-                s = s + 1;
-                sp = s;
-                if (s > 18) { sp = 12; }
             }
         </table>
     </div>
 </aside>
+<footer>
+    <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
+</footer>
