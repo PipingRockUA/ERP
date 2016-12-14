@@ -13,7 +13,8 @@
         </div>
         @using (Html.BeginForm("SubmitBrandUpdate", "Maintenance", new { brandId = @ViewBag.Brand[0].BrandID }, FormMethod.Post, null))
         {
-            <input style="margin-left:18px; max-width:90px" class="btn btn-success" type="submit" id="SubmitBrandUpdate" value="Update" />
+            <button style="margin-left:18px; max-width:90px" class="btn btn-success" onclick="javascript:history.go(-1)">To the List</button>
+            <input style="max-width:90px" class="btn btn-success" type="submit" id="SubmitBrandUpdate" value="Update" />
             <table>
                 <tr>
                     <td>Brand ID</td>

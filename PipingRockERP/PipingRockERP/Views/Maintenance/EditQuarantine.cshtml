@@ -13,7 +13,8 @@
         </div>
         @using (Html.BeginForm("SubmitQuarantineUpdate", "Maintenance", new { qtId = @ViewBag.Quarantine[0].QuarantineId }, FormMethod.Post, null))
         {
-            <input style="margin-left:18px; max-width:90px" class="btn btn-success" type="submit" id="SubmitQuarantineUpdate" value="Update" />
+            <button style="margin-left:18px; max-width:90px" class="btn btn-success" onclick="javascript:history.go(-1)">To the List</button>
+            <input style="max-width:90px" class="btn btn-success" type="submit" id="SubmitQuarantineUpdate" value="Update" />
             <table>
                 <tr>
                     <td>Quarantine Type ID</td>

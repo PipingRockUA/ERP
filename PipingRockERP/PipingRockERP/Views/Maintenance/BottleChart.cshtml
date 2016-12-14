@@ -5,6 +5,14 @@
 @Html.Partial("_MaintenancePartial")
 <head>
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tt").each(function () {
+                var t = $(this).text().replace(',', '.');
+                $(this).text(t);
+            })});
+    </script>
 </head>
 <aside style="margin-top:10px">
     <div class="panel" @*style="border:1px solid"*@>
@@ -33,7 +41,7 @@
                     <td>@item.BottlesSmallTray</td>
                     <td>@item.BottlesLargeTray</td>
                     <td id="hiddingEll">@item.BottleChangedDate.ToString("MM'/'dd'/'yyyy")</td>
-                    <td id="hiddingEls">@item.BottleCubicInches</td>
+                    <td id="hiddingEls" class="tt">@item.BottleCubicInches</td>
                     <td>@Html.ActionLink("Edit", "EditBottle", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                 </tr>
             }
