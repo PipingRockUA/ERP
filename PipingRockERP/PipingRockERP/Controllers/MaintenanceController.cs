@@ -8,11 +8,13 @@ using System.Globalization;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.IO;
+using libxl;
 
 namespace PipingRockERP.Controllers
 {
     public class MaintenanceController : Controller
     {
+        //Book book = new BinBook();
         public ActionResult Index()
         {
             return View();
@@ -36,10 +38,13 @@ namespace PipingRockERP.Controllers
         public ActionResult ExportUnitOfMeasures()
         {
             PipingRockEntities db = new PipingRockEntities();
+            try
+            {
+                Book book = new XmlBook(); // use XmlBook() for xlsx
+                Sheet sheet = book.addSheet("Sheet1");
 
-            GridView gv = new GridView();
-            gv.DataSource = (from UnitOfMeasure in db.UnitOfMeasures
-                             select new 
+                var table = (from UnitOfMeasure in db.UnitOfMeasures
+                             select new
                              {
                                  ID = UnitOfMeasure.UnitOfMeasureId,
                                  UnitOfMeasure = UnitOfMeasure.UnitOfMeasure1,
@@ -50,17 +55,97 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
                                  isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=UnitOfMeasures.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                for (int j = 0; j < 8; j++)
+                {
+                    switch (j)
+                    {
+                        case 0:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeNum(i, j, table[i - 2].ID);
+                                }
+                                break;
+                            }
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeStr(i, j, table[i - 2].UnitOfMeasure);
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeStr(i, j, table[i - 2].Abbreviation);
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeStr(i, j, table[i - 2].AddedDate.ToString());
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeStr(i, j, table[i - 2].ChangedDate.ToString());
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeStr(i, j, table[i - 2].DeletedDate.ToString());
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeNum(i, j, table[i - 2].ModifiedById);
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    sheet.writeNum(i, j, table[i - 2].isDeleted);
+                                }
+                                break;
+                            }
+                    }
+                }
+
+                book.save("example.xlsx");
+
+                System.Diagnostics.Process.Start("example.xlsx");
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //gv.GridLines = GridLines.Both;
+            //gv.DataBind();
+            //Response.ClearContent();
+            //Response.AddHeader("content-disposition", "attachment; filename=UnitOfMeasures.xls");
+            //Response.ContentType = "application/ms-excel";
+            //StringWriter sw = new StringWriter();
+            //HtmlTextWriter htw = new HtmlTextWriter(sw);
+            //gv.RenderControl(htw);
+            //Response.Output.Write(sw.ToString());
+            //Response.Flush();
+            //Response.End();
 
             return RedirectToAction("UnitOfMeasures");
         }
