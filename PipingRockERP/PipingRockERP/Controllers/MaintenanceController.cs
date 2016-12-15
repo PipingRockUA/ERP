@@ -372,7 +372,7 @@ namespace PipingRockERP.Controllers
             db.Entry(bottle).State = System.Data.Entity.EntityState.Modified;
 
             db.SaveChanges();
-            return RedirectToAction("BottleChart");
+            return RedirectToAction("EditBottle", new { bottleId = bottleId });
         }
 
         public ActionResult ExportBottle()
