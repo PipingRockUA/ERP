@@ -3,37 +3,40 @@
 @{
     ViewBag.Title = "StorageConditions";
 }
-@Html.Partial("_MaintenancePartial")
-<head>
-    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
-</head>
-<aside style="margin-top:10px">
-    <div class="panel" @*style="border:1px solid"*@>
-        <div style="margin-left: 20px">
-            <h4>Maintenance > Storage Condition</h4>
-            <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "AddStorageCondition" })'">Add</button>
-            <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportStorageConditions", "Maintenance")'">Export</button>
-        </div>
-        <table class="table">
-            <tr style="font-size:16px">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-            @foreach (var item in Model)
-            {
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("_MaintenancePartial")
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    </head>
+    <aside style="margin-top:10px">
+        <div class="panel" @*style="border:1px solid"*@>
+            <div style="margin-left: 20px">
+                <h4>Maintenance > Storage Condition</h4>
+                <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "StorageConditionAdd" })'">Add</button>
+                <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportStorageConditions", "Maintenance")'">Export</button>
+            </div>
+            <table class="table">
                 <tr style="font-size:16px">
-                    <td width="10%">@item.StorageConditionId</td>
-                    <td width="30%">@item.StorageCondition1</td>
-                    <td width="30%">@item.StorageConditionDescription</td>
-                    <td width="10%">@Html.ActionLink("Edit", "EditStorageCondition", "Maintenance", new { scId = item.StorageConditionId.ToString() }, null)</td>
-                    @*<td width="5%"><input class="btn-edit" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Home")'" /></td>*@
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
                 </tr>
-            }
-        </table>
-    </div>
-</aside>
-<footer>
-    <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
-</footer>
+                @foreach (var item in Model)
+                {
+                    <tr style="font-size:16px">
+                        <td width="10%">@item.StorageConditionId</td>
+                        <td width="30%">@item.StorageCondition1</td>
+                        <td width="30%">@item.StorageConditionDescription</td>
+                        <td width="10%">@Html.ActionLink("Edit", "StorageConditionEdit", "Maintenance", new { scId = item.StorageConditionId.ToString() }, null)</td>
+                        @*<td width="5%"><input class="btn-edit" type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Home")'" /></td>*@
+                    </tr>
+                }
+            </table>
+        </div>
+    </aside>
+    <footer>
+        <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
+    </footer>
+}

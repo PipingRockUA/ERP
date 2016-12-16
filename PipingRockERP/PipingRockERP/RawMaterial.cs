@@ -37,7 +37,7 @@ namespace PipingRockERP
         public int ExpirationMonths { get; set; }
         public int RetestingMonths { get; set; }
         public decimal PctOfLifeForRetesting { get; set; }
-        public int QuarantineId { get; set; }
+        public int QuarantineTypeId { get; set; }
         public System.DateTime RawMaterialAddedDate { get; set; }
         public System.DateTime RawMaterialChangedDate { get; set; }
         public Nullable<System.DateTime> RawMaterialDeletedDate { get; set; }

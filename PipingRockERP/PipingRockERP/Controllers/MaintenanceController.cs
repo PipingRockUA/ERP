@@ -55,7 +55,6 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
                                  isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
                              }).ToList();
-
                 for (int j = 0; j < 8; j++)
                 {
                     switch (j)
@@ -126,15 +125,27 @@ namespace PipingRockERP.Controllers
                             }
                     }
                 }
-
                 book.save("example.xlsx");
-
                 System.Diagnostics.Process.Start("example.xlsx");
             }
             catch (System.Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            //GridView gv = new GridView();
+            //gv.DataSource = (from UnitOfMeasure in db.UnitOfMeasures
+            //                 select new
+            //                 {
+            //                     ID = UnitOfMeasure.UnitOfMeasureId,
+            //                     UnitOfMeasure = UnitOfMeasure.UnitOfMeasure1,
+            //                     Abbreviation = UnitOfMeasure.UnitOfMeasureAbbreviation,
+            //                     AddedDate = UnitOfMeasure.UnitOfMeasureAddedDate,
+            //                     ChangedDate = UnitOfMeasure.UnitOfMeasureChangedDate,
+            //                     DeletedDate = UnitOfMeasure.UnitOfMeasureDeletedDate,
+            //                     ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
+            //                     isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
+            //                 }).ToList();
             //gv.GridLines = GridLines.Both;
             //gv.DataBind();
             //Response.ClearContent();
@@ -161,7 +172,7 @@ namespace PipingRockERP.Controllers
             return View(users);
         }
 
-        public ActionResult AddUser()
+        public ActionResult UserAdd()
         {
             PipingRockEntities db = new PipingRockEntities();
 
@@ -173,7 +184,7 @@ namespace PipingRockERP.Controllers
             return View();
         }
 
-        public ActionResult AddUserRole(int userId, int roleId)
+        public ActionResult UserAddRole(int userId, int roleId)
         {
             PipingRockEntities db = new PipingRockEntities();
 
@@ -247,7 +258,7 @@ namespace PipingRockERP.Controllers
                           where UserRole.UserRoleName == roleName
                           select UserRole.UserRoleId).Single();
 
-            db.AddUser(userName);
+            db.UserAdd(userName);
             var userId = (from User in db.Users
                           where User.UserName == userName
                           select User.UserId).Single();
@@ -260,19 +271,19 @@ namespace PipingRockERP.Controllers
         public ActionResult BottleChart()
         {
             PipingRockEntities db = new PipingRockEntities();
-            var bottles = (from Bottle in db.Bottles select Bottle).ToList();
+            var bottles = (from Bottle in db.Bottle2 select Bottle).ToList();
 
             ViewBag.Bottles = bottles;
 
             return View();
         }
 
-        public ActionResult EditBottle(string bottleId)
+        public ActionResult BottleEdit(string bottleId)
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(bottleId);
 
-            var bottle = (from Bottle in db.Bottles
+            var bottle = (from Bottle in db.Bottle2
                           where Bottle.BottleId == ID
                           select Bottle).ToList();
 
@@ -318,7 +329,7 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            var bottle = new Bottle()
+            var bottle = new Bottle2()
             {
                 BottleItemKey = BottleItemKey,
                 BottleDescription = BottleDescription,
@@ -357,7 +368,6 @@ namespace PipingRockERP.Controllers
                 BottleSize = BottleSize,
                 PrintFrames = PrintFrames,
                 NumberOfPrintingPositions = NumberOfPrintingPositions,
-                is3rdParty = false,
 
                 BottleAddedDate = DateTime.Now,
                 BottleChangedDate = DateTime.Now,
@@ -365,7 +375,7 @@ namespace PipingRockERP.Controllers
                 isDeleted = false
             };
 
-            db.Bottles.Add(bottle);
+            db.Bottle2.Add(bottle);
             db.SaveChanges();
             return RedirectToAction("BottleChart");
         }
@@ -408,7 +418,7 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(bottleId);
-            var bottle = (from Bottle in db.Bottles
+            var bottle = (from Bottle in db.Bottle2
                           where Bottle.BottleId == ID
                           select Bottle).Single();
             
@@ -449,7 +459,6 @@ namespace PipingRockERP.Controllers
             bottle.BottleSize = BottleSize;
             bottle.PrintFrames = PrintFrames;
             bottle.NumberOfPrintingPositions = NumberOfPrintingPositions;
-            bottle.is3rdParty = false;
 
             bottle.BottleChangedDate = DateTime.Now;
             bottle.BottleModifiedById = 1;
@@ -457,7 +466,7 @@ namespace PipingRockERP.Controllers
             db.Entry(bottle).State = System.Data.Entity.EntityState.Modified;
 
             db.SaveChanges();
-            return RedirectToAction("EditBottle", new { bottleId = bottleId });
+            return RedirectToAction("BottleEdit", new { bottleId = bottleId });
         }
 
         public ActionResult ExportBottle()
@@ -465,7 +474,7 @@ namespace PipingRockERP.Controllers
             PipingRockEntities db = new PipingRockEntities();
 
             GridView gv = new GridView();
-            gv.DataSource = (from Bottle in db.Bottles
+            gv.DataSource = (from Bottle in db.Bottle2
                              select new
                              {
                                  ID = Bottle.BottleId,
@@ -500,7 +509,6 @@ namespace PipingRockERP.Controllers
                                  BottleSize = Bottle.BottleSize,
                                  PrintFrames = Bottle.PrintFrames,
                                  NumberOfPrintingPositions = Bottle.NumberOfPrintingPositions,
-                                 is3rdParty = (Bottle.is3rdParty ? 1 : 0),
                                  AddedDate = Bottle.BottleAddedDate,
                                  ChangedDate = Bottle.BottleChangedDate,
                                  DeletedDate = Bottle.BottleDeletedDate,
@@ -533,7 +541,7 @@ namespace PipingRockERP.Controllers
             return View(quarantineTypes);
         }
 
-        public ActionResult EditQuarantine(string qtId)
+        public ActionResult QuarantineEdit(string qtId)
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(qtId);
@@ -623,7 +631,7 @@ namespace PipingRockERP.Controllers
             return View(sc);
         }
 
-        public ActionResult EditStorageCondition(string scId)
+        public ActionResult StorageConditionEdit(string scId)
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(scId);
@@ -716,7 +724,7 @@ namespace PipingRockERP.Controllers
             return View(brands);
         }
 
-        public ActionResult EditBrand(string brandId)
+        public ActionResult BrandEdit(string brandId)
         {
             PipingRockEntities db = new PipingRockEntities();
             int ID = Int32.Parse(brandId);

@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "UnitOfMeasures";
 }
-@Html.Partial("_MaintenancePartial")
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("_MaintenancePartial")
     <aside style="margin-top:10px">
         <div class="panel" @*style="border:1px solid"*@>
             <div style="margin-left: 20px">
@@ -17,7 +19,7 @@
                     <th>Abreviation</th>
                 </tr>
                 @foreach (var item in Model)
-            {
+                {
                     <tr style="font-size:16px">
                         <td>@item.UnitOfMeasureId</td>
                         <td>@item.UnitOfMeasure1</td>
@@ -26,7 +28,8 @@
                 }
             </table>
         </div>
-</aside>
-<footer>
-    <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
-</footer>
+    </aside>
+    <footer>
+        <p style="text-align:center; font-size:16px">Total Pages:1 Records:@Model.Count</p>
+    </footer>
+}

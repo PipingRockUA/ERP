@@ -14,12 +14,8 @@ namespace PipingRockERP
     
     public partial class Bottle
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bottle()
-        {
-            this.FinishedGoods = new HashSet<FinishedGood>();
-        }
-    
+        public int BackupNumber { get; set; }
+        public System.DateTime BackupDate { get; set; }
         public int BottleId { get; set; }
         public string BottleItemKey { get; set; }
         public string BottleDescription { get; set; }
@@ -52,14 +48,10 @@ namespace PipingRockERP
         public string BottleSize { get; set; }
         public int PrintFrames { get; set; }
         public int NumberOfPrintingPositions { get; set; }
-        public bool is3rdParty { get; set; }
         public System.DateTime BottleAddedDate { get; set; }
         public System.DateTime BottleChangedDate { get; set; }
         public Nullable<System.DateTime> BottleDeletedDate { get; set; }
         public int BottleModifiedById { get; set; }
         public bool isDeleted { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinishedGood> FinishedGoods { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace PipingRockERP
         public int ReportSortId { get; set; }
         public int BrandId { get; set; }
         public int Sort { get; set; }
-        public string ReportSortName { get; set; }
+        public string ReportSection { get; set; }
         public System.DateTime ReportSortAddedDate { get; set; }
         public System.DateTime ReportSortChangedDate { get; set; }
         public Nullable<System.DateTime> ReportSortDeletedDate { get; set; }

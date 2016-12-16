@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PipingRockUAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="PipingRockModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Screen">
     <Key>
       <PropertyRef Name="ScreenId" />
@@ -12,6 +12,50 @@
     <Property Name="ScreenModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Bottle">
+    <Key>
+      <PropertyRef Name="BottleId" />
+    </Key>
+    <Property Name="BackupNumber" Type="int" Nullable="false" />
+    <Property Name="BackupDate" Type="datetime" Nullable="false" />
+    <Property Name="BottleId" Type="int" Nullable="false" />
+    <Property Name="BottleItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BottleDescription" Type="nvarchar" MaxLength="100" />
+    <Property Name="BottlesSmallTray" Type="int" Nullable="false" />
+    <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
+    <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
+    <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+    <Property Name="ItemStatusId" Type="int" Nullable="false" />
+    <Property Name="ItemTypeId" Type="int" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrintFrames" Type="int" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="int" Nullable="false" />
+    <Property Name="BottleAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="BottleChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="BottleDeletedDate" Type="datetime" />
+    <Property Name="BottleModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -21,6 +65,45 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Bottle1">
+    <Key>
+      <PropertyRef Name="BottleId" />
+    </Key>
+    <Property Name="BottleId" Type="int" Nullable="false" />
+    <Property Name="BottleItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BottleDescription" Type="nvarchar" MaxLength="100" />
+    <Property Name="BottlesSmallTray" Type="int" Nullable="false" />
+    <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
+    <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
+    <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+    <Property Name="ItemStatusId" Type="int" Nullable="false" />
+    <Property Name="ItemTypeId" Type="int" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrintFrames" Type="int" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="int" Nullable="false" />
+    <Property Name="BottleModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Allergen">
     <Key>
@@ -34,7 +117,7 @@
     <Property Name="AllergenModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Bottle">
+  <EntityType Name="Bottle2">
     <Key>
       <PropertyRef Name="BottleId" />
     </Key>
@@ -47,20 +130,48 @@
     <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
     <Property Name="ItemStatusId" Type="int" Nullable="false" />
     <Property Name="ItemTypeId" Type="int" Nullable="false" />
-    <Property Name="ItemTypeDetailId" Type="int" Nullable="false" />
-    <Property Name="BottleLength" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleWidth" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleHieght" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleCubicInches" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleLengthWrapped" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleWidthWrapped" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleDepthWrapped" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleCubicInchWrapped" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleLabelSquareInches" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrintFrames" Type="int" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="int" Nullable="false" />
     <Property Name="BottleAddedDate" Type="datetime" Nullable="false" />
     <Property Name="BottleChangedDate" Type="datetime" Nullable="false" />
     <Property Name="BottleDeletedDate" Type="datetime" />
     <Property Name="BottleModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BottlesPerCase">
+    <Key>
+      <PropertyRef Name="BottlesPerCaseId" />
+    </Key>
+    <Property Name="BottlesPerCaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BottleId" Type="int" Nullable="false" />
+    <Property Name="PackagingUnitId" Type="int" Nullable="false" />
+    <Property Name="NumberOfBottlesUnWrapped" Type="int" Nullable="false" />
+    <Property Name="NumberOfBottlesWrapped" Type="int" Nullable="false" />
+    <Property Name="BottlesPerCaseAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="BottlesPerCaseChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="BottlesPerCaseDeletedDate" Type="datetime" />
+    <Property Name="BottlesPerCaseModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Brand">
@@ -81,7 +192,7 @@
       <PropertyRef Name="BulkId" />
     </Key>
     <Property Name="BulkId" Type="int" Nullable="false" />
-    <Property Name="ItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BulkItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="BulkDescriptionShort" Type="nvarchar" MaxLength="14" />
     <Property Name="BulkDescriptionMedium" Type="nvarchar" MaxLength="25" />
     <Property Name="BulkDescriptionLong" Type="nvarchar" MaxLength="60" />
@@ -98,11 +209,36 @@
     <Property Name="ExpirationMonths" Type="int" Nullable="false" />
     <Property Name="RetestingMonths" Type="int" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="int" Nullable="false" />
     <Property Name="BulkAddedDate" Type="datetime" Nullable="false" />
     <Property Name="BulkChangedDate" Type="datetime" Nullable="false" />
     <Property Name="BulkDeletedDate" Type="datetime" />
     <Property Name="BulkModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bulk_QcTest">
+    <Key>
+      <PropertyRef Name="Bulk_QcTestId" />
+    </Key>
+    <Property Name="Bulk_QcTestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BulkId" Type="int" Nullable="false" />
+    <Property Name="QcTestId" Type="int" Nullable="false" />
+    <Property Name="Bulk_QcTestAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="Bulk_QcTestChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="Bulk_QcTestDeletedDate" Type="datetime" />
+    <Property Name="Bulk_QcTestModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bulk_Quarantine">
+    <Key>
+      <PropertyRef Name="Bulk_QuarantineId" />
+    </Key>
+    <Property Name="Bulk_QuarantineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BulkId" Type="int" Nullable="false" />
+    <Property Name="QuarantineId" Type="int" Nullable="false" />
+    <Property Name="Bulk_QuarantineAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="Bulk_QuarantineChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="Bulk_QuarantineDeletedDate" Type="datetime" />
+    <Property Name="Bulk_QuarantineModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="FinishedGood">
@@ -114,28 +250,35 @@
     <Property Name="FinishedGoodDescriptionShort" Type="nvarchar" MaxLength="14" Nullable="false" />
     <Property Name="FinishedGoodDescriptionMedium" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="FinishedGoodDescriptionLong" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="FinishedGoodSizePrint" Type="nvarchar" MaxLength="15" />
+    <Property Name="FinishedGoodSizeNumeric" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="FinishedGoodSizeUOMId" Type="int" Nullable="false" />
     <Property Name="ItemStatusId" Type="int" Nullable="false" />
-    <Property Name="ItemFormId" Type="int" Nullable="false" />
     <Property Name="ItemTypeId" Type="int" Nullable="false" />
     <Property Name="BrandId" Type="int" Nullable="false" />
     <Property Name="BulkId" Type="int" Nullable="false" />
     <Property Name="ReportSortId" Type="int" Nullable="false" />
-    <Property Name="PackagingLevelId" Type="int" Nullable="false" />
-    <Property Name="IsPurchasable" Type="bit" Nullable="false" />
+    <Property Name="PackagingUnitId" Type="int" Nullable="false" />
+    <Property Name="PackagingUOMId" Type="int" Nullable="false" />
     <Property Name="BottleId" Type="int" Nullable="false" />
-    <Property Name="ChainPrice" Type="money" />
-    <Property Name="SRP" Type="money" />
-    <Property Name="MasterCaseCost" Type="money" />
+    <Property Name="ChainPrice" Type="money" Nullable="false" />
+    <Property Name="SRP" Type="money" Nullable="false" />
+    <Property Name="MasterCasePrice" Type="money" Nullable="false" />
     <Property Name="EachUPC" Type="nvarchar" MaxLength="20" />
     <Property Name="MasterCaseUPC" Type="nvarchar" MaxLength="20" />
     <Property Name="InnerUPC" Type="nvarchar" MaxLength="20" />
-    <Property Name="EachHeightInches" Type="decimal" Precision="18" Scale="3" />
-    <Property Name="EachWidthInches" Type="decimal" Precision="18" Scale="3" />
-    <Property Name="EachDepthInches" Type="decimal" Precision="18" Scale="3" />
-    <Property Name="EachWeightOz" Type="decimal" Precision="18" Scale="3" />
-    <Property Name="EachWeightGrams" Type="numeric" Precision="26" Scale="8" StoreGeneratedPattern="Computed" />
-    <Property Name="SuppliesId" Type="int" Nullable="false" />
+    <Property Name="EachHeightInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachWidthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachDepthInches" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachCubicInches" Type="decimal" Precision="38" Scale="3" StoreGeneratedPattern="Computed" />
+    <Property Name="EachHeightCm" Type="numeric" Precision="22" Scale="3" StoreGeneratedPattern="Computed" />
+    <Property Name="EachWidthCm" Type="numeric" Precision="22" Scale="3" StoreGeneratedPattern="Computed" />
+    <Property Name="EachDepthCm" Type="numeric" Precision="22" Scale="3" StoreGeneratedPattern="Computed" />
+    <Property Name="EachCubicCm" Type="numeric" Precision="38" Scale="6" StoreGeneratedPattern="Computed" />
+    <Property Name="EachWeightOz" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachWeightGrams" Type="numeric" Precision="26" Scale="6" StoreGeneratedPattern="Computed" />
     <Property Name="FinishedGoodMakeBuy" Type="char" MaxLength="1" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
     <Property Name="isTaxableNYS" Type="bit" Nullable="false" />
     <Property Name="isTaxableCanada" Type="bit" Nullable="false" />
     <Property Name="ReceivingBoxLabelsRequired" Type="bit" Nullable="false" />
@@ -143,12 +286,63 @@
     <Property Name="QcTestId" Type="int" Nullable="false" />
     <Property Name="ExpirationMonths" Type="int" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="int" Nullable="false" />
     <Property Name="areMultipleBinsRequired" Type="bit" Nullable="false" />
+    <Property Name="isLotTracked" Type="bit" Nullable="false" />
+    <Property Name="PalletHeight" Type="nvarchar" MaxLength="10" />
+    <Property Name="LastCost" Type="money" Nullable="false" />
+    <Property Name="StandardCost" Type="money" Nullable="false" />
+    <Property Name="AverageCost" Type="money" Nullable="false" />
+    <Property Name="FuturePoCost" Type="money" Nullable="false" />
+    <Property Name="MonthlyUsage" Type="int" Nullable="false" />
+    <Property Name="GLCodeRevenue" Type="int" Nullable="false" />
+    <Property Name="GLCodeCost" Type="int" Nullable="false" />
     <Property Name="FinishedGoodAddedDate" Type="datetime" Nullable="false" />
     <Property Name="FinishedGoodChangedDate" Type="datetime" Nullable="false" />
     <Property Name="FinishedGoodDeletedDate" Type="datetime" />
     <Property Name="FinishedGoodModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FinishedGood_QcTest">
+    <Key>
+      <PropertyRef Name="FinishedGood_QcTestId" />
+    </Key>
+    <Property Name="FinishedGood_QcTestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FinishedGoodId" Type="int" Nullable="false" />
+    <Property Name="QcTestId" Type="int" Nullable="false" />
+    <Property Name="FinishedGood_QcTestAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGood_QcTestChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGood_QcTestDeletedDate" Type="datetime" />
+    <Property Name="FinishedGood_QcTestModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FinishedGood_Quarantine">
+    <Key>
+      <PropertyRef Name="FinishedGood_QuarantineId" />
+    </Key>
+    <Property Name="FinishedGood_QuarantineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FinishedGoodId" Type="int" Nullable="false" />
+    <Property Name="QuarantineId" Type="int" Nullable="false" />
+    <Property Name="FinishedGood_QuarantineAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGood_QuarantineChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGood_QuarantineDeletedDate" Type="datetime" />
+    <Property Name="FinishedGood_QuarantineModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FinishedGoodLocation">
+    <Key>
+      <PropertyRef Name="FinishedGoodLocationId" />
+    </Key>
+    <Property Name="FinishedGoodLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FinishedGoodId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="LastCost" Type="money" Nullable="false" />
+    <Property Name="StandardCost" Type="money" Nullable="false" />
+    <Property Name="AverageCost" Type="money" Nullable="false" />
+    <Property Name="FuturePoCost" Type="money" Nullable="false" />
+    <Property Name="FinishedGoodLocationAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGoodLocationChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishedGoodLocationDeletedDate" Type="datetime" />
+    <Property Name="FinishedGoodLocationModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemForm">
@@ -156,8 +350,8 @@
       <PropertyRef Name="ItemFormId" />
     </Key>
     <Property Name="ItemFormId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ItemForm" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ItemFormDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemFormExternal" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemFormWarehouse" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ItemFormAddedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemFormChangedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemFormDeletedDate" Type="datetime" />
@@ -186,8 +380,8 @@
     <Property Name="ItemSubType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ItemSubTypeCode" Type="nvarchar" MaxLength="5" />
     <Property Name="ItemSubTypeDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LossFactorInventory" Type="decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="LossFactorCost" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LossFactorInventory" Type="decimal" Precision="3" Scale="3" Nullable="false" />
+    <Property Name="LossFactorCost" Type="decimal" Precision="3" Scale="3" Nullable="false" />
     <Property Name="ItemSubTypeAddedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemSubTypeChangedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemSubTypeDeletedDate" Type="datetime" />
@@ -202,24 +396,69 @@
     <Property Name="ItemType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ItemTypeCode" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="ItemTypeDescription" Type="nvarchar" MaxLength="100" />
+    <Property Name="LossFactorCost" Type="decimal" Precision="3" Scale="3" Nullable="false" />
+    <Property Name="LossFactorInventory" Type="decimal" Precision="3" Scale="3" Nullable="false" />
     <Property Name="ItemTypeAddedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemTypeChangedDate" Type="datetime" Nullable="false" />
     <Property Name="ItemTypeDeletedDate" Type="datetime" />
     <Property Name="ItemTypeModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="PackagingLevel">
+  <EntityType Name="Location">
     <Key>
-      <PropertyRef Name="PackagingLevelId" />
+      <PropertyRef Name="LocationId" />
     </Key>
-    <Property Name="PackagingLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PackagingLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="PackagingLevelAbbreviation" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="PackagingLevelDesc" Type="nvarchar" MaxLength="500" />
-    <Property Name="PackagingLevelAddedDate" Type="datetime" Nullable="false" />
-    <Property Name="PackagingLevelChangedDate" Type="datetime" Nullable="false" />
-    <Property Name="PackagingLevelDeletedDate" Type="datetime" />
-    <Property Name="PackagingLevelModifiedById" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="60" />
+    <Property Name="City" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="StateProvinceCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="LocationAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="LocationChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LocationDeletedDate" Type="datetime" />
+    <Property Name="LocationModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PackagingUnit">
+    <Key>
+      <PropertyRef Name="PackagingUnitId" />
+    </Key>
+    <Property Name="PackagingUnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackagingUnitItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PackagingUnitDesc" Type="nvarchar" MaxLength="100" />
+    <Property Name="ItemTypeId" Type="int" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
+    <Property Name="QuantityPerLayer" Type="int" Nullable="false" />
+    <Property Name="Height" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="LayersHigh" Type="int" Nullable="false" />
+    <Property Name="LayersMed" Type="int" Nullable="false" />
+    <Property Name="LayersLow" Type="int" Nullable="false" />
+    <Property Name="NumberBoxesHigh" Type="int" Nullable="false" />
+    <Property Name="NumberBoxesMed" Type="int" Nullable="false" />
+    <Property Name="NumberBoxesLow" Type="int" Nullable="false" />
+    <Property Name="PackagingUnitAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="PackagingUnitChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="PackagingUnitDeletedDate" Type="datetime" />
+    <Property Name="PackagingUnitModifiedById" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PackagingUOM">
+    <Key>
+      <PropertyRef Name="PackagingUOMId" />
+    </Key>
+    <Property Name="PackagingUOMId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PackagingUOM" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PackagingUOMAbbreviation" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PackagingUOMDesc" Type="nvarchar" MaxLength="500" />
+    <Property Name="PackagingUOMAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="PackagingUOMChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="PackagingUOMDeletedDate" Type="datetime" />
+    <Property Name="PackagingUOMModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="QcTest">
@@ -235,16 +474,16 @@
     <Property Name="QcTestModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="QuarantineType">
+  <EntityType Name="Quarantine">
     <Key>
-      <PropertyRef Name="QuarantineTypeId" />
+      <PropertyRef Name="QuarantineId" />
     </Key>
-    <Property Name="QuarantineTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="QuarantineType" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="QuarantineTypeAddedDate" Type="datetime" Nullable="false" />
-    <Property Name="QuarantineTypeChangedDate" Type="datetime" Nullable="false" />
-    <Property Name="QuarantineTypeDeletedDate" Type="datetime" />
-    <Property Name="QuarantineTypeModifiedById" Type="int" Nullable="false" />
+    <Property Name="QuarantineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quarantine" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="QuarantineAddedDate" Type="datetime" Nullable="false" />
+    <Property Name="QuarantineChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="QuarantineDeletedDate" Type="datetime" />
+    <Property Name="QuarantineModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="RawMaterial">
@@ -252,7 +491,7 @@
       <PropertyRef Name="RawMaterialId" />
     </Key>
     <Property Name="RawMaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RawMaterialItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="RawMaterialDescriptionShort" Type="nvarchar" MaxLength="14" />
     <Property Name="RawMaterialDescriptionMedium" Type="nvarchar" MaxLength="25" />
     <Property Name="RawMaterialDescriptionLong" Type="nvarchar" MaxLength="60" />
@@ -294,7 +533,7 @@
     <Property Name="ReportSortId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BrandId" Type="int" Nullable="false" />
     <Property Name="Sort" Type="int" Nullable="false" />
-    <Property Name="ReportSortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReportSection" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ReportSortAddedDate" Type="datetime" Nullable="false" />
     <Property Name="ReportSortChangedDate" Type="datetime" Nullable="false" />
     <Property Name="ReportSortDeletedDate" Type="datetime" />
@@ -312,29 +551,6 @@
     <Property Name="StorageConditionChangedDate" Type="datetime" Nullable="false" />
     <Property Name="StorageConditionDeletedDate" Type="datetime" />
     <Property Name="StorageConditionModifiedById" Type="int" Nullable="false" />
-    <Property Name="isDeleted" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Supplies">
-    <Key>
-      <PropertyRef Name="SuppliesId" />
-    </Key>
-    <Property Name="SuppliesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SuppliesItemKey" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="SuppliesDesc" Type="nvarchar" MaxLength="100" />
-    <Property Name="ItemTypeId" Type="int" Nullable="false" />
-    <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
-    <Property Name="QuantityPerLayer" Type="int" Nullable="false" />
-    <Property Name="Height" Type="decimal" Precision="9" Scale="1" Nullable="false" />
-    <Property Name="LayersHigh" Type="int" Nullable="false" />
-    <Property Name="LayersMed" Type="int" Nullable="false" />
-    <Property Name="LayersLow" Type="int" Nullable="false" />
-    <Property Name="NumberBoxesHigh" Type="int" Nullable="false" />
-    <Property Name="NumberBoxesMed" Type="int" Nullable="false" />
-    <Property Name="NumberBoxesLow" Type="int" Nullable="false" />
-    <Property Name="SuppliesAddedDate" Type="datetime" Nullable="false" />
-    <Property Name="SuppliesChangedDate" Type="datetime" Nullable="false" />
-    <Property Name="SuppliesDeletedDate" Type="datetime" />
-    <Property Name="SuppliesModifiedById" Type="int" Nullable="false" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UnitOfMeasure">
@@ -468,7 +684,7 @@
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_BOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PipingRock.dbo.vBatchMaster_BOM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vBatchMaster_BOM">
     <Key>
       <PropertyRef Name="ParentItemKey" />
@@ -501,7 +717,7 @@ warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_BOM' does not have a
     <Property Name="ItemSubTyp" Type="nvarchar" MaxLength="3" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PipingRock.dbo.vBatchMaster_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vBatchMaster_Item">
     <Key>
       <PropertyRef Name="Itemkey" />
@@ -678,7 +894,7 @@ warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_Item' does not have 
     <Property Name="ClassificationID" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_Location' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PipingRock.dbo.vBatchMaster_Location' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vBatchMaster_Location">
     <Key>
       <PropertyRef Name="Itemkey" />
@@ -805,7 +1021,7 @@ warning 6002: The table/view 'PipingRockUA.dbo.vBatchMaster_Location' does not h
     <Property Name="CUSTOM10" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PipingRockUA.md.ItemView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PipingRock.md.ItemView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ItemView">
     <Key>
       <PropertyRef Name="ItemKey" />
@@ -856,7 +1072,7 @@ warning 6002: The table/view 'PipingRockUA.md.ItemView' does not have a primary 
     <Property Name="QcTest" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="QcTestView">
     <Key>
       <PropertyRef Name="QcTestId" />
@@ -867,6 +1083,30 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     <Property Name="QcTestType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="QcTest" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_BottlesPerCase_Bottle">
+    <End Role="Bottle2" Type="Self.Bottle2" Multiplicity="1" />
+    <End Role="BottlesPerCase" Type="Self.BottlesPerCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bottle2">
+        <PropertyRef Name="BottleId" />
+      </Principal>
+      <Dependent Role="BottlesPerCase">
+        <PropertyRef Name="BottleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BottlesPerCase_PackagingUnit">
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="1" />
+    <End Role="BottlesPerCase" Type="Self.BottlesPerCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingUnit">
+        <PropertyRef Name="PackagingUnitId" />
+      </Principal>
+      <Dependent Role="BottlesPerCase">
+        <PropertyRef Name="PackagingUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Bulk_ItemForm">
     <End Role="ItemForm" Type="Self.ItemForm" Multiplicity="1" />
     <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
@@ -915,15 +1155,51 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Bulk_QuarantineType">
-    <End Role="QuarantineType" Type="Self.QuarantineType" Multiplicity="1" />
-    <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
+  <Association Name="FK_Bulk_QcTest_Bulk">
+    <End Role="Bulk" Type="Self.Bulk" Multiplicity="1" />
+    <End Role="Bulk_QcTest" Type="Self.Bulk_QcTest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="QuarantineType">
-        <PropertyRef Name="QuarantineTypeId" />
+      <Principal Role="Bulk">
+        <PropertyRef Name="BulkId" />
       </Principal>
-      <Dependent Role="Bulk">
-        <PropertyRef Name="QuarantineTypeId" />
+      <Dependent Role="Bulk_QcTest">
+        <PropertyRef Name="BulkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bulk_QcTest_QcTest">
+    <End Role="QcTest" Type="Self.QcTest" Multiplicity="1" />
+    <End Role="Bulk_QcTest" Type="Self.Bulk_QcTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Principal>
+      <Dependent Role="Bulk_QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bulk_Quarantine_Bulk">
+    <End Role="Bulk" Type="Self.Bulk" Multiplicity="1" />
+    <End Role="Bulk_Quarantine" Type="Self.Bulk_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bulk">
+        <PropertyRef Name="BulkId" />
+      </Principal>
+      <Dependent Role="Bulk_Quarantine">
+        <PropertyRef Name="BulkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bulk_Quarantine_Quarantine">
+    <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
+    <End Role="Bulk_Quarantine" Type="Self.Bulk_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quarantine">
+        <PropertyRef Name="QuarantineId" />
+      </Principal>
+      <Dependent Role="Bulk_Quarantine">
+        <PropertyRef Name="QuarantineId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -940,10 +1216,10 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FinishedGood_Bottle">
-    <End Role="Bottle" Type="Self.Bottle" Multiplicity="1" />
+    <End Role="Bottle2" Type="Self.Bottle2" Multiplicity="1" />
     <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Bottle">
+      <Principal Role="Bottle2">
         <PropertyRef Name="BottleId" />
       </Principal>
       <Dependent Role="FinishedGood">
@@ -987,15 +1263,27 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FinishedGood_PackagingLevel">
-    <End Role="PackagingLevel" Type="Self.PackagingLevel" Multiplicity="1" />
+  <Association Name="FK_FinishedGood_PackagingUnit">
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="1" />
     <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PackagingLevel">
-        <PropertyRef Name="PackagingLevelId" />
+      <Principal Role="PackagingUnit">
+        <PropertyRef Name="PackagingUnitId" />
       </Principal>
       <Dependent Role="FinishedGood">
-        <PropertyRef Name="PackagingLevelId" />
+        <PropertyRef Name="PackagingUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_PackagingUOM">
+    <End Role="PackagingUOM" Type="Self.PackagingUOM" Multiplicity="1" />
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingUOM">
+        <PropertyRef Name="PackagingUOMId" />
+      </Principal>
+      <Dependent Role="FinishedGood">
+        <PropertyRef Name="PackagingUOMId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1011,15 +1299,51 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FinishedGood_Supplies">
-    <End Role="Supplies" Type="Self.Supplies" Multiplicity="1" />
-    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
+  <Association Name="FK_FinishedGood_QcTest_FinishedGood">
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="1" />
+    <End Role="FinishedGood_QcTest" Type="Self.FinishedGood_QcTest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Supplies">
-        <PropertyRef Name="SuppliesId" />
+      <Principal Role="FinishedGood">
+        <PropertyRef Name="FinishedGoodId" />
       </Principal>
-      <Dependent Role="FinishedGood">
-        <PropertyRef Name="SuppliesId" />
+      <Dependent Role="FinishedGood_QcTest">
+        <PropertyRef Name="FinishedGoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_QcTest_QcTest">
+    <End Role="QcTest" Type="Self.QcTest" Multiplicity="1" />
+    <End Role="FinishedGood_QcTest" Type="Self.FinishedGood_QcTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Principal>
+      <Dependent Role="FinishedGood_QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_Quarantine_FinishedGood">
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="1" />
+    <End Role="FinishedGood_Quarantine" Type="Self.FinishedGood_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinishedGood">
+        <PropertyRef Name="FinishedGoodId" />
+      </Principal>
+      <Dependent Role="FinishedGood_Quarantine">
+        <PropertyRef Name="FinishedGoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_Quarantine_Quarantine">
+    <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
+    <End Role="FinishedGood_Quarantine" Type="Self.FinishedGood_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quarantine">
+        <PropertyRef Name="QuarantineId" />
+      </Principal>
+      <Dependent Role="FinishedGood_Quarantine">
+        <PropertyRef Name="QuarantineId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1032,6 +1356,18 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       </Principal>
       <Dependent Role="ItemSubType">
         <PropertyRef Name="ItemTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackagingUnit_ItemSubType">
+    <End Role="ItemSubType" Type="Self.ItemSubType" Multiplicity="1" />
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemSubType">
+        <PropertyRef Name="ItemSubTypeId" />
+      </Principal>
+      <Dependent Role="PackagingUnit">
+        <PropertyRef Name="ItemSubTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1056,18 +1392,6 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       </Principal>
       <Dependent Role="ReportSort">
         <PropertyRef Name="BrandId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Supplies_ItemSubType">
-    <End Role="ItemSubType" Type="Self.ItemSubType" Multiplicity="1" />
-    <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ItemSubType">
-        <PropertyRef Name="ItemSubTypeId" />
-      </Principal>
-      <Dependent Role="Supplies">
-        <PropertyRef Name="ItemSubTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1222,14 +1546,17 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="AddBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="prc_ExcelUpload_Bottle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="excel">
+    <Parameter Name="ModifiedById" Type="int" Mode="In" />
+  </Function>
+  <Function Name="BrandAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="BrandCode" Type="nvarchar" Mode="In" />
     <Parameter Name="Brand" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="AddQuarantineType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="QuarantineAddType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="QuarantineType" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="AddStorageCondition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="StorageConditionAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="StorageCondition" Type="nvarchar" Mode="In" />
     <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
   </Function>
@@ -1263,7 +1590,7 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     <Parameter Name="UserID" Type="int" Mode="In" />
     <Parameter Name="UserRoleID" Type="int" Mode="In" />
   </Function>
-  <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
+  <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person" />
@@ -1294,26 +1621,35 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
     <Parameter Name="UserRoleID" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="PipingRockUAModelStoreContainer">
+  <EntityContainer Name="PipingRockModel1StoreContainer">
     <EntitySet Name="Screen" EntityType="Self.Screen" Schema="Application" store:Type="Tables" />
+    <EntitySet Name="Bottle" EntityType="Self.Bottle" Schema="backup" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bottle1" EntityType="Self.Bottle1" Schema="excel" Table="Bottle" store:Type="Tables" />
     <EntitySet Name="Allergen" EntityType="Self.Allergen" Schema="md" store:Type="Tables" />
-    <EntitySet Name="Bottle" EntityType="Self.Bottle" Schema="md" store:Type="Tables" />
+    <EntitySet Name="Bottle2" EntityType="Self.Bottle2" Schema="md" Table="Bottle" store:Type="Tables" />
+    <EntitySet Name="BottlesPerCase" EntityType="Self.BottlesPerCase" Schema="md" store:Type="Tables" />
     <EntitySet Name="Brand" EntityType="Self.Brand" Schema="md" store:Type="Tables" />
     <EntitySet Name="Bulk" EntityType="Self.Bulk" Schema="md" store:Type="Tables" />
+    <EntitySet Name="Bulk_QcTest" EntityType="Self.Bulk_QcTest" Schema="md" store:Type="Tables" />
+    <EntitySet Name="Bulk_Quarantine" EntityType="Self.Bulk_Quarantine" Schema="md" store:Type="Tables" />
     <EntitySet Name="FinishedGood" EntityType="Self.FinishedGood" Schema="md" store:Type="Tables" />
+    <EntitySet Name="FinishedGood_QcTest" EntityType="Self.FinishedGood_QcTest" Schema="md" store:Type="Tables" />
+    <EntitySet Name="FinishedGood_Quarantine" EntityType="Self.FinishedGood_Quarantine" Schema="md" store:Type="Tables" />
+    <EntitySet Name="FinishedGoodLocation" EntityType="Self.FinishedGoodLocation" Schema="md" store:Type="Tables" />
     <EntitySet Name="ItemForm" EntityType="Self.ItemForm" Schema="md" store:Type="Tables" />
     <EntitySet Name="ItemStatus" EntityType="Self.ItemStatus" Schema="md" store:Type="Tables" />
     <EntitySet Name="ItemSubType" EntityType="Self.ItemSubType" Schema="md" store:Type="Tables" />
     <EntitySet Name="ItemType" EntityType="Self.ItemType" Schema="md" store:Type="Tables" />
-    <EntitySet Name="PackagingLevel" EntityType="Self.PackagingLevel" Schema="md" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="md" store:Type="Tables" />
+    <EntitySet Name="PackagingUnit" EntityType="Self.PackagingUnit" Schema="md" store:Type="Tables" />
+    <EntitySet Name="PackagingUOM" EntityType="Self.PackagingUOM" Schema="md" store:Type="Tables" />
     <EntitySet Name="QcTest" EntityType="Self.QcTest" Schema="md" store:Type="Tables" />
-    <EntitySet Name="QuarantineType" EntityType="Self.QuarantineType" Schema="md" store:Type="Tables" />
+    <EntitySet Name="Quarantine" EntityType="Self.Quarantine" Schema="md" store:Type="Tables" />
     <EntitySet Name="RawMaterial" EntityType="Self.RawMaterial" Schema="md" store:Type="Tables" />
     <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" Schema="md" store:Type="Tables" />
     <EntitySet Name="ReportSort" EntityType="Self.ReportSort" Schema="md" store:Type="Tables" />
     <EntitySet Name="StorageCondition" EntityType="Self.StorageCondition" Schema="md" store:Type="Tables" />
-    <EntitySet Name="Supplies" EntityType="Self.Supplies" Schema="md" store:Type="Tables" />
     <EntitySet Name="UnitOfMeasure" EntityType="Self.UnitOfMeasure" Schema="md" store:Type="Tables" />
     <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="md" store:Type="Tables" />
     <EntitySet Name="Vendor_RawMaterial" EntityType="Self.Vendor_RawMaterial" Schema="md" store:Type="Tables" />
@@ -1677,6 +2013,14 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     [QcTestView].[QcTest] AS [QcTest]
     FROM [md].[QcTestView] AS [QcTestView]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_BottlesPerCase_Bottle" Association="Self.FK_BottlesPerCase_Bottle">
+      <End Role="Bottle2" EntitySet="Bottle2" />
+      <End Role="BottlesPerCase" EntitySet="BottlesPerCase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BottlesPerCase_PackagingUnit" Association="Self.FK_BottlesPerCase_PackagingUnit">
+      <End Role="PackagingUnit" EntitySet="PackagingUnit" />
+      <End Role="BottlesPerCase" EntitySet="BottlesPerCase" />
+    </AssociationSet>
     <AssociationSet Name="FK_Bulk_ItemForm" Association="Self.FK_Bulk_ItemForm">
       <End Role="ItemForm" EntitySet="ItemForm" />
       <End Role="Bulk" EntitySet="Bulk" />
@@ -1693,16 +2037,28 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       <End Role="QcTest" EntitySet="QcTest" />
       <End Role="Bulk" EntitySet="Bulk" />
     </AssociationSet>
-    <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-      <End Role="QuarantineType" EntitySet="QuarantineType" />
+    <AssociationSet Name="FK_Bulk_QcTest_Bulk" Association="Self.FK_Bulk_QcTest_Bulk">
       <End Role="Bulk" EntitySet="Bulk" />
+      <End Role="Bulk_QcTest" EntitySet="Bulk_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bulk_QcTest_QcTest" Association="Self.FK_Bulk_QcTest_QcTest">
+      <End Role="QcTest" EntitySet="QcTest" />
+      <End Role="Bulk_QcTest" EntitySet="Bulk_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bulk_Quarantine_Bulk" Association="Self.FK_Bulk_Quarantine_Bulk">
+      <End Role="Bulk" EntitySet="Bulk" />
+      <End Role="Bulk_Quarantine" EntitySet="Bulk_Quarantine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bulk_Quarantine_Quarantine" Association="Self.FK_Bulk_Quarantine_Quarantine">
+      <End Role="Quarantine" EntitySet="Quarantine" />
+      <End Role="Bulk_Quarantine" EntitySet="Bulk_Quarantine" />
     </AssociationSet>
     <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
       <End Role="StorageCondition" EntitySet="StorageCondition" />
       <End Role="Bulk" EntitySet="Bulk" />
     </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_Bottle" Association="Self.FK_FinishedGood_Bottle">
-      <End Role="Bottle" EntitySet="Bottle" />
+      <End Role="Bottle2" EntitySet="Bottle2" />
       <End Role="FinishedGood" EntitySet="FinishedGood" />
     </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_Brand" Association="Self.FK_FinishedGood_Brand">
@@ -1717,21 +2073,41 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
       <End Role="ItemStatus" EntitySet="ItemStatus" />
       <End Role="FinishedGood" EntitySet="FinishedGood" />
     </AssociationSet>
-    <AssociationSet Name="FK_FinishedGood_PackagingLevel" Association="Self.FK_FinishedGood_PackagingLevel">
-      <End Role="PackagingLevel" EntitySet="PackagingLevel" />
+    <AssociationSet Name="FK_FinishedGood_PackagingUnit" Association="Self.FK_FinishedGood_PackagingUnit">
+      <End Role="PackagingUnit" EntitySet="PackagingUnit" />
+      <End Role="FinishedGood" EntitySet="FinishedGood" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_PackagingUOM" Association="Self.FK_FinishedGood_PackagingUOM">
+      <End Role="PackagingUOM" EntitySet="PackagingUOM" />
       <End Role="FinishedGood" EntitySet="FinishedGood" />
     </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_QcTest" Association="Self.FK_FinishedGood_QcTest">
       <End Role="QcTest" EntitySet="QcTest" />
       <End Role="FinishedGood" EntitySet="FinishedGood" />
     </AssociationSet>
-    <AssociationSet Name="FK_FinishedGood_Supplies" Association="Self.FK_FinishedGood_Supplies">
-      <End Role="Supplies" EntitySet="Supplies" />
+    <AssociationSet Name="FK_FinishedGood_QcTest_FinishedGood" Association="Self.FK_FinishedGood_QcTest_FinishedGood">
       <End Role="FinishedGood" EntitySet="FinishedGood" />
+      <End Role="FinishedGood_QcTest" EntitySet="FinishedGood_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_QcTest_QcTest" Association="Self.FK_FinishedGood_QcTest_QcTest">
+      <End Role="QcTest" EntitySet="QcTest" />
+      <End Role="FinishedGood_QcTest" EntitySet="FinishedGood_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_Quarantine_FinishedGood" Association="Self.FK_FinishedGood_Quarantine_FinishedGood">
+      <End Role="FinishedGood" EntitySet="FinishedGood" />
+      <End Role="FinishedGood_Quarantine" EntitySet="FinishedGood_Quarantine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_Quarantine_Quarantine" Association="Self.FK_FinishedGood_Quarantine_Quarantine">
+      <End Role="Quarantine" EntitySet="Quarantine" />
+      <End Role="FinishedGood_Quarantine" EntitySet="FinishedGood_Quarantine" />
     </AssociationSet>
     <AssociationSet Name="FK_ItemSubType_ItemType" Association="Self.FK_ItemSubType_ItemType">
       <End Role="ItemType" EntitySet="ItemType" />
       <End Role="ItemSubType" EntitySet="ItemSubType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackagingUnit_ItemSubType" Association="Self.FK_PackagingUnit_ItemSubType">
+      <End Role="ItemSubType" EntitySet="ItemSubType" />
+      <End Role="PackagingUnit" EntitySet="PackagingUnit" />
     </AssociationSet>
     <AssociationSet Name="FK_QcTest_QcTest" Association="Self.FK_QcTest_QcTest">
       <End Role="QcTest" EntitySet="QcTest" />
@@ -1740,10 +2116,6 @@ warning 6002: The table/view 'PipingRockUA.md.QcTestView' does not have a primar
     <AssociationSet Name="FK_ReportSort_Brand" Association="Self.FK_ReportSort_Brand">
       <End Role="Brand" EntitySet="Brand" />
       <End Role="ReportSort" EntitySet="ReportSort" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Supplies_ItemSubType" Association="Self.FK_Supplies_ItemSubType">
-      <End Role="ItemSubType" EntitySet="ItemSubType" />
-      <End Role="Supplies" EntitySet="Supplies" />
     </AssociationSet>
     <AssociationSet Name="FK_UnitOfMeasure_Ref_GDSN_UoM" Association="Self.FK_UnitOfMeasure_Ref_GDSN_UoM">
       <End Role="Ref_GDSN_UoM" EntitySet="Ref_GDSN_UoM" />

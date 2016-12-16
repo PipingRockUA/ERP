@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PipingRockUAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="PipingRockModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Screen">
     <Key>
       <PropertyRef Name="ScreenId" />
@@ -13,6 +13,50 @@
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="UserRoleAuthorities" Relationship="Self.FK_UserRoleAuthority_Screen" FromRole="Screen" ToRole="UserRoleAuthority" />
   </EntityType>
+  <EntityType Name="Bottle">
+    <Key>
+      <PropertyRef Name="BottleId" />
+    </Key>
+    <Property Name="BackupNumber" Type="Int32" Nullable="false" />
+    <Property Name="BackupDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BottleId" Type="Int32" Nullable="false" />
+    <Property Name="BottleItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BottleDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BottlesSmallTray" Type="Int32" Nullable="false" />
+    <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
+    <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
+    <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+    <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
+    <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrintFrames" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="Int32" Nullable="false" />
+    <Property Name="BottleAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BottleChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BottleDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="BottleModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -22,6 +66,45 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Bottle1">
+    <Key>
+      <PropertyRef Name="BottleId" />
+    </Key>
+    <Property Name="BottleId" Type="Int32" Nullable="false" />
+    <Property Name="BottleItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BottleDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BottlesSmallTray" Type="Int32" Nullable="false" />
+    <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
+    <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
+    <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+    <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
+    <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrintFrames" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="Int32" Nullable="false" />
+    <Property Name="BottleModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Allergen">
     <Key>
@@ -36,7 +119,7 @@
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Vendor_RawMaterial_Allergen" Relationship="Self.FK_Vendor_RawMaterial_Allergen_Allergen" FromRole="Allergen" ToRole="Vendor_RawMaterial_Allergen" />
   </EntityType>
-  <EntityType Name="Bottle">
+  <EntityType Name="Bottle2">
     <Key>
       <PropertyRef Name="BottleId" />
     </Key>
@@ -49,22 +132,53 @@
     <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
     <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
     <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
-    <Property Name="ItemTypeDetailId" Type="Int32" Nullable="false" />
-    <Property Name="BottleLength" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleWidth" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleHieght" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleCubicInches" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleLengthWrapped" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleWidthWrapped" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleDepthWrapped" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleCubicInchWrapped" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="BottleLabelSquareInches" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BottleLengthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleHieghtCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLengthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleWidthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleDepthWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleCubicInchWrappedCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleLabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LabelSquareCm" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="BottleSize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrintFrames" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfPrintingPositions" Type="Int32" Nullable="false" />
     <Property Name="BottleAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BottleChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BottleDeletedDate" Type="DateTime" Precision="3" />
     <Property Name="BottleModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Bottle" FromRole="Bottle" ToRole="FinishedGood" />
+    <NavigationProperty Name="BottlesPerCases" Relationship="Self.FK_BottlesPerCase_Bottle" FromRole="Bottle2" ToRole="BottlesPerCase" />
+    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Bottle" FromRole="Bottle2" ToRole="FinishedGood" />
+  </EntityType>
+  <EntityType Name="BottlesPerCase">
+    <Key>
+      <PropertyRef Name="BottlesPerCaseId" />
+    </Key>
+    <Property Name="BottlesPerCaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BottleId" Type="Int32" Nullable="false" />
+    <Property Name="PackagingUnitId" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfBottlesUnWrapped" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfBottlesWrapped" Type="Int32" Nullable="false" />
+    <Property Name="BottlesPerCaseAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BottlesPerCaseChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BottlesPerCaseDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="BottlesPerCaseModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bottle2" Relationship="Self.FK_BottlesPerCase_Bottle" FromRole="BottlesPerCase" ToRole="Bottle2" />
+    <NavigationProperty Name="PackagingUnit" Relationship="Self.FK_BottlesPerCase_PackagingUnit" FromRole="BottlesPerCase" ToRole="PackagingUnit" />
   </EntityType>
   <EntityType Name="Brand">
     <Key>
@@ -86,7 +200,7 @@
       <PropertyRef Name="BulkId" />
     </Key>
     <Property Name="BulkId" Type="Int32" Nullable="false" />
-    <Property Name="ItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BulkItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="BulkDescriptionShort" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
     <Property Name="BulkDescriptionMedium" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="BulkDescriptionLong" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
@@ -103,7 +217,6 @@
     <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
     <Property Name="RetestingMonths" Type="Int32" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
     <Property Name="BulkAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BulkChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="BulkDeletedDate" Type="DateTime" Precision="3" />
@@ -113,9 +226,40 @@
     <NavigationProperty Name="ItemStatu" Relationship="Self.FK_Bulk_ItemStatus" FromRole="Bulk" ToRole="ItemStatus" />
     <NavigationProperty Name="ItemType" Relationship="Self.FK_Bulk_ItemType" FromRole="Bulk" ToRole="ItemType" />
     <NavigationProperty Name="QcTest" Relationship="Self.FK_Bulk_QcTest" FromRole="Bulk" ToRole="QcTest" />
-    <NavigationProperty Name="QuarantineType" Relationship="Self.FK_Bulk_QuarantineType" FromRole="Bulk" ToRole="QuarantineType" />
+    <NavigationProperty Name="Bulk_QcTest" Relationship="Self.FK_Bulk_QcTest_Bulk" FromRole="Bulk" ToRole="Bulk_QcTest" />
+    <NavigationProperty Name="Bulk_Quarantine" Relationship="Self.FK_Bulk_Quarantine_Bulk" FromRole="Bulk" ToRole="Bulk_Quarantine" />
     <NavigationProperty Name="StorageCondition" Relationship="Self.FK_Bulk_StorageCondition" FromRole="Bulk" ToRole="StorageCondition" />
     <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Bulk" FromRole="Bulk" ToRole="FinishedGood" />
+  </EntityType>
+  <EntityType Name="Bulk_QcTest">
+    <Key>
+      <PropertyRef Name="Bulk_QcTestId" />
+    </Key>
+    <Property Name="Bulk_QcTestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BulkId" Type="Int32" Nullable="false" />
+    <Property Name="QcTestId" Type="Int32" Nullable="false" />
+    <Property Name="Bulk_QcTestAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bulk_QcTestChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bulk_QcTestDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="Bulk_QcTestModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bulk" Relationship="Self.FK_Bulk_QcTest_Bulk" FromRole="Bulk_QcTest" ToRole="Bulk" />
+    <NavigationProperty Name="QcTest" Relationship="Self.FK_Bulk_QcTest_QcTest" FromRole="Bulk_QcTest" ToRole="QcTest" />
+  </EntityType>
+  <EntityType Name="Bulk_Quarantine">
+    <Key>
+      <PropertyRef Name="Bulk_QuarantineId" />
+    </Key>
+    <Property Name="Bulk_QuarantineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BulkId" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" />
+    <Property Name="Bulk_QuarantineAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bulk_QuarantineChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bulk_QuarantineDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="Bulk_QuarantineModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bulk" Relationship="Self.FK_Bulk_Quarantine_Bulk" FromRole="Bulk_Quarantine" ToRole="Bulk" />
+    <NavigationProperty Name="Quarantine" Relationship="Self.FK_Bulk_Quarantine_Quarantine" FromRole="Bulk_Quarantine" ToRole="Quarantine" />
   </EntityType>
   <EntityType Name="FinishedGood">
     <Key>
@@ -126,28 +270,35 @@
     <Property Name="FinishedGoodDescriptionShort" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FinishedGoodDescriptionMedium" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FinishedGoodDescriptionLong" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FinishedGoodSizePrint" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="FinishedGoodSizeNumeric" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="FinishedGoodSizeUOMId" Type="Int32" Nullable="false" />
     <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
-    <Property Name="ItemFormId" Type="Int32" Nullable="false" />
     <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
     <Property Name="BrandId" Type="Int32" Nullable="false" />
     <Property Name="BulkId" Type="Int32" Nullable="false" />
     <Property Name="ReportSortId" Type="Int32" Nullable="false" />
-    <Property Name="PackagingLevelId" Type="Int32" Nullable="false" />
-    <Property Name="IsPurchasable" Type="Boolean" Nullable="false" />
+    <Property Name="PackagingUnitId" Type="Int32" Nullable="false" />
+    <Property Name="PackagingUOMId" Type="Int32" Nullable="false" />
     <Property Name="BottleId" Type="Int32" Nullable="false" />
-    <Property Name="ChainPrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="SRP" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="MasterCaseCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChainPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SRP" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="MasterCasePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="EachUPC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="MasterCaseUPC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="InnerUPC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="EachHeightInches" Type="Decimal" Precision="18" Scale="3" />
-    <Property Name="EachWidthInches" Type="Decimal" Precision="18" Scale="3" />
-    <Property Name="EachDepthInches" Type="Decimal" Precision="18" Scale="3" />
-    <Property Name="EachWeightOz" Type="Decimal" Precision="18" Scale="3" />
-    <Property Name="EachWeightGrams" Type="Decimal" Precision="26" Scale="8" annotation:StoreGeneratedPattern="Computed" />
-    <Property Name="SuppliesId" Type="Int32" Nullable="false" />
+    <Property Name="EachHeightInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachWidthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachDepthInches" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachCubicInches" Type="Decimal" Precision="38" Scale="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="EachHeightCm" Type="Decimal" Precision="22" Scale="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="EachWidthCm" Type="Decimal" Precision="22" Scale="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="EachDepthCm" Type="Decimal" Precision="22" Scale="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="EachCubicCm" Type="Decimal" Precision="38" Scale="6" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="EachWeightOz" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="EachWeightGrams" Type="Decimal" Precision="26" Scale="6" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="FinishedGoodMakeBuy" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
     <Property Name="isTaxableNYS" Type="Boolean" Nullable="false" />
     <Property Name="isTaxableCanada" Type="Boolean" Nullable="false" />
     <Property Name="ReceivingBoxLabelsRequired" Type="Boolean" Nullable="false" />
@@ -155,28 +306,85 @@
     <Property Name="QcTestId" Type="Int32" Nullable="false" />
     <Property Name="ExpirationMonths" Type="Int32" Nullable="false" />
     <Property Name="PctOfLifeForRetesting" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" />
     <Property Name="areMultipleBinsRequired" Type="Boolean" Nullable="false" />
+    <Property Name="isLotTracked" Type="Boolean" Nullable="false" />
+    <Property Name="PalletHeight" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LastCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="StandardCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AverageCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="FuturePoCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="MonthlyUsage" Type="Int32" Nullable="false" />
+    <Property Name="GLCodeRevenue" Type="Int32" Nullable="false" />
+    <Property Name="GLCodeCost" Type="Int32" Nullable="false" />
     <Property Name="FinishedGoodAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="FinishedGoodChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="FinishedGoodDeletedDate" Type="DateTime" Precision="3" />
     <Property Name="FinishedGoodModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Bottle" Relationship="Self.FK_FinishedGood_Bottle" FromRole="FinishedGood" ToRole="Bottle" />
+    <NavigationProperty Name="Bottle2" Relationship="Self.FK_FinishedGood_Bottle" FromRole="FinishedGood" ToRole="Bottle2" />
     <NavigationProperty Name="Brand" Relationship="Self.FK_FinishedGood_Brand" FromRole="FinishedGood" ToRole="Brand" />
     <NavigationProperty Name="Bulk" Relationship="Self.FK_FinishedGood_Bulk" FromRole="FinishedGood" ToRole="Bulk" />
     <NavigationProperty Name="ItemStatu" Relationship="Self.FK_FinishedGood_ItemStatus" FromRole="FinishedGood" ToRole="ItemStatus" />
-    <NavigationProperty Name="PackagingLevel" Relationship="Self.FK_FinishedGood_PackagingLevel" FromRole="FinishedGood" ToRole="PackagingLevel" />
+    <NavigationProperty Name="PackagingUnit" Relationship="Self.FK_FinishedGood_PackagingUnit" FromRole="FinishedGood" ToRole="PackagingUnit" />
+    <NavigationProperty Name="PackagingUOM" Relationship="Self.FK_FinishedGood_PackagingUOM" FromRole="FinishedGood" ToRole="PackagingUOM" />
     <NavigationProperty Name="QcTest" Relationship="Self.FK_FinishedGood_QcTest" FromRole="FinishedGood" ToRole="QcTest" />
-    <NavigationProperty Name="Supply" Relationship="Self.FK_FinishedGood_Supplies" FromRole="FinishedGood" ToRole="Supplies" />
+    <NavigationProperty Name="FinishedGood_QcTest" Relationship="Self.FK_FinishedGood_QcTest_FinishedGood" FromRole="FinishedGood" ToRole="FinishedGood_QcTest" />
+    <NavigationProperty Name="FinishedGood_Quarantine" Relationship="Self.FK_FinishedGood_Quarantine_FinishedGood" FromRole="FinishedGood" ToRole="FinishedGood_Quarantine" />
+  </EntityType>
+  <EntityType Name="FinishedGood_QcTest">
+    <Key>
+      <PropertyRef Name="FinishedGood_QcTestId" />
+    </Key>
+    <Property Name="FinishedGood_QcTestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FinishedGoodId" Type="Int32" Nullable="false" />
+    <Property Name="QcTestId" Type="Int32" Nullable="false" />
+    <Property Name="FinishedGood_QcTestAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGood_QcTestChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGood_QcTestDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="FinishedGood_QcTestModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FinishedGood" Relationship="Self.FK_FinishedGood_QcTest_FinishedGood" FromRole="FinishedGood_QcTest" ToRole="FinishedGood" />
+    <NavigationProperty Name="QcTest" Relationship="Self.FK_FinishedGood_QcTest_QcTest" FromRole="FinishedGood_QcTest" ToRole="QcTest" />
+  </EntityType>
+  <EntityType Name="FinishedGood_Quarantine">
+    <Key>
+      <PropertyRef Name="FinishedGood_QuarantineId" />
+    </Key>
+    <Property Name="FinishedGood_QuarantineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FinishedGoodId" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" />
+    <Property Name="FinishedGood_QuarantineAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGood_QuarantineChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGood_QuarantineDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="FinishedGood_QuarantineModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FinishedGood" Relationship="Self.FK_FinishedGood_Quarantine_FinishedGood" FromRole="FinishedGood_Quarantine" ToRole="FinishedGood" />
+    <NavigationProperty Name="Quarantine" Relationship="Self.FK_FinishedGood_Quarantine_Quarantine" FromRole="FinishedGood_Quarantine" ToRole="Quarantine" />
+  </EntityType>
+  <EntityType Name="FinishedGoodLocation">
+    <Key>
+      <PropertyRef Name="FinishedGoodLocationId" />
+    </Key>
+    <Property Name="FinishedGoodLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FinishedGoodId" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+    <Property Name="LastCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="StandardCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AverageCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="FuturePoCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="FinishedGoodLocationAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGoodLocationChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishedGoodLocationDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="FinishedGoodLocationModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemForm">
     <Key>
       <PropertyRef Name="ItemFormId" />
     </Key>
     <Property Name="ItemFormId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ItemForm1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ItemFormDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ItemFormExternal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ItemFormWarehouse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ItemFormAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemFormChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemFormDeletedDate" Type="DateTime" Precision="3" />
@@ -208,15 +416,15 @@
     <Property Name="ItemSubType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ItemSubTypeCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="ItemSubTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="LossFactorInventory" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-    <Property Name="LossFactorCost" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="LossFactorInventory" Type="Decimal" Precision="3" Scale="3" Nullable="false" />
+    <Property Name="LossFactorCost" Type="Decimal" Precision="3" Scale="3" Nullable="false" />
     <Property Name="ItemSubTypeAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemSubTypeChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemSubTypeDeletedDate" Type="DateTime" Precision="3" />
     <Property Name="ItemSubTypeModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ItemType" Relationship="Self.FK_ItemSubType_ItemType" FromRole="ItemSubType" ToRole="ItemType" />
-    <NavigationProperty Name="Supplies" Relationship="Self.FK_Supplies_ItemSubType" FromRole="ItemSubType" ToRole="Supplies" />
+    <NavigationProperty Name="PackagingUnits" Relationship="Self.FK_PackagingUnit_ItemSubType" FromRole="ItemSubType" ToRole="PackagingUnit" />
   </EntityType>
   <EntityType Name="ItemType">
     <Key>
@@ -226,6 +434,8 @@
     <Property Name="ItemType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ItemTypeCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ItemTypeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LossFactorCost" Type="Decimal" Precision="3" Scale="3" Nullable="false" />
+    <Property Name="LossFactorInventory" Type="Decimal" Precision="3" Scale="3" Nullable="false" />
     <Property Name="ItemTypeAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemTypeChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ItemTypeDeletedDate" Type="DateTime" Precision="3" />
@@ -234,20 +444,66 @@
     <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_ItemType" FromRole="ItemType" ToRole="Bulk" />
     <NavigationProperty Name="ItemSubTypes" Relationship="Self.FK_ItemSubType_ItemType" FromRole="ItemType" ToRole="ItemSubType" />
   </EntityType>
-  <EntityType Name="PackagingLevel">
+  <EntityType Name="Location">
     <Key>
-      <PropertyRef Name="PackagingLevelId" />
+      <PropertyRef Name="LocationId" />
     </Key>
-    <Property Name="PackagingLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PackagingLevel1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PackagingLevelAbbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PackagingLevelDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="PackagingLevelAddedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="PackagingLevelChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="PackagingLevelDeletedDate" Type="DateTime" Precision="3" />
-    <Property Name="PackagingLevelModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StateProvinceCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LocationAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LocationChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LocationDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="LocationModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_PackagingLevel" FromRole="PackagingLevel" ToRole="FinishedGood" />
+  </EntityType>
+  <EntityType Name="PackagingUnit">
+    <Key>
+      <PropertyRef Name="PackagingUnitId" />
+    </Key>
+    <Property Name="PackagingUnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PackagingUnitItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PackagingUnitDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
+    <Property Name="QuantityPerLayer" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="LayersHigh" Type="Int32" Nullable="false" />
+    <Property Name="LayersMed" Type="Int32" Nullable="false" />
+    <Property Name="LayersLow" Type="Int32" Nullable="false" />
+    <Property Name="NumberBoxesHigh" Type="Int32" Nullable="false" />
+    <Property Name="NumberBoxesMed" Type="Int32" Nullable="false" />
+    <Property Name="NumberBoxesLow" Type="Int32" Nullable="false" />
+    <Property Name="PackagingUnitAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PackagingUnitChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PackagingUnitDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="PackagingUnitModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BottlesPerCases" Relationship="Self.FK_BottlesPerCase_PackagingUnit" FromRole="PackagingUnit" ToRole="BottlesPerCase" />
+    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_PackagingUnit" FromRole="PackagingUnit" ToRole="FinishedGood" />
+    <NavigationProperty Name="ItemSubType" Relationship="Self.FK_PackagingUnit_ItemSubType" FromRole="PackagingUnit" ToRole="ItemSubType" />
+  </EntityType>
+  <EntityType Name="PackagingUOM">
+    <Key>
+      <PropertyRef Name="PackagingUOMId" />
+    </Key>
+    <Property Name="PackagingUOMId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PackagingUOM1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PackagingUOMAbbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PackagingUOMDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PackagingUOMAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PackagingUOMChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PackagingUOMDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="PackagingUOMModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_PackagingUOM" FromRole="PackagingUOM" ToRole="FinishedGood" />
   </EntityType>
   <EntityType Name="QcTest">
     <Key>
@@ -262,29 +518,32 @@
     <Property Name="QcTestModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_QcTest" FromRole="QcTest" ToRole="Bulk" />
+    <NavigationProperty Name="Bulk_QcTest" Relationship="Self.FK_Bulk_QcTest_QcTest" FromRole="QcTest" ToRole="Bulk_QcTest" />
     <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_QcTest" FromRole="QcTest" ToRole="FinishedGood" />
+    <NavigationProperty Name="FinishedGood_QcTest" Relationship="Self.FK_FinishedGood_QcTest_QcTest" FromRole="QcTest" ToRole="FinishedGood_QcTest" />
     <NavigationProperty Name="QcTest11" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest" ToRole="QcTest1" />
     <NavigationProperty Name="QcTest2" Relationship="Self.FK_QcTest_QcTest" FromRole="QcTest1" ToRole="QcTest" />
   </EntityType>
-  <EntityType Name="QuarantineType">
+  <EntityType Name="Quarantine">
     <Key>
-      <PropertyRef Name="QuarantineTypeId" />
+      <PropertyRef Name="QuarantineId" />
     </Key>
-    <Property Name="QuarantineTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="QuarantineType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="QuarantineTypeAddedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="QuarantineTypeChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="QuarantineTypeDeletedDate" Type="DateTime" Precision="3" />
-    <Property Name="QuarantineTypeModifiedById" Type="Int32" Nullable="false" />
+    <Property Name="QuarantineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quarantine1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuarantineAddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="QuarantineChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="QuarantineDeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="QuarantineModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_QuarantineType" FromRole="QuarantineType" ToRole="Bulk" />
+    <NavigationProperty Name="Bulk_Quarantine" Relationship="Self.FK_Bulk_Quarantine_Quarantine" FromRole="Quarantine" ToRole="Bulk_Quarantine" />
+    <NavigationProperty Name="FinishedGood_Quarantine" Relationship="Self.FK_FinishedGood_Quarantine_Quarantine" FromRole="Quarantine" ToRole="FinishedGood_Quarantine" />
   </EntityType>
   <EntityType Name="RawMaterial">
     <Key>
       <PropertyRef Name="RawMaterialId" />
     </Key>
     <Property Name="RawMaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RawMaterialItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="RawMaterialDescriptionShort" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
     <Property Name="RawMaterialDescriptionMedium" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="RawMaterialDescriptionLong" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
@@ -328,7 +587,7 @@
     <Property Name="ReportSortId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="BrandId" Type="Int32" Nullable="false" />
     <Property Name="Sort" Type="Int32" Nullable="false" />
-    <Property Name="ReportSortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReportSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ReportSortAddedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ReportSortChangedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ReportSortDeletedDate" Type="DateTime" Precision="3" />
@@ -349,31 +608,6 @@
     <Property Name="StorageConditionModifiedById" Type="Int32" Nullable="false" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Bulks" Relationship="Self.FK_Bulk_StorageCondition" FromRole="StorageCondition" ToRole="Bulk" />
-  </EntityType>
-  <EntityType Name="Supply">
-    <Key>
-      <PropertyRef Name="SuppliesId" />
-    </Key>
-    <Property Name="SuppliesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SuppliesItemKey" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SuppliesDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
-    <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
-    <Property Name="QuantityPerLayer" Type="Int32" Nullable="false" />
-    <Property Name="Height" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
-    <Property Name="LayersHigh" Type="Int32" Nullable="false" />
-    <Property Name="LayersMed" Type="Int32" Nullable="false" />
-    <Property Name="LayersLow" Type="Int32" Nullable="false" />
-    <Property Name="NumberBoxesHigh" Type="Int32" Nullable="false" />
-    <Property Name="NumberBoxesMed" Type="Int32" Nullable="false" />
-    <Property Name="NumberBoxesLow" Type="Int32" Nullable="false" />
-    <Property Name="SuppliesAddedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SuppliesChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="SuppliesDeletedDate" Type="DateTime" Precision="3" />
-    <Property Name="SuppliesModifiedById" Type="Int32" Nullable="false" />
-    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="FinishedGoods" Relationship="Self.FK_FinishedGood_Supplies" FromRole="Supplies" ToRole="FinishedGood" />
-    <NavigationProperty Name="ItemSubType" Relationship="Self.FK_Supplies_ItemSubType" FromRole="Supplies" ToRole="ItemSubType" />
   </EntityType>
   <EntityType Name="UnitOfMeasure">
     <Key>
@@ -935,15 +1169,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_BottlesPerCase_Bottle">
+    <End Role="Bottle2" Type="Self.Bottle2" Multiplicity="1" />
+    <End Role="BottlesPerCase" Type="Self.BottlesPerCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bottle2">
+        <PropertyRef Name="BottleId" />
+      </Principal>
+      <Dependent Role="BottlesPerCase">
+        <PropertyRef Name="BottleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_FinishedGood_Bottle">
-    <End Role="Bottle" Type="Self.Bottle" Multiplicity="1" />
+    <End Role="Bottle2" Type="Self.Bottle2" Multiplicity="1" />
     <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Bottle">
+      <Principal Role="Bottle2">
         <PropertyRef Name="BottleId" />
       </Principal>
       <Dependent Role="FinishedGood">
         <PropertyRef Name="BottleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BottlesPerCase_PackagingUnit">
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="1" />
+    <End Role="BottlesPerCase" Type="Self.BottlesPerCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingUnit">
+        <PropertyRef Name="PackagingUnitId" />
+      </Principal>
+      <Dependent Role="BottlesPerCase">
+        <PropertyRef Name="PackagingUnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1019,15 +1277,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Bulk_QuarantineType">
-    <End Role="QuarantineType" Type="Self.QuarantineType" Multiplicity="1" />
-    <End Role="Bulk" Type="Self.Bulk" Multiplicity="*" />
+  <Association Name="FK_Bulk_QcTest_Bulk">
+    <End Role="Bulk" Type="Self.Bulk" Multiplicity="1" />
+    <End Role="Bulk_QcTest" Type="Self.Bulk_QcTest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="QuarantineType">
-        <PropertyRef Name="QuarantineTypeId" />
+      <Principal Role="Bulk">
+        <PropertyRef Name="BulkId" />
       </Principal>
-      <Dependent Role="Bulk">
-        <PropertyRef Name="QuarantineTypeId" />
+      <Dependent Role="Bulk_QcTest">
+        <PropertyRef Name="BulkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bulk_Quarantine_Bulk">
+    <End Role="Bulk" Type="Self.Bulk" Multiplicity="1" />
+    <End Role="Bulk_Quarantine" Type="Self.Bulk_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bulk">
+        <PropertyRef Name="BulkId" />
+      </Principal>
+      <Dependent Role="Bulk_Quarantine">
+        <PropertyRef Name="BulkId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1055,6 +1325,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Bulk_QcTest_QcTest">
+    <End Role="QcTest" Type="Self.QcTest" Multiplicity="1" />
+    <End Role="Bulk_QcTest" Type="Self.Bulk_QcTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Principal>
+      <Dependent Role="Bulk_QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bulk_Quarantine_Quarantine">
+    <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
+    <End Role="Bulk_Quarantine" Type="Self.Bulk_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quarantine">
+        <PropertyRef Name="QuarantineId" />
+      </Principal>
+      <Dependent Role="Bulk_Quarantine">
+        <PropertyRef Name="QuarantineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_FinishedGood_ItemStatus">
     <End Role="ItemStatus" Type="Self.ItemStatu" Multiplicity="1" />
     <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
@@ -1067,15 +1361,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FinishedGood_PackagingLevel">
-    <End Role="PackagingLevel" Type="Self.PackagingLevel" Multiplicity="1" />
+  <Association Name="FK_FinishedGood_PackagingUnit">
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="1" />
     <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PackagingLevel">
-        <PropertyRef Name="PackagingLevelId" />
+      <Principal Role="PackagingUnit">
+        <PropertyRef Name="PackagingUnitId" />
       </Principal>
       <Dependent Role="FinishedGood">
-        <PropertyRef Name="PackagingLevelId" />
+        <PropertyRef Name="PackagingUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_PackagingUOM">
+    <End Role="PackagingUOM" Type="Self.PackagingUOM" Multiplicity="1" />
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackagingUOM">
+        <PropertyRef Name="PackagingUOMId" />
+      </Principal>
+      <Dependent Role="FinishedGood">
+        <PropertyRef Name="PackagingUOMId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1091,15 +1397,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FinishedGood_Supplies">
-    <End Role="Supplies" Type="Self.Supply" Multiplicity="1" />
-    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="*" />
+  <Association Name="FK_FinishedGood_QcTest_FinishedGood">
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="1" />
+    <End Role="FinishedGood_QcTest" Type="Self.FinishedGood_QcTest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Supplies">
-        <PropertyRef Name="SuppliesId" />
+      <Principal Role="FinishedGood">
+        <PropertyRef Name="FinishedGoodId" />
       </Principal>
-      <Dependent Role="FinishedGood">
-        <PropertyRef Name="SuppliesId" />
+      <Dependent Role="FinishedGood_QcTest">
+        <PropertyRef Name="FinishedGoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_Quarantine_FinishedGood">
+    <End Role="FinishedGood" Type="Self.FinishedGood" Multiplicity="1" />
+    <End Role="FinishedGood_Quarantine" Type="Self.FinishedGood_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinishedGood">
+        <PropertyRef Name="FinishedGoodId" />
+      </Principal>
+      <Dependent Role="FinishedGood_Quarantine">
+        <PropertyRef Name="FinishedGoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_QcTest_QcTest">
+    <End Role="QcTest" Type="Self.QcTest" Multiplicity="1" />
+    <End Role="FinishedGood_QcTest" Type="Self.FinishedGood_QcTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Principal>
+      <Dependent Role="FinishedGood_QcTest">
+        <PropertyRef Name="QcTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinishedGood_Quarantine_Quarantine">
+    <End Role="Quarantine" Type="Self.Quarantine" Multiplicity="1" />
+    <End Role="FinishedGood_Quarantine" Type="Self.FinishedGood_Quarantine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quarantine">
+        <PropertyRef Name="QuarantineId" />
+      </Principal>
+      <Dependent Role="FinishedGood_Quarantine">
+        <PropertyRef Name="QuarantineId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1115,14 +1457,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Supplies_ItemSubType">
+  <Association Name="FK_PackagingUnit_ItemSubType">
     <End Role="ItemSubType" Type="Self.ItemSubType" Multiplicity="1" />
-    <End Role="Supplies" Type="Self.Supply" Multiplicity="*" />
+    <End Role="PackagingUnit" Type="Self.PackagingUnit" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ItemSubType">
         <PropertyRef Name="ItemSubTypeId" />
       </Principal>
-      <Dependent Role="Supplies">
+      <Dependent Role="PackagingUnit">
         <PropertyRef Name="ItemSubTypeId" />
       </Dependent>
     </ReferentialConstraint>
@@ -1235,26 +1577,35 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PipingRockUAEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="PipingRockEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Screens" EntityType="Self.Screen" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="Allergens" EntityType="Self.Allergen" />
     <EntitySet Name="Bottles" EntityType="Self.Bottle" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Bottle1" EntityType="Self.Bottle1" />
+    <EntitySet Name="Allergens" EntityType="Self.Allergen" />
+    <EntitySet Name="Bottle2" EntityType="Self.Bottle2" />
+    <EntitySet Name="BottlesPerCases" EntityType="Self.BottlesPerCase" />
     <EntitySet Name="Brands" EntityType="Self.Brand" />
     <EntitySet Name="Bulks" EntityType="Self.Bulk" />
+    <EntitySet Name="Bulk_QcTest" EntityType="Self.Bulk_QcTest" />
+    <EntitySet Name="Bulk_Quarantine" EntityType="Self.Bulk_Quarantine" />
     <EntitySet Name="FinishedGoods" EntityType="Self.FinishedGood" />
+    <EntitySet Name="FinishedGood_QcTest" EntityType="Self.FinishedGood_QcTest" />
+    <EntitySet Name="FinishedGood_Quarantine" EntityType="Self.FinishedGood_Quarantine" />
+    <EntitySet Name="FinishedGoodLocations" EntityType="Self.FinishedGoodLocation" />
     <EntitySet Name="ItemForms" EntityType="Self.ItemForm" />
     <EntitySet Name="ItemStatus" EntityType="Self.ItemStatu" />
     <EntitySet Name="ItemSubTypes" EntityType="Self.ItemSubType" />
     <EntitySet Name="ItemTypes" EntityType="Self.ItemType" />
-    <EntitySet Name="PackagingLevels" EntityType="Self.PackagingLevel" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="PackagingUnits" EntityType="Self.PackagingUnit" />
+    <EntitySet Name="PackagingUOMs" EntityType="Self.PackagingUOM" />
     <EntitySet Name="QcTests" EntityType="Self.QcTest" />
-    <EntitySet Name="QuarantineTypes" EntityType="Self.QuarantineType" />
+    <EntitySet Name="Quarantines" EntityType="Self.Quarantine" />
     <EntitySet Name="RawMaterials" EntityType="Self.RawMaterial" />
     <EntitySet Name="Ref_GDSN_UoM" EntityType="Self.Ref_GDSN_UoM" />
     <EntitySet Name="ReportSorts" EntityType="Self.ReportSort" />
     <EntitySet Name="StorageConditions" EntityType="Self.StorageCondition" />
-    <EntitySet Name="Supplies" EntityType="Self.Supply" />
     <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasure" />
     <EntitySet Name="Vendors" EntityType="Self.Vendor" />
     <EntitySet Name="Vendor_RawMaterial" EntityType="Self.Vendor_RawMaterial" />
@@ -1277,9 +1628,17 @@
       <End Role="Allergen" EntitySet="Allergens" />
       <End Role="Vendor_RawMaterial_Allergen" EntitySet="Vendor_RawMaterial_Allergen" />
     </AssociationSet>
+    <AssociationSet Name="FK_BottlesPerCase_Bottle" Association="Self.FK_BottlesPerCase_Bottle">
+      <End Role="Bottle2" EntitySet="Bottle2" />
+      <End Role="BottlesPerCase" EntitySet="BottlesPerCases" />
+    </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_Bottle" Association="Self.FK_FinishedGood_Bottle">
-      <End Role="Bottle" EntitySet="Bottles" />
+      <End Role="Bottle2" EntitySet="Bottle2" />
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BottlesPerCase_PackagingUnit" Association="Self.FK_BottlesPerCase_PackagingUnit">
+      <End Role="PackagingUnit" EntitySet="PackagingUnits" />
+      <End Role="BottlesPerCase" EntitySet="BottlesPerCases" />
     </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_Brand" Association="Self.FK_FinishedGood_Brand">
       <End Role="Brand" EntitySet="Brands" />
@@ -1305,9 +1664,13 @@
       <End Role="QcTest" EntitySet="QcTests" />
       <End Role="Bulk" EntitySet="Bulks" />
     </AssociationSet>
-    <AssociationSet Name="FK_Bulk_QuarantineType" Association="Self.FK_Bulk_QuarantineType">
-      <End Role="QuarantineType" EntitySet="QuarantineTypes" />
+    <AssociationSet Name="FK_Bulk_QcTest_Bulk" Association="Self.FK_Bulk_QcTest_Bulk">
       <End Role="Bulk" EntitySet="Bulks" />
+      <End Role="Bulk_QcTest" EntitySet="Bulk_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bulk_Quarantine_Bulk" Association="Self.FK_Bulk_Quarantine_Bulk">
+      <End Role="Bulk" EntitySet="Bulks" />
+      <End Role="Bulk_Quarantine" EntitySet="Bulk_Quarantine" />
     </AssociationSet>
     <AssociationSet Name="FK_Bulk_StorageCondition" Association="Self.FK_Bulk_StorageCondition">
       <End Role="StorageCondition" EntitySet="StorageConditions" />
@@ -1317,29 +1680,53 @@
       <End Role="Bulk" EntitySet="Bulks" />
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
     </AssociationSet>
+    <AssociationSet Name="FK_Bulk_QcTest_QcTest" Association="Self.FK_Bulk_QcTest_QcTest">
+      <End Role="QcTest" EntitySet="QcTests" />
+      <End Role="Bulk_QcTest" EntitySet="Bulk_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bulk_Quarantine_Quarantine" Association="Self.FK_Bulk_Quarantine_Quarantine">
+      <End Role="Quarantine" EntitySet="Quarantines" />
+      <End Role="Bulk_Quarantine" EntitySet="Bulk_Quarantine" />
+    </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_ItemStatus" Association="Self.FK_FinishedGood_ItemStatus">
       <End Role="ItemStatus" EntitySet="ItemStatus" />
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
     </AssociationSet>
-    <AssociationSet Name="FK_FinishedGood_PackagingLevel" Association="Self.FK_FinishedGood_PackagingLevel">
-      <End Role="PackagingLevel" EntitySet="PackagingLevels" />
+    <AssociationSet Name="FK_FinishedGood_PackagingUnit" Association="Self.FK_FinishedGood_PackagingUnit">
+      <End Role="PackagingUnit" EntitySet="PackagingUnits" />
+      <End Role="FinishedGood" EntitySet="FinishedGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_PackagingUOM" Association="Self.FK_FinishedGood_PackagingUOM">
+      <End Role="PackagingUOM" EntitySet="PackagingUOMs" />
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
     </AssociationSet>
     <AssociationSet Name="FK_FinishedGood_QcTest" Association="Self.FK_FinishedGood_QcTest">
       <End Role="QcTest" EntitySet="QcTests" />
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
     </AssociationSet>
-    <AssociationSet Name="FK_FinishedGood_Supplies" Association="Self.FK_FinishedGood_Supplies">
-      <End Role="Supplies" EntitySet="Supplies" />
+    <AssociationSet Name="FK_FinishedGood_QcTest_FinishedGood" Association="Self.FK_FinishedGood_QcTest_FinishedGood">
       <End Role="FinishedGood" EntitySet="FinishedGoods" />
+      <End Role="FinishedGood_QcTest" EntitySet="FinishedGood_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_Quarantine_FinishedGood" Association="Self.FK_FinishedGood_Quarantine_FinishedGood">
+      <End Role="FinishedGood" EntitySet="FinishedGoods" />
+      <End Role="FinishedGood_Quarantine" EntitySet="FinishedGood_Quarantine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_QcTest_QcTest" Association="Self.FK_FinishedGood_QcTest_QcTest">
+      <End Role="QcTest" EntitySet="QcTests" />
+      <End Role="FinishedGood_QcTest" EntitySet="FinishedGood_QcTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinishedGood_Quarantine_Quarantine" Association="Self.FK_FinishedGood_Quarantine_Quarantine">
+      <End Role="Quarantine" EntitySet="Quarantines" />
+      <End Role="FinishedGood_Quarantine" EntitySet="FinishedGood_Quarantine" />
     </AssociationSet>
     <AssociationSet Name="FK_ItemSubType_ItemType" Association="Self.FK_ItemSubType_ItemType">
       <End Role="ItemType" EntitySet="ItemTypes" />
       <End Role="ItemSubType" EntitySet="ItemSubTypes" />
     </AssociationSet>
-    <AssociationSet Name="FK_Supplies_ItemSubType" Association="Self.FK_Supplies_ItemSubType">
+    <AssociationSet Name="FK_PackagingUnit_ItemSubType" Association="Self.FK_PackagingUnit_ItemSubType">
       <End Role="ItemSubType" EntitySet="ItemSubTypes" />
-      <End Role="Supplies" EntitySet="Supplies" />
+      <End Role="PackagingUnit" EntitySet="PackagingUnits" />
     </AssociationSet>
     <AssociationSet Name="FK_QcTest_QcTest" Association="Self.FK_QcTest_QcTest">
       <End Role="QcTest" EntitySet="QcTests" />
@@ -1393,11 +1780,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PipingRockUAModel.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PipingRockUAModel.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1407,27 +1794,30 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="AddBrand">
+    <FunctionImport Name="prc_ExcelUpload_Bottle">
+      <Parameter Name="ModifiedById" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BrandAdd">
       <Parameter Name="BrandCode" Mode="In" Type="String" />
       <Parameter Name="Brand" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="AddQuarantineType">
+    <FunctionImport Name="QuarantineAddType">
       <Parameter Name="QuarantineType" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="AddStorageCondition">
+    <FunctionImport Name="StorageConditionAdd">
       <Parameter Name="StorageCondition" Mode="In" Type="String" />
       <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockUAModel.GetAllBrands_Result)" />
-    <FunctionImport Name="GetAllQuarantineTypes" ReturnType="Collection(PipingRockUAModel.GetAllQuarantineTypes_Result)" />
-    <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockUAModel.GetAllStorageConditions_Result)" />
-    <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockUAModel.GetBrandByID_Result)">
+    <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel1.GetAllBrands_Result)" />
+    <FunctionImport Name="GetAllQuarantineTypes" />
+    <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel1.GetAllStorageConditions_Result)" />
+    <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel1.GetBrandByID_Result)">
       <Parameter Name="BrandID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetQuarantineTypeByID" ReturnType="Collection(PipingRockUAModel.GetQuarantineTypeByID_Result)">
+    <FunctionImport Name="GetQuarantineTypeByID">
       <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockUAModel.GetStorageConditionByID_Result)">
+    <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel1.GetStorageConditionByID_Result)">
       <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UpdateBrandByID">
@@ -1448,26 +1838,26 @@
       <Parameter Name="UserID" Mode="In" Type="Int32" />
       <Parameter Name="UserRoleID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="AddUser">
+    <FunctionImport Name="UserAdd">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockUAModel.GetAllRoles_Result)" />
-    <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockUAModel.GetAllUsers_Result)">
+    <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockModel1.GetAllRoles_Result)" />
+    <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockModel1.GetAllUsers_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockUAModel.GetNonActiveRoles_Result)">
+    <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockModel1.GetNonActiveRoles_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockUAModel.GetUser_Result)">
+    <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockModel1.GetUser_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockUAModel.GetUserByID_Result)">
+    <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockModel1.GetUserByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockUAModel.GetUserDisabledRolesByID_Result)">
+    <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockModel1.GetUserDisabledRolesByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockUAModel.GetUserRolesByID_Result)">
+    <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockModel1.GetUserRolesByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="RemoveRoleUserID">
@@ -1480,17 +1870,6 @@
       <Parameter Name="UserRoleID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="GetAllBrands_Result">
     <Property Type="Int32" Name="BrandID" Nullable="false" />
     <Property Type="String" Name="BrandCode" Nullable="false" MaxLength="2" />
@@ -1499,15 +1878,6 @@
     <Property Type="DateTime" Name="BrandChangedDate" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="BrandDeletedDate" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
-    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="GetAllQuarantineTypes_Result">
-    <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-    <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetAllStorageConditions_Result">
@@ -1528,15 +1898,6 @@
     <Property Type="DateTime" Name="BrandChangedDate" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="BrandDeletedDate" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="BrandModifiedById" Nullable="false" />
-    <Property Type="Boolean" Name="isDeleted" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="GetQuarantineTypeByID_Result">
-    <Property Type="Int32" Name="QuarantineTypeId" Nullable="false" />
-    <Property Type="String" Name="QuarantineType" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="QuarantineTypeAddedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeChangedDate" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="QuarantineTypeDeletedDate" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="QuarantineTypeModifiedById" Nullable="false" />
     <Property Type="Boolean" Name="isDeleted" Nullable="false" />
   </ComplexType>
   <ComplexType Name="GetStorageConditionByID_Result">

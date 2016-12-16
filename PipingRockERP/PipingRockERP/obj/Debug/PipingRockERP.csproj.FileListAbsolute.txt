@@ -184,6 +184,7 @@ C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRoc
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\EntityFramework.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\EntityFramework.SqlServer.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\GridMvc.dll
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\libxl.net.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -246,4 +247,4 @@ C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRoc
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.dll
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.pdb
-C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\libxl.net.dll
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.csprojResolveAssemblyReference.cache
