@@ -23,6 +23,8 @@ namespace PipingRockERP
         public int BottlesLargeTray { get; set; }
         public int WrappedBottlesTrayLarge { get; set; }
         public int WrappedBottlesTraySmall { get; set; }
+        public int LayersUnWrapped { get; set; }
+        public int LayersWrapped { get; set; }
         public int ItemStatusId { get; set; }
         public int ItemTypeId { get; set; }
         public int ItemSubTypeId { get; set; }

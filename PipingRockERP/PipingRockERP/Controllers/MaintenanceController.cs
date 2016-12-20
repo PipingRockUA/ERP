@@ -258,12 +258,12 @@ namespace PipingRockERP.Controllers
                           where UserRole.UserRoleName == roleName
                           select UserRole.UserRoleId).Single();
 
-            db.UserAdd(userName);
+            db.AddUser(userName);
             var userId = (from User in db.Users
                           where User.UserName == userName
                           select User.UserId).Single();
             db.AddRoleUserID(userId, roleId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Users");
         }
         #endregion
 
@@ -298,6 +298,9 @@ namespace PipingRockERP.Controllers
                                               int BottlesLargeTray,
                                               int WrappedBottlesTrayLarge,
                                               int WrappedBottlesTraySmall,
+
+                                              int LayersUnWrapped,
+                                              int LayersWrapped,
 
                                               string BottleLengthInches,
                                               string BottleWidthInches,
@@ -340,6 +343,9 @@ namespace PipingRockERP.Controllers
                 ItemStatusId = 3,
                 ItemTypeId = 2,
                 ItemSubTypeId = 1,
+
+                LayersUnWrapped = LayersUnWrapped,
+                LayersWrapped = LayersWrapped,
 
                 BottleLengthInches = Convert.ToDecimal(BottleLengthInches.Replace(".", ",")),
                 BottleWidthInches = Convert.ToDecimal(BottleWidthInches.Replace(".", ",")),
@@ -388,6 +394,9 @@ namespace PipingRockERP.Controllers
                                               int WrappedBottlesTrayLarge,
                                               int WrappedBottlesTraySmall,
 
+                                              int LayersUnWrapped,
+                                              int LayersWrapped,
+
                                               string BottleLengthInches,
                                               string BottleWidthInches,
                                               string BottleHieghtInches,
@@ -431,6 +440,9 @@ namespace PipingRockERP.Controllers
             bottle.ItemStatusId = 3;
             bottle.ItemTypeId = 2;
             bottle.ItemSubTypeId = 1;
+
+            bottle.LayersUnWrapped = LayersUnWrapped;
+            bottle.LayersWrapped = LayersWrapped;
 
             bottle.BottleLengthInches = Convert.ToDecimal(BottleLengthInches.Replace(".", ","));
             bottle.BottleWidthInches = Convert.ToDecimal(BottleWidthInches.Replace(".", ","));
@@ -585,7 +597,7 @@ namespace PipingRockERP.Controllers
 
             db.Entry(qt).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Quarantines");
+            return RedirectToAction("QuarantineEdit", new { qtId = qtId });
         }
 
         public ActionResult ExportQuarantine()
@@ -678,7 +690,7 @@ namespace PipingRockERP.Controllers
 
             db.Entry(sc).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("StorageConditions");
+            return RedirectToAction("StorageConditionEdit", new { scId = scId });
         }
 
         public ActionResult ExportStorageConditions()
@@ -771,7 +783,7 @@ namespace PipingRockERP.Controllers
 
             db.Entry(brand).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Brands");
+            return RedirectToAction("BrandEdit", new { brandId = brandId });
         }
 
         public ActionResult ExportBrand()

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PipingRockModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="PipingRockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Screen">
     <Key>
       <PropertyRef Name="ScreenId" />
@@ -25,6 +25,8 @@
     <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+    <Property Name="LayersWrapped" Type="int" Nullable="false" />
     <Property Name="ItemStatusId" Type="int" Nullable="false" />
     <Property Name="ItemTypeId" Type="int" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -77,6 +79,8 @@
     <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+    <Property Name="LayersWrapped" Type="int" Nullable="false" />
     <Property Name="ItemStatusId" Type="int" Nullable="false" />
     <Property Name="ItemTypeId" Type="int" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -128,6 +132,8 @@
     <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+    <Property Name="LayersWrapped" Type="int" Nullable="false" />
     <Property Name="ItemStatusId" Type="int" Nullable="false" />
     <Property Name="ItemTypeId" Type="int" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -1549,14 +1555,14 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
   <Function Name="prc_ExcelUpload_Bottle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="excel">
     <Parameter Name="ModifiedById" Type="int" Mode="In" />
   </Function>
-  <Function Name="BrandAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="AddBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="BrandCode" Type="nvarchar" Mode="In" />
     <Parameter Name="Brand" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="QuarantineAddType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="AddQuarantineType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="QuarantineType" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="StorageConditionAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+  <Function Name="AddStorageCondition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
     <Parameter Name="StorageCondition" Type="nvarchar" Mode="In" />
     <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
   </Function>
@@ -1590,7 +1596,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
     <Parameter Name="UserID" Type="int" Mode="In" />
     <Parameter Name="UserRoleID" Type="int" Mode="In" />
   </Function>
-  <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
+  <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person" />
@@ -1621,7 +1627,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
     <Parameter Name="UserName" Type="nvarchar" Mode="In" />
     <Parameter Name="UserRoleID" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="PipingRockModel1StoreContainer">
+  <EntityContainer Name="PipingRockModelStoreContainer">
     <EntitySet Name="Screen" EntityType="Self.Screen" Schema="Application" store:Type="Tables" />
     <EntitySet Name="Bottle" EntityType="Self.Bottle" Schema="backup" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />

@@ -2,7 +2,7 @@
 tr,
 p {
     font-size:16px;
-    z-index:99999;
+    /*z-index:999;*/
 }
 
 @media only screen and (max-width: 920px) {
@@ -21,7 +21,6 @@ p {
     }
 }
 
-@media {
     body {
         padding-top: 50px;
         padding-bottom: 20px;
@@ -93,7 +92,7 @@ p {
         display: none;
         position: absolute;
         background-color: #f9f9f9;
-        /*min-width: 140px;*/
+        min-width: 140px;
         max-width: 140px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 9999;
@@ -176,7 +175,6 @@ p {
         margin-left: 20px; 
         margin-bottom:20px;
     }
-}
 
  /* iPhone 6 Portrait */   
 @media only screen and (min-device-width: 320px) and (max-device-width: 667px) and (orientation : portrait) {

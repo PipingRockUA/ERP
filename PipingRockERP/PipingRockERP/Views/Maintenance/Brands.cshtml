@@ -1,4 +1,4 @@
-﻿@model List<Brand> AddBrand
+﻿@model List<Brand> 
 @{
     ViewBag.Title = "Brands";
 }
@@ -14,23 +14,28 @@
                 <h4>Maintenance > Brand Code Chart</h4>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "BrandAdd" })'">Add</button>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportBrand", "Maintenance")'">Export</button>
+                <p style="text-align:right; font-size:16px">Page:1 Records:@Model.Count</p>
             </div>
             <table class="table">
-                <tr style="font-size:16px">
-                    <th>ID</th>
-                    <th>Brand Name</th>
-                    <th>Brand Code</th>
-                    <th>Action</th>
-                </tr>
-                @foreach (var item in Model)
-                {
+                <thead>
                     <tr style="font-size:16px">
-                        <td width="10%">@item.BrandID</td>
-                        <td width="25%">@item.Brand1</td>
-                        <td width="25%">@item.BrandCode</td>
-                        <td width="20%">@Html.ActionLink("Edit", "BrandEdit", "Maintenance", new { brandId = item.BrandID.ToString() }, null)</td>
+                        <th>ID</th>
+                        <th>Brand Name</th>
+                        <th>Brand Code</th>
+                        <th>Action</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                {
+                        <tr style="font-size:16px">
+                            <td width="10%">@item.BrandID</td>
+                            <td width="25%">@item.Brand1</td>
+                            <td width="25%">@item.BrandCode</td>
+                            <td width="20%">@Html.ActionLink("Edit", "BrandEdit", "Maintenance", new { brandId = item.BrandID.ToString() }, null)</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </aside>

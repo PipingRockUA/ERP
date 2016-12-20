@@ -15,7 +15,7 @@
             <button style="margin-left:18px; max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Brands", "Maintenance")'">To the List</button>
             @using (Html.BeginForm("SubmitBrandUpdate", "Maintenance", new { brandId = @ViewBag.Brand[0].BrandID }, FormMethod.Post, null))
             {
-                <input style="margin-left:18px; margin-top:2px; width:90px" class="btn btn-success" type="submit" id="SubmitBrandUpdate" value="Update" />
+                <input style="margin-left:18px; margin-top:2px; width:90px" class="btn btn-success" type="submit" id="SubmitBrandUpdate" value="Save" />
                 <table>
                     <tr>
                         <td>Brand ID</td>

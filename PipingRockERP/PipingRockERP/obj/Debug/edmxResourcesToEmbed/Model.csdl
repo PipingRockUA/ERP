@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PipingRockModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="PipingRockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Screen">
     <Key>
       <PropertyRef Name="ScreenId" />
@@ -26,6 +26,8 @@
     <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+    <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
     <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
     <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -78,6 +80,8 @@
     <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+    <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
     <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
     <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -130,6 +134,8 @@
     <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
     <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+    <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+    <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
     <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
     <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
     <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -1577,7 +1583,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PipingRockEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="PipingRockEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Screens" EntityType="Self.Screen" />
     <EntitySet Name="Bottles" EntityType="Self.Bottle" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -1797,27 +1803,27 @@
     <FunctionImport Name="prc_ExcelUpload_Bottle">
       <Parameter Name="ModifiedById" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="BrandAdd">
+    <FunctionImport Name="AddBrand">
       <Parameter Name="BrandCode" Mode="In" Type="String" />
       <Parameter Name="Brand" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="QuarantineAddType">
+    <FunctionImport Name="AddQuarantineType">
       <Parameter Name="QuarantineType" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="StorageConditionAdd">
+    <FunctionImport Name="AddStorageCondition">
       <Parameter Name="StorageCondition" Mode="In" Type="String" />
       <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel1.GetAllBrands_Result)" />
+    <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel.GetAllBrands_Result)" />
     <FunctionImport Name="GetAllQuarantineTypes" />
-    <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel1.GetAllStorageConditions_Result)" />
-    <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel1.GetBrandByID_Result)">
+    <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel.GetAllStorageConditions_Result)" />
+    <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel.GetBrandByID_Result)">
       <Parameter Name="BrandID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetQuarantineTypeByID">
       <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel1.GetStorageConditionByID_Result)">
+    <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel.GetStorageConditionByID_Result)">
       <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UpdateBrandByID">
@@ -1838,26 +1844,26 @@
       <Parameter Name="UserID" Mode="In" Type="Int32" />
       <Parameter Name="UserRoleID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UserAdd">
+    <FunctionImport Name="AddUser">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockModel1.GetAllRoles_Result)" />
-    <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockModel1.GetAllUsers_Result)">
+    <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockModel.GetAllRoles_Result)" />
+    <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockModel.GetAllUsers_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockModel1.GetNonActiveRoles_Result)">
+    <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockModel.GetNonActiveRoles_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockModel1.GetUser_Result)">
+    <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockModel.GetUser_Result)">
       <Parameter Name="UserName" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockModel1.GetUserByID_Result)">
+    <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockModel.GetUserByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockModel1.GetUserDisabledRolesByID_Result)">
+    <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockModel.GetUserDisabledRolesByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockModel1.GetUserRolesByID_Result)">
+    <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockModel.GetUserRolesByID_Result)">
       <Parameter Name="UserID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="RemoveRoleUserID">

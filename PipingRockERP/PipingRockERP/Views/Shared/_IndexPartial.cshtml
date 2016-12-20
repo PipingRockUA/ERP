@@ -1,11 +1,16 @@
-﻿@{ 
+﻿@{
     if ((Request.IsAuthenticated))
     {
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
     <div class="menu">
         <div id="nav" class="nav group page__nav">
             <div class="group">
                 <div class="dropdown">
                     <button class="dropbtn">Packaging</button>
+                    <div class="dropdown-content" style="z-index:999">
+                        <a href="#">Maintenance</a>
+                        <a href="#">Packaging</a>
+                    </div>
                 </div>
 
                 <div class="dropdown">
@@ -14,10 +19,18 @@
 
                 <div class="dropdown">
                     <button class="dropbtn">Purchasing</button>
+                    <div class="dropdown-content" style="z-index:999">
+                        <a href="#">Maintenance</a>
+                        <a href="#">Purchasing</a>
+                    </div>
                 </div>
 
                 <div class="dropdown">
                     <button class="dropbtn">Receiving</button>
+                    <div class="dropdown-content" style="z-index:999">
+                        <a href="#">Maintenance</a>
+                        <a href="#">Receiving</a>
+                    </div>
                 </div>
 
                 <div class="dropdown">

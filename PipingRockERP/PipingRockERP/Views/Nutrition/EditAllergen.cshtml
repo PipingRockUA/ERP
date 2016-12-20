@@ -15,7 +15,7 @@
             @using (Html.BeginForm("SubmitAllergenUpdate", "Nutrition", new { allergenId = @ViewBag.Allergen[0].AllergenId }, FormMethod.Post, null))
             {
                 <button style="margin-left:18px; max-width:90px" class="btn btn-success" onclick="javascript:history.go(-1)">To the List</button>
-                <input style="max-width:90px" class="btn btn-success" type="submit" id="SubmitAllergenUpdate" value="Update" />
+                <input style="max-width:90px" class="btn btn-success" type="submit" id="SubmitAllergenUpdate" value="Save" />
                 <table>
                     <tr>
                         <td>Allergen ID</td>

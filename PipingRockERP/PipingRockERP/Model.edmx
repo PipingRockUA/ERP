@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PipingRockModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PipingRockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Screen">
           <Key>
             <PropertyRef Name="ScreenId" />
@@ -30,6 +30,8 @@
           <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+          <Property Name="LayersWrapped" Type="int" Nullable="false" />
           <Property Name="ItemStatusId" Type="int" Nullable="false" />
           <Property Name="ItemTypeId" Type="int" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -82,6 +84,8 @@
           <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+          <Property Name="LayersWrapped" Type="int" Nullable="false" />
           <Property Name="ItemStatusId" Type="int" Nullable="false" />
           <Property Name="ItemTypeId" Type="int" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -133,6 +137,8 @@
           <Property Name="BottlesLargeTray" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="int" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="int" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="int" Nullable="false" />
+          <Property Name="LayersWrapped" Type="int" Nullable="false" />
           <Property Name="ItemStatusId" Type="int" Nullable="false" />
           <Property Name="ItemTypeId" Type="int" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="int" Nullable="false" />
@@ -1554,14 +1560,14 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
         <Function Name="prc_ExcelUpload_Bottle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="excel">
           <Parameter Name="ModifiedById" Type="int" Mode="In" />
         </Function>
-        <Function Name="BrandAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+        <Function Name="AddBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="BrandCode" Type="nvarchar" Mode="In" />
           <Parameter Name="Brand" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="QuarantineAddType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+        <Function Name="AddQuarantineType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="QuarantineType" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="StorageConditionAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
+        <Function Name="AddStorageCondition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="md">
           <Parameter Name="StorageCondition" Type="nvarchar" Mode="In" />
           <Parameter Name="StorageConditionDescription" Type="nvarchar" Mode="In" />
         </Function>
@@ -1595,7 +1601,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="UserRoleID" Type="int" Mode="In" />
         </Function>
-        <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
+        <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Person" />
@@ -1626,7 +1632,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserRoleID" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="PipingRockModel1StoreContainer">
+        <EntityContainer Name="PipingRockModelStoreContainer">
           <EntitySet Name="Screen" EntityType="Self.Screen" Schema="Application" store:Type="Tables" />
           <EntitySet Name="Bottle" EntityType="Self.Bottle" Schema="backup" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -2167,7 +2173,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PipingRockModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PipingRockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Screen">
           <Key>
             <PropertyRef Name="ScreenId" />
@@ -2194,6 +2200,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+          <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
           <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
           <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -2246,6 +2254,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+          <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
           <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
           <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -2298,6 +2308,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <Property Name="BottlesLargeTray" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTrayLarge" Type="Int32" Nullable="false" />
           <Property Name="WrappedBottlesTraySmall" Type="Int32" Nullable="false" />
+          <Property Name="LayersUnWrapped" Type="Int32" Nullable="false" />
+          <Property Name="LayersWrapped" Type="Int32" Nullable="false" />
           <Property Name="ItemStatusId" Type="Int32" Nullable="false" />
           <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
           <Property Name="ItemSubTypeId" Type="Int32" Nullable="false" />
@@ -3745,7 +3757,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PipingRockEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PipingRockEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Screens" EntityType="Self.Screen" />
           <EntitySet Name="Bottles" EntityType="Self.Bottle" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -3965,27 +3977,27 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
           <FunctionImport Name="prc_ExcelUpload_Bottle">
             <Parameter Name="ModifiedById" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="BrandAdd">
+          <FunctionImport Name="AddBrand">
             <Parameter Name="BrandCode" Mode="In" Type="String" />
             <Parameter Name="Brand" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="QuarantineAddType">
+          <FunctionImport Name="AddQuarantineType">
             <Parameter Name="QuarantineType" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="StorageConditionAdd">
+          <FunctionImport Name="AddStorageCondition">
             <Parameter Name="StorageCondition" Mode="In" Type="String" />
             <Parameter Name="StorageConditionDescription" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel1.GetAllBrands_Result)" />
+          <FunctionImport Name="GetAllBrands" ReturnType="Collection(PipingRockModel.GetAllBrands_Result)" />
           <FunctionImport Name="GetAllQuarantineTypes" />
-          <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel1.GetAllStorageConditions_Result)" />
-          <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel1.GetBrandByID_Result)">
+          <FunctionImport Name="GetAllStorageConditions" ReturnType="Collection(PipingRockModel.GetAllStorageConditions_Result)" />
+          <FunctionImport Name="GetBrandByID" ReturnType="Collection(PipingRockModel.GetBrandByID_Result)">
             <Parameter Name="BrandID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetQuarantineTypeByID">
             <Parameter Name="QuarantineTypeID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel1.GetStorageConditionByID_Result)">
+          <FunctionImport Name="GetStorageConditionByID" ReturnType="Collection(PipingRockModel.GetStorageConditionByID_Result)">
             <Parameter Name="StorageConditionID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UpdateBrandByID">
@@ -4006,26 +4018,26 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="UserRoleID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UserAdd">
+          <FunctionImport Name="AddUser">
             <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockModel1.GetAllRoles_Result)" />
-          <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockModel1.GetAllUsers_Result)">
+          <FunctionImport Name="GetAllRoles" ReturnType="Collection(PipingRockModel.GetAllRoles_Result)" />
+          <FunctionImport Name="GetAllUsers" ReturnType="Collection(PipingRockModel.GetAllUsers_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockModel1.GetNonActiveRoles_Result)">
+          <FunctionImport Name="GetNonActiveRoles" ReturnType="Collection(PipingRockModel.GetNonActiveRoles_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockModel1.GetUser_Result)">
+          <FunctionImport Name="GetUser" ReturnType="Collection(PipingRockModel.GetUser_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockModel1.GetUserByID_Result)">
+          <FunctionImport Name="GetUserByID" ReturnType="Collection(PipingRockModel.GetUserByID_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockModel1.GetUserDisabledRolesByID_Result)">
+          <FunctionImport Name="GetUserDisabledRolesByID" ReturnType="Collection(PipingRockModel.GetUserDisabledRolesByID_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockModel1.GetUserRolesByID_Result)">
+          <FunctionImport Name="GetUserRolesByID" ReturnType="Collection(PipingRockModel.GetUserRolesByID_Result)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RemoveRoleUserID">
@@ -4144,9 +4156,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PipingRockModel1StoreContainer" CdmEntityContainer="PipingRockEntities1">
+        <EntityContainerMapping StorageEntityContainer="PipingRockModelStoreContainer" CdmEntityContainer="PipingRockEntities">
           <EntitySetMapping Name="Screens">
-            <EntityTypeMapping TypeName="PipingRockModel1.Screen">
+            <EntityTypeMapping TypeName="PipingRockModel.Screen">
               <MappingFragment StoreEntitySet="Screen">
                 <ScalarProperty Name="ScreenId" ColumnName="ScreenId" />
                 <ScalarProperty Name="ScreenName" ColumnName="ScreenName" />
@@ -4159,7 +4171,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bottles">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bottle">
+            <EntityTypeMapping TypeName="PipingRockModel.Bottle">
               <MappingFragment StoreEntitySet="Bottle">
                 <ScalarProperty Name="BackupNumber" ColumnName="BackupNumber" />
                 <ScalarProperty Name="BackupDate" ColumnName="BackupDate" />
@@ -4170,6 +4182,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="BottlesLargeTray" ColumnName="BottlesLargeTray" />
                 <ScalarProperty Name="WrappedBottlesTrayLarge" ColumnName="WrappedBottlesTrayLarge" />
                 <ScalarProperty Name="WrappedBottlesTraySmall" ColumnName="WrappedBottlesTraySmall" />
+                <ScalarProperty Name="LayersUnWrapped" ColumnName="LayersUnWrapped" />
+                <ScalarProperty Name="LayersWrapped" ColumnName="LayersWrapped" />
                 <ScalarProperty Name="ItemStatusId" ColumnName="ItemStatusId" />
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
                 <ScalarProperty Name="ItemSubTypeId" ColumnName="ItemSubTypeId" />
@@ -4204,7 +4218,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PipingRockModel1.sysdiagram">
+            <EntityTypeMapping TypeName="PipingRockModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -4215,7 +4229,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bottle1">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bottle1">
+            <EntityTypeMapping TypeName="PipingRockModel.Bottle1">
               <MappingFragment StoreEntitySet="Bottle1">
                 <ScalarProperty Name="BottleId" ColumnName="BottleId" />
                 <ScalarProperty Name="BottleItemKey" ColumnName="BottleItemKey" />
@@ -4224,6 +4238,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="BottlesLargeTray" ColumnName="BottlesLargeTray" />
                 <ScalarProperty Name="WrappedBottlesTrayLarge" ColumnName="WrappedBottlesTrayLarge" />
                 <ScalarProperty Name="WrappedBottlesTraySmall" ColumnName="WrappedBottlesTraySmall" />
+                <ScalarProperty Name="LayersUnWrapped" ColumnName="LayersUnWrapped" />
+                <ScalarProperty Name="LayersWrapped" ColumnName="LayersWrapped" />
                 <ScalarProperty Name="ItemStatusId" ColumnName="ItemStatusId" />
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
                 <ScalarProperty Name="ItemSubTypeId" ColumnName="ItemSubTypeId" />
@@ -4255,7 +4271,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Allergens">
-            <EntityTypeMapping TypeName="PipingRockModel1.Allergen">
+            <EntityTypeMapping TypeName="PipingRockModel.Allergen">
               <MappingFragment StoreEntitySet="Allergen">
                 <ScalarProperty Name="AllergenId" ColumnName="AllergenId" />
                 <ScalarProperty Name="Allergen1" ColumnName="Allergen" />
@@ -4268,7 +4284,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bottle2">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bottle2">
+            <EntityTypeMapping TypeName="PipingRockModel.Bottle2">
               <MappingFragment StoreEntitySet="Bottle2">
                 <ScalarProperty Name="BottleId" ColumnName="BottleId" />
                 <ScalarProperty Name="BottleItemKey" ColumnName="BottleItemKey" />
@@ -4277,6 +4293,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
                 <ScalarProperty Name="BottlesLargeTray" ColumnName="BottlesLargeTray" />
                 <ScalarProperty Name="WrappedBottlesTrayLarge" ColumnName="WrappedBottlesTrayLarge" />
                 <ScalarProperty Name="WrappedBottlesTraySmall" ColumnName="WrappedBottlesTraySmall" />
+                <ScalarProperty Name="LayersUnWrapped" ColumnName="LayersUnWrapped" />
+                <ScalarProperty Name="LayersWrapped" ColumnName="LayersWrapped" />
                 <ScalarProperty Name="ItemStatusId" ColumnName="ItemStatusId" />
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
                 <ScalarProperty Name="ItemSubTypeId" ColumnName="ItemSubTypeId" />
@@ -4311,7 +4329,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BottlesPerCases">
-            <EntityTypeMapping TypeName="PipingRockModel1.BottlesPerCase">
+            <EntityTypeMapping TypeName="PipingRockModel.BottlesPerCase">
               <MappingFragment StoreEntitySet="BottlesPerCase">
                 <ScalarProperty Name="BottlesPerCaseId" ColumnName="BottlesPerCaseId" />
                 <ScalarProperty Name="BottleId" ColumnName="BottleId" />
@@ -4327,7 +4345,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="PipingRockModel1.Brand">
+            <EntityTypeMapping TypeName="PipingRockModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />
                 <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
@@ -4341,7 +4359,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bulks">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bulk">
+            <EntityTypeMapping TypeName="PipingRockModel.Bulk">
               <MappingFragment StoreEntitySet="Bulk">
                 <ScalarProperty Name="BulkId" ColumnName="BulkId" />
                 <ScalarProperty Name="BulkItemKey" ColumnName="BulkItemKey" />
@@ -4370,7 +4388,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bulk_QcTest">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bulk_QcTest">
+            <EntityTypeMapping TypeName="PipingRockModel.Bulk_QcTest">
               <MappingFragment StoreEntitySet="Bulk_QcTest">
                 <ScalarProperty Name="Bulk_QcTestId" ColumnName="Bulk_QcTestId" />
                 <ScalarProperty Name="BulkId" ColumnName="BulkId" />
@@ -4384,7 +4402,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bulk_Quarantine">
-            <EntityTypeMapping TypeName="PipingRockModel1.Bulk_Quarantine">
+            <EntityTypeMapping TypeName="PipingRockModel.Bulk_Quarantine">
               <MappingFragment StoreEntitySet="Bulk_Quarantine">
                 <ScalarProperty Name="Bulk_QuarantineId" ColumnName="Bulk_QuarantineId" />
                 <ScalarProperty Name="BulkId" ColumnName="BulkId" />
@@ -4398,7 +4416,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FinishedGoods">
-            <EntityTypeMapping TypeName="PipingRockModel1.FinishedGood">
+            <EntityTypeMapping TypeName="PipingRockModel.FinishedGood">
               <MappingFragment StoreEntitySet="FinishedGood">
                 <ScalarProperty Name="FinishedGoodId" ColumnName="FinishedGoodId" />
                 <ScalarProperty Name="FinishedGoodItemKey" ColumnName="FinishedGoodItemKey" />
@@ -4460,7 +4478,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FinishedGood_QcTest">
-            <EntityTypeMapping TypeName="PipingRockModel1.FinishedGood_QcTest">
+            <EntityTypeMapping TypeName="PipingRockModel.FinishedGood_QcTest">
               <MappingFragment StoreEntitySet="FinishedGood_QcTest">
                 <ScalarProperty Name="FinishedGood_QcTestId" ColumnName="FinishedGood_QcTestId" />
                 <ScalarProperty Name="FinishedGoodId" ColumnName="FinishedGoodId" />
@@ -4474,7 +4492,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FinishedGood_Quarantine">
-            <EntityTypeMapping TypeName="PipingRockModel1.FinishedGood_Quarantine">
+            <EntityTypeMapping TypeName="PipingRockModel.FinishedGood_Quarantine">
               <MappingFragment StoreEntitySet="FinishedGood_Quarantine">
                 <ScalarProperty Name="FinishedGood_QuarantineId" ColumnName="FinishedGood_QuarantineId" />
                 <ScalarProperty Name="FinishedGoodId" ColumnName="FinishedGoodId" />
@@ -4488,7 +4506,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FinishedGoodLocations">
-            <EntityTypeMapping TypeName="PipingRockModel1.FinishedGoodLocation">
+            <EntityTypeMapping TypeName="PipingRockModel.FinishedGoodLocation">
               <MappingFragment StoreEntitySet="FinishedGoodLocation">
                 <ScalarProperty Name="FinishedGoodLocationId" ColumnName="FinishedGoodLocationId" />
                 <ScalarProperty Name="FinishedGoodId" ColumnName="FinishedGoodId" />
@@ -4506,7 +4524,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemForms">
-            <EntityTypeMapping TypeName="PipingRockModel1.ItemForm">
+            <EntityTypeMapping TypeName="PipingRockModel.ItemForm">
               <MappingFragment StoreEntitySet="ItemForm">
                 <ScalarProperty Name="ItemFormId" ColumnName="ItemFormId" />
                 <ScalarProperty Name="ItemFormExternal" ColumnName="ItemFormExternal" />
@@ -4520,7 +4538,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemStatus">
-            <EntityTypeMapping TypeName="PipingRockModel1.ItemStatu">
+            <EntityTypeMapping TypeName="PipingRockModel.ItemStatu">
               <MappingFragment StoreEntitySet="ItemStatus">
                 <ScalarProperty Name="ItemStatusId" ColumnName="ItemStatusId" />
                 <ScalarProperty Name="ItemStatus" ColumnName="ItemStatus" />
@@ -4534,7 +4552,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemSubTypes">
-            <EntityTypeMapping TypeName="PipingRockModel1.ItemSubType">
+            <EntityTypeMapping TypeName="PipingRockModel.ItemSubType">
               <MappingFragment StoreEntitySet="ItemSubType">
                 <ScalarProperty Name="ItemSubTypeId" ColumnName="ItemSubTypeId" />
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
@@ -4552,7 +4570,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemTypes">
-            <EntityTypeMapping TypeName="PipingRockModel1.ItemType">
+            <EntityTypeMapping TypeName="PipingRockModel.ItemType">
               <MappingFragment StoreEntitySet="ItemType">
                 <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
                 <ScalarProperty Name="ItemType1" ColumnName="ItemType" />
@@ -4569,7 +4587,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="PipingRockModel1.Location">
+            <EntityTypeMapping TypeName="PipingRockModel.Location">
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
@@ -4590,7 +4608,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PackagingUnits">
-            <EntityTypeMapping TypeName="PipingRockModel1.PackagingUnit">
+            <EntityTypeMapping TypeName="PipingRockModel.PackagingUnit">
               <MappingFragment StoreEntitySet="PackagingUnit">
                 <ScalarProperty Name="PackagingUnitId" ColumnName="PackagingUnitId" />
                 <ScalarProperty Name="PackagingUnitItemKey" ColumnName="PackagingUnitItemKey" />
@@ -4614,7 +4632,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PackagingUOMs">
-            <EntityTypeMapping TypeName="PipingRockModel1.PackagingUOM">
+            <EntityTypeMapping TypeName="PipingRockModel.PackagingUOM">
               <MappingFragment StoreEntitySet="PackagingUOM">
                 <ScalarProperty Name="PackagingUOMId" ColumnName="PackagingUOMId" />
                 <ScalarProperty Name="PackagingUOM1" ColumnName="PackagingUOM" />
@@ -4629,7 +4647,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QcTests">
-            <EntityTypeMapping TypeName="PipingRockModel1.QcTest">
+            <EntityTypeMapping TypeName="PipingRockModel.QcTest">
               <MappingFragment StoreEntitySet="QcTest">
                 <ScalarProperty Name="QcTestId" ColumnName="QcTestId" />
                 <ScalarProperty Name="QcTest1" ColumnName="QcTest" />
@@ -4643,7 +4661,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quarantines">
-            <EntityTypeMapping TypeName="PipingRockModel1.Quarantine">
+            <EntityTypeMapping TypeName="PipingRockModel.Quarantine">
               <MappingFragment StoreEntitySet="Quarantine">
                 <ScalarProperty Name="QuarantineId" ColumnName="QuarantineId" />
                 <ScalarProperty Name="Quarantine1" ColumnName="Quarantine" />
@@ -4656,7 +4674,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RawMaterials">
-            <EntityTypeMapping TypeName="PipingRockModel1.RawMaterial">
+            <EntityTypeMapping TypeName="PipingRockModel.RawMaterial">
               <MappingFragment StoreEntitySet="RawMaterial">
                 <ScalarProperty Name="RawMaterialId" ColumnName="RawMaterialId" />
                 <ScalarProperty Name="RawMaterialItemKey" ColumnName="RawMaterialItemKey" />
@@ -4685,7 +4703,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ref_GDSN_UoM">
-            <EntityTypeMapping TypeName="PipingRockModel1.Ref_GDSN_UoM">
+            <EntityTypeMapping TypeName="PipingRockModel.Ref_GDSN_UoM">
               <MappingFragment StoreEntitySet="Ref_GDSN_UoM">
                 <ScalarProperty Name="Ref_GDSN_UoMId" ColumnName="Ref_GDSN_UoMId" />
                 <ScalarProperty Name="isUsedAtPipingRock" ColumnName="isUsedAtPipingRock" />
@@ -4698,7 +4716,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReportSorts">
-            <EntityTypeMapping TypeName="PipingRockModel1.ReportSort">
+            <EntityTypeMapping TypeName="PipingRockModel.ReportSort">
               <MappingFragment StoreEntitySet="ReportSort">
                 <ScalarProperty Name="ReportSortId" ColumnName="ReportSortId" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
@@ -4713,7 +4731,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StorageConditions">
-            <EntityTypeMapping TypeName="PipingRockModel1.StorageCondition">
+            <EntityTypeMapping TypeName="PipingRockModel.StorageCondition">
               <MappingFragment StoreEntitySet="StorageCondition">
                 <ScalarProperty Name="StorageConditionId" ColumnName="StorageConditionId" />
                 <ScalarProperty Name="StorageCondition1" ColumnName="StorageCondition" />
@@ -4727,7 +4745,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UnitOfMeasures">
-            <EntityTypeMapping TypeName="PipingRockModel1.UnitOfMeasure">
+            <EntityTypeMapping TypeName="PipingRockModel.UnitOfMeasure">
               <MappingFragment StoreEntitySet="UnitOfMeasure">
                 <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
                 <ScalarProperty Name="UnitOfMeasure1" ColumnName="UnitOfMeasure" />
@@ -4742,7 +4760,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vendors">
-            <EntityTypeMapping TypeName="PipingRockModel1.Vendor">
+            <EntityTypeMapping TypeName="PipingRockModel.Vendor">
               <MappingFragment StoreEntitySet="Vendor">
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="VendorKey" ColumnName="VendorKey" />
@@ -4763,7 +4781,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vendor_RawMaterial">
-            <EntityTypeMapping TypeName="PipingRockModel1.Vendor_RawMaterial">
+            <EntityTypeMapping TypeName="PipingRockModel.Vendor_RawMaterial">
               <MappingFragment StoreEntitySet="Vendor_RawMaterial">
                 <ScalarProperty Name="Vendor_RawMaterialId" ColumnName="Vendor_RawMaterialId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
@@ -4777,7 +4795,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vendor_RawMaterial_Allergen">
-            <EntityTypeMapping TypeName="PipingRockModel1.Vendor_RawMaterial_Allergen">
+            <EntityTypeMapping TypeName="PipingRockModel.Vendor_RawMaterial_Allergen">
               <MappingFragment StoreEntitySet="Vendor_RawMaterial_Allergen">
                 <ScalarProperty Name="Vendor_RawMaterial_AllergenId" ColumnName="Vendor_RawMaterial_AllergenId" />
                 <ScalarProperty Name="Vendor_RawMaterialId" ColumnName="Vendor_RawMaterialId" />
@@ -4791,7 +4809,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PipingRockModel1.User">
+            <EntityTypeMapping TypeName="PipingRockModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -4805,7 +4823,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_UserRole">
-            <EntityTypeMapping TypeName="PipingRockModel1.User_UserRole">
+            <EntityTypeMapping TypeName="PipingRockModel.User_UserRole">
               <MappingFragment StoreEntitySet="User_UserRole">
                 <ScalarProperty Name="User_UserRoleId" ColumnName="User_UserRoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -4819,7 +4837,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="PipingRockModel1.UserRole">
+            <EntityTypeMapping TypeName="PipingRockModel.UserRole">
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
@@ -4832,7 +4850,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRole_UserRoleAuthority">
-            <EntityTypeMapping TypeName="PipingRockModel1.UserRole_UserRoleAuthority">
+            <EntityTypeMapping TypeName="PipingRockModel.UserRole_UserRoleAuthority">
               <MappingFragment StoreEntitySet="UserRole_UserRoleAuthority">
                 <ScalarProperty Name="UserRole_UserRoleAuthorityId" ColumnName="UserRole_UserRoleAuthorityId" />
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
@@ -4846,7 +4864,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRoleAuthorities">
-            <EntityTypeMapping TypeName="PipingRockModel1.UserRoleAuthority">
+            <EntityTypeMapping TypeName="PipingRockModel.UserRoleAuthority">
               <MappingFragment StoreEntitySet="UserRoleAuthority">
                 <ScalarProperty Name="UserRoleAuthorityId" ColumnName="UserRoleAuthorityId" />
                 <ScalarProperty Name="ScreenId" ColumnName="ScreenId" />
@@ -4866,7 +4884,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vBatchMaster_BOM">
-            <EntityTypeMapping TypeName="PipingRockModel1.vBatchMaster_BOM">
+            <EntityTypeMapping TypeName="PipingRockModel.vBatchMaster_BOM">
               <MappingFragment StoreEntitySet="vBatchMaster_BOM">
                 <ScalarProperty Name="ParentItemKey" ColumnName="ParentItemKey" />
                 <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
@@ -4896,7 +4914,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vBatchMaster_Item">
-            <EntityTypeMapping TypeName="PipingRockModel1.vBatchMaster_Item">
+            <EntityTypeMapping TypeName="PipingRockModel.vBatchMaster_Item">
               <MappingFragment StoreEntitySet="vBatchMaster_Item">
                 <ScalarProperty Name="Itemkey" ColumnName="Itemkey" />
                 <ScalarProperty Name="Desc1" ColumnName="Desc1" />
@@ -5071,7 +5089,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vBatchMaster_Location">
-            <EntityTypeMapping TypeName="PipingRockModel1.vBatchMaster_Location">
+            <EntityTypeMapping TypeName="PipingRockModel.vBatchMaster_Location">
               <MappingFragment StoreEntitySet="vBatchMaster_Location">
                 <ScalarProperty Name="Itemkey" ColumnName="Itemkey" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
@@ -5191,7 +5209,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemViews">
-            <EntityTypeMapping TypeName="PipingRockModel1.ItemView">
+            <EntityTypeMapping TypeName="PipingRockModel.ItemView">
               <MappingFragment StoreEntitySet="ItemView">
                 <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
                 <ScalarProperty Name="ItemType" ColumnName="ItemType" />
@@ -5221,7 +5239,7 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QcTestViews">
-            <EntityTypeMapping TypeName="PipingRockModel1.QcTestView">
+            <EntityTypeMapping TypeName="PipingRockModel.QcTestView">
               <MappingFragment StoreEntitySet="QcTestView">
                 <ScalarProperty Name="QcTestId" ColumnName="QcTestId" />
                 <ScalarProperty Name="QcTestType" ColumnName="QcTestType" />
@@ -5229,20 +5247,20 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PipingRockModel1.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PipingRockModel1.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PipingRockModel1.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PipingRockModel1.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PipingRockModel1.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PipingRockModel1.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PipingRockModel1.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="prc_ExcelUpload_Bottle" FunctionName="PipingRockModel1.Store.prc_ExcelUpload_Bottle" />
-          <FunctionImportMapping FunctionImportName="BrandAdd" FunctionName="PipingRockModel1.Store.BrandAdd" />
-          <FunctionImportMapping FunctionImportName="QuarantineAddType" FunctionName="PipingRockModel1.Store.QuarantineAddType" />
-          <FunctionImportMapping FunctionImportName="StorageConditionAdd" FunctionName="PipingRockModel1.Store.StorageConditionAdd" />
-          <FunctionImportMapping FunctionImportName="GetAllBrands" FunctionName="PipingRockModel1.Store.GetAllBrands">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PipingRockModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PipingRockModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PipingRockModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PipingRockModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PipingRockModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PipingRockModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PipingRockModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="prc_ExcelUpload_Bottle" FunctionName="PipingRockModel.Store.prc_ExcelUpload_Bottle" />
+          <FunctionImportMapping FunctionImportName="AddBrand" FunctionName="PipingRockModel.Store.AddBrand" />
+          <FunctionImportMapping FunctionImportName="AddQuarantineType" FunctionName="PipingRockModel.Store.AddQuarantineType" />
+          <FunctionImportMapping FunctionImportName="AddStorageCondition" FunctionName="PipingRockModel.Store.AddStorageCondition" />
+          <FunctionImportMapping FunctionImportName="GetAllBrands" FunctionName="PipingRockModel.Store.GetAllBrands">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetAllBrands_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllBrands_Result">
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />
                 <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
                 <ScalarProperty Name="Brand" ColumnName="Brand" />
@@ -5254,10 +5272,10 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel1.Store.GetAllQuarantineTypes" />
-          <FunctionImportMapping FunctionImportName="GetAllStorageConditions" FunctionName="PipingRockModel1.Store.GetAllStorageConditions">
+          <FunctionImportMapping FunctionImportName="GetAllQuarantineTypes" FunctionName="PipingRockModel.Store.GetAllQuarantineTypes" />
+          <FunctionImportMapping FunctionImportName="GetAllStorageConditions" FunctionName="PipingRockModel.Store.GetAllStorageConditions">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetAllStorageConditions_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllStorageConditions_Result">
                 <ScalarProperty Name="StorageConditionId" ColumnName="StorageConditionId" />
                 <ScalarProperty Name="StorageCondition" ColumnName="StorageCondition" />
                 <ScalarProperty Name="StorageConditionDescription" ColumnName="StorageConditionDescription" />
@@ -5269,9 +5287,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetBrandByID" FunctionName="PipingRockModel1.Store.GetBrandByID">
+          <FunctionImportMapping FunctionImportName="GetBrandByID" FunctionName="PipingRockModel.Store.GetBrandByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetBrandByID_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetBrandByID_Result">
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />
                 <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
                 <ScalarProperty Name="Brand" ColumnName="Brand" />
@@ -5283,10 +5301,10 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetQuarantineTypeByID" FunctionName="PipingRockModel1.Store.GetQuarantineTypeByID" />
-          <FunctionImportMapping FunctionImportName="GetStorageConditionByID" FunctionName="PipingRockModel1.Store.GetStorageConditionByID">
+          <FunctionImportMapping FunctionImportName="GetQuarantineTypeByID" FunctionName="PipingRockModel.Store.GetQuarantineTypeByID" />
+          <FunctionImportMapping FunctionImportName="GetStorageConditionByID" FunctionName="PipingRockModel.Store.GetStorageConditionByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetStorageConditionByID_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetStorageConditionByID_Result">
                 <ScalarProperty Name="StorageConditionId" ColumnName="StorageConditionId" />
                 <ScalarProperty Name="StorageCondition" ColumnName="StorageCondition" />
                 <ScalarProperty Name="StorageConditionDescription" ColumnName="StorageConditionDescription" />
@@ -5298,14 +5316,14 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UpdateBrandByID" FunctionName="PipingRockModel1.Store.UpdateBrandByID" />
-          <FunctionImportMapping FunctionImportName="UpdateQuarantineTypeByID" FunctionName="PipingRockModel1.Store.UpdateQuarantineTypeByID" />
-          <FunctionImportMapping FunctionImportName="UpdateStorageConditionByID" FunctionName="PipingRockModel1.Store.UpdateStorageConditionByID" />
-          <FunctionImportMapping FunctionImportName="AddRoleUserID" FunctionName="PipingRockModel1.Store.AddRoleUserID" />
-          <FunctionImportMapping FunctionImportName="UserAdd" FunctionName="PipingRockModel1.Store.UserAdd" />
-          <FunctionImportMapping FunctionImportName="GetAllRoles" FunctionName="PipingRockModel1.Store.GetAllRoles">
+          <FunctionImportMapping FunctionImportName="UpdateBrandByID" FunctionName="PipingRockModel.Store.UpdateBrandByID" />
+          <FunctionImportMapping FunctionImportName="UpdateQuarantineTypeByID" FunctionName="PipingRockModel.Store.UpdateQuarantineTypeByID" />
+          <FunctionImportMapping FunctionImportName="UpdateStorageConditionByID" FunctionName="PipingRockModel.Store.UpdateStorageConditionByID" />
+          <FunctionImportMapping FunctionImportName="AddRoleUserID" FunctionName="PipingRockModel.Store.AddRoleUserID" />
+          <FunctionImportMapping FunctionImportName="AddUser" FunctionName="PipingRockModel.Store.AddUser" />
+          <FunctionImportMapping FunctionImportName="GetAllRoles" FunctionName="PipingRockModel.Store.GetAllRoles">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetAllRoles_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllRoles_Result">
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="UserRoleAddedDate" ColumnName="UserRoleAddedDate" />
@@ -5316,9 +5334,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllUsers" FunctionName="PipingRockModel1.Store.GetAllUsers">
+          <FunctionImportMapping FunctionImportName="GetAllUsers" FunctionName="PipingRockModel.Store.GetAllUsers">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetAllUsers_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetAllUsers_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserLastLoginDate" ColumnName="UserLastLoginDate" />
@@ -5330,17 +5348,17 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetNonActiveRoles" FunctionName="PipingRockModel1.Store.GetNonActiveRoles">
+          <FunctionImportMapping FunctionImportName="GetNonActiveRoles" FunctionName="PipingRockModel.Store.GetNonActiveRoles">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetNonActiveRoles_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetNonActiveRoles_Result">
                 <ScalarProperty Name="RID" ColumnName="RID" />
                 <ScalarProperty Name="RN" ColumnName="RN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUser" FunctionName="PipingRockModel1.Store.GetUser">
+          <FunctionImportMapping FunctionImportName="GetUser" FunctionName="PipingRockModel.Store.GetUser">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetUser_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetUser_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserLastLoginDate" ColumnName="UserLastLoginDate" />
@@ -5352,9 +5370,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserByID" FunctionName="PipingRockModel1.Store.GetUserByID">
+          <FunctionImportMapping FunctionImportName="GetUserByID" FunctionName="PipingRockModel.Store.GetUserByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetUserByID_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetUserByID_Result">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserLastLoginDate" ColumnName="UserLastLoginDate" />
@@ -5366,9 +5384,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserDisabledRolesByID" FunctionName="PipingRockModel1.Store.GetUserDisabledRolesByID">
+          <FunctionImportMapping FunctionImportName="GetUserDisabledRolesByID" FunctionName="PipingRockModel.Store.GetUserDisabledRolesByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetUserDisabledRolesByID_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetUserDisabledRolesByID_Result">
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="UserRoleAddedDate" ColumnName="UserRoleAddedDate" />
@@ -5379,9 +5397,9 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUserRolesByID" FunctionName="PipingRockModel1.Store.GetUserRolesByID">
+          <FunctionImportMapping FunctionImportName="GetUserRolesByID" FunctionName="PipingRockModel.Store.GetUserRolesByID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PipingRockModel1.GetUserRolesByID_Result">
+              <ComplexTypeMapping TypeName="PipingRockModel.GetUserRolesByID_Result">
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="UserRoleAddedDate" ColumnName="UserRoleAddedDate" />
@@ -5392,8 +5410,8 @@ warning 6002: The table/view 'PipingRock.md.QcTestView' does not have a primary 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RemoveRoleUserID" FunctionName="PipingRockModel1.Store.RemoveRoleUserID" />
-          <FunctionImportMapping FunctionImportName="UpdateUserByID" FunctionName="PipingRockModel1.Store.UpdateUserByID" />
+          <FunctionImportMapping FunctionImportName="RemoveRoleUserID" FunctionName="PipingRockModel.Store.RemoveRoleUserID" />
+          <FunctionImportMapping FunctionImportName="UpdateUserByID" FunctionName="PipingRockModel.Store.UpdateUserByID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

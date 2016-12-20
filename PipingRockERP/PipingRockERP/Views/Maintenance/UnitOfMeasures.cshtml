@@ -11,21 +11,26 @@
             <div style="margin-left: 20px">
                 <h4>Maintenance > Unit of Measure</h4>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportUnitOfMeasures", "Maintenance")'">Export</button>
+                <p style="text-align:right; font-size:16px">Page:1 Records:@Model.Count</p>
             </div>
             <table class="table">
-                <tr style="font-size:16px">
-                    <th>ID</th>
-                    <th>Unit of Measure</th>
-                    <th>Abreviation</th>
-                </tr>
-                @foreach (var item in Model)
-                {
+                <thead>
                     <tr style="font-size:16px">
-                        <td>@item.UnitOfMeasureId</td>
-                        <td>@item.UnitOfMeasure1</td>
-                        <td>@item.UnitOfMeasureAbbreviation</td>
+                        <th>ID</th>
+                        <th>Unit of Measure</th>
+                        <th>Abreviation</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                {
+                        <tr style="font-size:16px">
+                            <td>@item.UnitOfMeasureId</td>
+                            <td>@item.UnitOfMeasure1</td>
+                            <td>@item.UnitOfMeasureAbbreviation</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </aside>

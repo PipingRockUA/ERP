@@ -182,7 +182,7 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("prc_ExcelUpload_Bottle", modifiedByIdParameter);
         }
     
-        public virtual int BrandAdd(string brandCode, string brand)
+        public virtual int AddBrand(string brandCode, string brand)
         {
             var brandCodeParameter = brandCode != null ?
                 new ObjectParameter("BrandCode", brandCode) :
@@ -192,19 +192,19 @@ namespace PipingRockERP
                 new ObjectParameter("Brand", brand) :
                 new ObjectParameter("Brand", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BrandAdd", brandCodeParameter, brandParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddBrand", brandCodeParameter, brandParameter);
         }
     
-        public virtual int QuarantineAddType(string quarantineType)
+        public virtual int AddQuarantineType(string quarantineType)
         {
             var quarantineTypeParameter = quarantineType != null ?
                 new ObjectParameter("QuarantineType", quarantineType) :
                 new ObjectParameter("QuarantineType", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("QuarantineAddType", quarantineTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddQuarantineType", quarantineTypeParameter);
         }
     
-        public virtual int StorageConditionAdd(string storageCondition, string storageConditionDescription)
+        public virtual int AddStorageCondition(string storageCondition, string storageConditionDescription)
         {
             var storageConditionParameter = storageCondition != null ?
                 new ObjectParameter("StorageCondition", storageCondition) :
@@ -214,7 +214,7 @@ namespace PipingRockERP
                 new ObjectParameter("StorageConditionDescription", storageConditionDescription) :
                 new ObjectParameter("StorageConditionDescription", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("StorageConditionAdd", storageConditionParameter, storageConditionDescriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddStorageCondition", storageConditionParameter, storageConditionDescriptionParameter);
         }
     
         public virtual ObjectResult<GetAllBrands_Result> GetAllBrands()
@@ -319,13 +319,13 @@ namespace PipingRockERP
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRoleUserID", userIDParameter, userRoleIDParameter);
         }
     
-        public virtual int UserAdd(string userName)
+        public virtual int AddUser(string userName)
         {
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", userNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUser", userNameParameter);
         }
     
         public virtual ObjectResult<GetAllRoles_Result> GetAllRoles()

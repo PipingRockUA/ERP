@@ -22,6 +22,7 @@
                 <h4>Maintenance > Bottle Chart</h4>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "BottleAdd" })'">Add</button>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportBottle", "Maintenance")'">Export</button>
+                <p style="text-align:right; font-size:16px">Page:1 Records:@ViewBag.Bottles.Count</p>
             </div>
             <table class="table" id="table1">
                 <thead>
@@ -30,9 +31,9 @@
                         <th id="hiddingEls">Item Key</th>
                         <th id="hiddingElm">Description</th>
                         <th>Small Tray</th>
-                        <th>Large Tray</th>
                         <th id="hiddingEll">Changed Date</th>
                         <th id="hiddingEls">Bottle Cubic Inches</th>
+                        <th>Picture</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -44,9 +45,9 @@
                             <td id="hiddingEls">@item.BottleItemKey</td>
                             <td id="hiddingElm">@item.BottleDescription</td>
                             <td>@item.BottlesSmallTray</td>
-                            <td>@item.BottlesLargeTray</td>
                             <td id="hiddingEll">@item.BottleChangedDate.ToString("MM'/'dd'/'yyyy")</td>
                             <td id="hiddingEls" class="tt">@item.BottleCubicInches</td>
+                            <td><img src="~/src/img/bottle.png" height="40"/></td>
                             <td>@Html.ActionLink("Edit", "BottleEdit", "Maintenance", new { bottleId = item.BottleId.ToString() }, null)</td>
                         </tr>
                     }
