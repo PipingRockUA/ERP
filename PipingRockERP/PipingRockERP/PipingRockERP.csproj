@@ -235,6 +235,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\NutritionController.cs" />
+    <Compile Include="Controllers\PackagingController.cs" />
+    <Compile Include="Controllers\PurchasingController.cs" />
+    <Compile Include="Controllers\ReceivingController.cs" />
     <Compile Include="FinishedGood.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -460,8 +463,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_IndexPartial.cshtml" />
-    <Content Include="Views\Shared\_GridPager.cshtml" />
-    <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Maintenance\UnitOfMeasures.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Maintenance\Edit.cshtml" />
@@ -486,6 +487,12 @@
     <Content Include="Views\Nutrition\AllergenAdd.cshtml" />
     <Content Include="Views\Nutrition\EditAllergen.cshtml" />
     <Content Include="Views\Nutrition\RawMaterials.cshtml" />
+    <Content Include="Views\Shared\_PackagingPartial.cshtml" />
+    <Content Include="Views\Shared\_PurchasingPartial.cshtml" />
+    <Content Include="Views\Shared\_ReceivingPartial.cshtml" />
+    <Content Include="Views\Packaging\Index.cshtml" />
+    <Content Include="Views\Purchasing\Index.cshtml" />
+    <Content Include="Views\Receiving\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,11 +22,11 @@
                 <h4>Maintenance > Bottle Chart</h4>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("Add", "Maintenance", new { param = "BottleAdd" })'">Add</button>
                 <button style="max-width:90px" class="btn btn-success" onclick="location.href='@Url.Action("ExportBottle", "Maintenance")'">Export</button>
-                <p style="text-align:right; font-size:16px">Page:1 Records:@ViewBag.Bottles.Count</p>
+                <p style="text-align:right; font-size:14px">Page:1 Records:@ViewBag.Bottles.Count</p>
             </div>
             <table class="table" id="table1">
                 <thead>
-                    <tr style="font-size:16px">
+                    <tr style="font-size:14px">
                         <th>Id</th>
                         <th id="hiddingEls">Item Key</th>
                         <th id="hiddingElm">Description</th>
@@ -40,7 +40,7 @@
                 <tbody>
                     @foreach (var item in ViewBag.Bottles)
                 {
-                        <tr style="font-size:16px">
+                        <tr style="font-size:14px">
                             <td>@item.BottleId</td>
                             <td id="hiddingEls">@item.BottleItemKey</td>
                             <td id="hiddingElm">@item.BottleDescription</td>
@@ -56,6 +56,6 @@
         </div>
     </aside>
     <footer>
-        <p style="text-align:center; font-size:16px">Total Pages:1 Records:@ViewBag.Bottles.Count</p>
+        <p style="text-align:center; font-size:14px">Total Pages:1 Records:@ViewBag.Bottles.Count</p>
     </footer>
 }
