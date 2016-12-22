@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace PipingRockERP.Controllers
 {
@@ -84,30 +86,109 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from Allergen in db.Allergens
+            try
+            {
+                Excel.Application excelApplication = new Excel.Application();
+
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
+                var table = (from Allergen in db.Allergens
                              select new
                              {
                                  Id = Allergen.AllergenId,
-                                 Quarantine = Allergen.Allergen1,
+                                 Allergen = Allergen.Allergen1,
                                  AddedDate = Allergen.AllergenAddedDate,
                                  ChangedDate = Allergen.AllergenChangedDate,
                                  DeletedDate = Allergen.AllergenDeletedDate,
                                  ModifiedById = Allergen.AllergenModifiedById,
                                  isDeleted = (Allergen.isDeleted ? 1 : 0)
-
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=Allergens.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "Allergen";
+                excelApplication.Cells[1, 3] = "AddedDate";
+                excelApplication.Cells[1, 4] = "ChangedDate";
+                excelApplication.Cells[1, 5] = "DeletedDate";
+                excelApplication.Cells[1, 6] = "ModifiedById";
+                excelApplication.Cells[1, 7] = "isDeleted";
+
+                for (int j = 1; j < 9; j++)
+                {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
+                    switch (j)
+                    {
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Id;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Allergen;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+                                }
+                                break;
+                            }
+                    }
+                }
+                excelWorkBook.SaveAs("Allergens.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return RedirectToAction("Allergens");
         }
@@ -173,34 +254,106 @@ namespace PipingRockERP.Controllers
 
         public ActionResult ExportRawMaterial()
         {
-            PipingRockEntities db = new PipingRockEntities();
+            //    PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from Allergen in db.Allergens
-                             select new
-                             {
-                                 Id = Allergen.AllergenId,
-                                 Quarantine = Allergen.Allergen1,
-                                 AddedDate = Allergen.AllergenAddedDate,
-                                 ChangedDate = Allergen.AllergenChangedDate,
-                                 DeletedDate = Allergen.AllergenDeletedDate,
-                                 ModifiedById = Allergen.AllergenModifiedById,
-                                 isDeleted = (Allergen.isDeleted ? 1 : 0)
+            //    try
+            //    {
+            //        Excel.Application excelApplication = new Excel.Application();
 
-                             }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=Allergens.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+            //        Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
 
-            return RedirectToAction("Allergens");
+            //        Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+            //        Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+            //        Line.Insert();
+            //        var table = (from RawMaterial in db.RawMaterials
+            //                     select new
+            //                     {
+            //                     }).ToList();
+
+            //        excelApplication.Cells[1, 1] = "ID";
+            //        excelApplication.Cells[1, 2] = "Allergen";
+            //        excelApplication.Cells[1, 3] = "AddedDate";
+            //        excelApplication.Cells[1, 4] = "ChangedDate";
+            //        excelApplication.Cells[1, 5] = "DeletedDate";
+            //        excelApplication.Cells[1, 6] = "ModifiedById";
+            //        excelApplication.Cells[1, 7] = "isDeleted";
+
+            //        for (int j = 1; j < 9; j++)
+            //        {
+            //            excelWorkSheet.Columns[j].ColumnWidth = 18;
+            //            switch (j)
+            //            {
+            //                case 1:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].Id;
+            //                        }
+            //                        break;
+            //                    }
+            //                case 2:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].Allergen;
+            //                        }
+            //                        break;
+            //                    }
+            //                case 3:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+            //                        }
+            //                        break;
+            //                    }
+            //                case 4:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+            //                        }
+            //                        break;
+            //                    }
+            //                case 5:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+            //                        }
+            //                        break;
+            //                    }
+            //                case 6:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+            //                        }
+            //                        break;
+            //                    }
+            //                case 7:
+            //                    {
+            //                        for (int i = 2; i < table.Count + 1; i++)
+            //                        {
+            //                            excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+            //                        }
+            //                        break;
+            //                    }
+            //            }
+            //        }
+            //        excelWorkBook.SaveAs("RawMaterials.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+            //Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+            //Excel.XlSaveConflictResolution.xlUserResolution, true,
+            //Missing.Value, Missing.Value, Missing.Value);
+            //        excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.ToString());
+            //    }
+
+            return RedirectToAction("RawMaterials");
         }
         #endregion
     }

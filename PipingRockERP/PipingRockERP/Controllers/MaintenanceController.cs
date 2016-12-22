@@ -8,7 +8,8 @@ using System.Globalization;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.IO;
-using libxl;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace PipingRockERP.Controllers
 {
@@ -40,9 +41,14 @@ namespace PipingRockERP.Controllers
             PipingRockEntities db = new PipingRockEntities();
             try
             {
-                Book book = new XmlBook(); // use XmlBook() for xlsx
-                Sheet sheet = book.addSheet("Sheet1");
+                Excel.Application excelApplication = new Excel.Application();
 
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
                 var table = (from UnitOfMeasure in db.UnitOfMeasures
                              select new
                              {
@@ -55,23 +61,26 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
                                  isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
                              }).ToList();
-                for (int j = 0; j < 8; j++)
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "UnitOfMeasure";
+                excelApplication.Cells[1, 3] = "Abbreviation";
+                excelApplication.Cells[1, 4] = "AddedDate";
+                excelApplication.Cells[1, 5] = "ChangedDate";
+                excelApplication.Cells[1, 6] = "DeletedDate";
+                excelApplication.Cells[1, 7] = "ModifiedById";
+                excelApplication.Cells[1, 8] = "isDeleted";
+
+                for (int j = 1; j < 9; j++)
                 {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
                     switch (j)
                     {
-                        case 0:
-                            {
-                                for (int i = 2; i < table.Count + 1; i++)
-                                {
-                                    sheet.writeNum(i, j, table[i - 2].ID);
-                                }
-                                break;
-                            }
                         case 1:
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeStr(i, j, table[i - 2].UnitOfMeasure);
+                                    excelApplication.Cells[i, j] = table[i - 2].ID;
                                 }
                                 break;
                             }
@@ -79,7 +88,7 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeStr(i, j, table[i - 2].Abbreviation);
+                                    excelApplication.Cells[i, j] = table[i - 2].UnitOfMeasure;
                                 }
                                 break;
                             }
@@ -87,7 +96,7 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeStr(i, j, table[i - 2].AddedDate.ToString());
+                                    excelApplication.Cells[i, j] = table[i - 2].Abbreviation;
                                 }
                                 break;
                             }
@@ -95,7 +104,7 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeStr(i, j, table[i - 2].ChangedDate.ToString());
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
                                 }
                                 break;
                             }
@@ -103,7 +112,7 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeStr(i, j, table[i - 2].DeletedDate.ToString());
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
                                 }
                                 break;
                             }
@@ -111,7 +120,7 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeNum(i, j, table[i - 2].ModifiedById);
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
                                 }
                                 break;
                             }
@@ -119,45 +128,30 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                 {
-                                    sheet.writeNum(i, j, table[i - 2].isDeleted);
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                }
+                                break;
+                            }
+                        case 8:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
                                 }
                                 break;
                             }
                     }
                 }
-                book.save("example.xlsx");
-                System.Diagnostics.Process.Start("example.xlsx");
+                excelWorkBook.SaveAs("UnitOfMeasures.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
             }
-            catch (System.Exception e)
+            catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.ToString());
             }
-
-            //GridView gv = new GridView();
-            //gv.DataSource = (from UnitOfMeasure in db.UnitOfMeasures
-            //                 select new
-            //                 {
-            //                     ID = UnitOfMeasure.UnitOfMeasureId,
-            //                     UnitOfMeasure = UnitOfMeasure.UnitOfMeasure1,
-            //                     Abbreviation = UnitOfMeasure.UnitOfMeasureAbbreviation,
-            //                     AddedDate = UnitOfMeasure.UnitOfMeasureAddedDate,
-            //                     ChangedDate = UnitOfMeasure.UnitOfMeasureChangedDate,
-            //                     DeletedDate = UnitOfMeasure.UnitOfMeasureDeletedDate,
-            //                     ModifiedById = UnitOfMeasure.UnitOfMeasureModifiedById,
-            //                     isDeleted = (UnitOfMeasure.isDeleted ? 1 : 0)
-            //                 }).ToList();
-            //gv.GridLines = GridLines.Both;
-            //gv.DataBind();
-            //Response.ClearContent();
-            //Response.AddHeader("content-disposition", "attachment; filename=UnitOfMeasures.xls");
-            //Response.ContentType = "application/ms-excel";
-            //StringWriter sw = new StringWriter();
-            //HtmlTextWriter htw = new HtmlTextWriter(sw);
-            //gv.RenderControl(htw);
-            //Response.Output.Write(sw.ToString());
-            //Response.Flush();
-            //Response.End();
-
             return RedirectToAction("UnitOfMeasures");
         }
         #endregion
@@ -485,8 +479,17 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from Bottle in db.Bottle2
+            try
+            {
+                Excel.Application excelApplication = new Excel.Application();
+
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
+                var table = (from Bottle in db.Bottle2
                              select new
                              {
                                  ID = Bottle.BottleId,
@@ -527,17 +530,267 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = Bottle.BottleModifiedById,
                                  isDeleted = (Bottle.isDeleted ? 1 : 0)
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=Bottles.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "ItemKey";
+                excelApplication.Cells[1, 3] = "Description";
+                excelApplication.Cells[1, 4] = "BottlesSmallTray";
+                excelApplication.Cells[1, 5] = "BottlesLargeTray";
+                excelApplication.Cells[1, 6] = "WrappedBottlesTraySmall";
+                excelApplication.Cells[1, 7] = "WrappedBottlesTrayLarge";
+                excelApplication.Cells[1, 8] = "BottleLengthInches";
+                excelApplication.Cells[1, 9] = "BottleWidthInches";
+                excelApplication.Cells[1, 10] = "BottleHieghtInches";
+                excelApplication.Cells[1, 11] = "BottleCubicInches";
+                excelApplication.Cells[1, 12] = "BottleLengthCm";
+                excelApplication.Cells[1, 13] = "BottleWidthCm";
+                excelApplication.Cells[1, 14] = "BottleHieghtCm";
+                excelApplication.Cells[1, 15] = "BottleCubicCm";
+                excelApplication.Cells[1, 16] = "BottleLengthWrappedInches";
+                excelApplication.Cells[1, 17] = "BottleWidthWrappedInches";
+                excelApplication.Cells[1, 18] = "BottleDepthWrappedInches";
+                excelApplication.Cells[1, 19] = "BottleCubicInchWrappedInches";
+                excelApplication.Cells[1, 20] = "BottleLengthWrappedCm";
+                excelApplication.Cells[1, 21] = "BottleWidthWrappedCm";
+                excelApplication.Cells[1, 22] = "BottleDepthWrappedCm";
+                excelApplication.Cells[1, 23] = "BottleCubicInchWrappedCm";
+                excelApplication.Cells[1, 24] = "BottleLabelSquareInches";
+                excelApplication.Cells[1, 25] = "LabelSquareInches";
+                excelApplication.Cells[1, 26] = "LabelSquareCm";
+                excelApplication.Cells[1, 27] = "BottleSize";
+                excelApplication.Cells[1, 28] = "PrintFrames";
+                excelApplication.Cells[1, 29] = "NumberOfPrintingPositions";
+                excelApplication.Cells[1, 30] = "AddedDate";
+                excelApplication.Cells[1, 31] = "ChangedDate";
+                excelApplication.Cells[1, 32] = "DeletedDate";
+                excelApplication.Cells[1, 33] = "ModifiedById";
+                excelApplication.Cells[1, 34] = "isDeleted";
+
+                for (int j = 1; j < 35; j++)
+                {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
+                    switch (j)
+                    {
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].ID;
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].ItemKey;
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].Description;
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottlesSmallTray;
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottlesLargeTray;
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].WrappedBottlesTraySmall;
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].WrappedBottlesTrayLarge;
+                                break;
+                            }
+                        case 8:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleLengthInches;
+                                break;
+                            }
+                        case 9:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleWidthInches;
+                                break;
+                            }
+                        case 10:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleHieghtInches;
+                                break;
+                            }
+                        case 11:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleCubicInches;
+                                break;
+                            }
+                        case 12:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleLengthCm;
+                                break;
+                            }
+                        case 13:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleWidthCm;
+                                break;
+                            }
+                        case 14:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleHieghtCm;
+                                break;
+                            }
+                        case 15:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleCubicCm;
+                                break;
+                            }
+                        case 16:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleLengthWrappedInches;
+                                break;
+                            }
+                        case 17:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleWidthWrappedCm;
+                                break;
+                            }
+                        case 18:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleDepthWrappedInches;
+                                break;
+                            }
+                        case 19:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleCubicInchWrappedInches;
+                                break;
+                            }
+                        case 20:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleLengthWrappedCm;
+                                break;
+                            }
+                        case 21:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleWidthWrappedCm;
+                                break;
+                            }
+                        case 22:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleDepthWrappedCm;
+                                break;
+                            }
+                        case 23:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleCubicInchWrappedCm;
+                                break;
+                            }
+                        case 24:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleLabelSquareInches;
+                                break;
+                            }
+                        case 25:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].LabelSquareInches;
+                                break;
+                            }
+                        case 26:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].LabelSquareCm;
+                                break;
+                            }
+
+                        case 27:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].BottleSize;
+                                break;
+                            }
+                        case 28:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].PrintFrames;
+                                break;
+                            }
+                        case 29:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].NumberOfPrintingPositions;
+                                break;
+                            }
+                        case 30:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+                                break;
+                            }
+                        case 31:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+                                break;
+                            }
+                        case 32:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+                                break;
+                            }
+                        case 33:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                break;
+                            }
+                        case 34:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+                                break;
+                            }
+                    }
+                }
+                excelWorkSheet.Columns[1].ColumnWidth = 12;
+                excelWorkSheet.Columns[2].ColumnWidth = 25;
+                excelWorkSheet.Columns[3].ColumnWidth = 50;
+                excelWorkBook.SaveAs("Bottles.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return RedirectToAction("BottleChart");
         }
@@ -604,8 +857,17 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from Quarantine in db.Quarantines
+            try
+            {
+                Excel.Application excelApplication = new Excel.Application();
+
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
+                var table = (from Quarantine in db.Quarantines
                              select new
                              {
                                  Id = Quarantine.QuarantineId,
@@ -615,19 +877,89 @@ namespace PipingRockERP.Controllers
                                  DeletedDate = Quarantine.QuarantineDeletedDate,
                                  ModifiedById = Quarantine.QuarantineModifiedById,
                                  isDeleted = (Quarantine.isDeleted ? 1 : 0)
-
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=Quarantines.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "Quarantine";
+                excelApplication.Cells[1, 3] = "AddedDate";
+                excelApplication.Cells[1, 4] = "ChangedDate";
+                excelApplication.Cells[1, 5] = "DeletedDate";
+                excelApplication.Cells[1, 6] = "ModifiedById";
+                excelApplication.Cells[1, 7] = "isDeleted";
+
+                for (int j = 1; j < 9; j++)
+                {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
+                    switch (j)
+                    {
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Id;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Quarantine;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+                                }
+                                break;
+                            }
+                    }
+                }
+                excelWorkBook.SaveAs("Quarantines.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return RedirectToAction("Quarantines");
         }
@@ -697,8 +1029,17 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from StorageCondition in db.StorageConditions
+            try
+            {
+                Excel.Application excelApplication = new Excel.Application();
+
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
+                var table = (from StorageCondition in db.StorageConditions
                              select new
                              {
                                  ID = StorageCondition.StorageConditionId,
@@ -710,17 +1051,97 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = StorageCondition.StorageConditionModifiedById,
                                  isDeleted = (StorageCondition.isDeleted ? 1 : 0)
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=StorageConditions.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "StorageCondition";
+                excelApplication.Cells[1, 3] = "Description";
+                excelApplication.Cells[1, 4] = "AddedDate";
+                excelApplication.Cells[1, 5] = "ChangedDate";
+                excelApplication.Cells[1, 6] = "DeletedDate";
+                excelApplication.Cells[1, 7] = "ModifiedById";
+                excelApplication.Cells[1, 8] = "isDeleted";
+
+                for (int j = 1; j < 9; j++)
+                {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
+                    switch (j)
+                    {
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ID;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].StorageCondition;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Description;
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                }
+                                break;
+                            }
+                        case 8:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+                                }
+                                break;
+                            }
+                    }
+                }
+                excelWorkBook.SaveAs("StorageConditions.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return RedirectToAction("StorageConditions");
         }
@@ -790,8 +1211,17 @@ namespace PipingRockERP.Controllers
         {
             PipingRockEntities db = new PipingRockEntities();
 
-            GridView gv = new GridView();
-            gv.DataSource = (from Brand in db.Brands
+            try
+            {
+                Excel.Application excelApplication = new Excel.Application();
+
+                Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add();
+
+                Excel.Worksheet excelWorkSheet = (Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+                Excel.Range Line = (Excel.Range)excelWorkSheet.Rows[3];
+                Line.Insert();
+                var table = (from Brand in db.Brands
                              select new
                              {
                                  ID = Brand.BrandID,
@@ -803,17 +1233,97 @@ namespace PipingRockERP.Controllers
                                  ModifiedById = Brand.BrandModifiedById,
                                  isDeleted = (Brand.isDeleted ? 1 : 0)
                              }).ToList();
-            gv.GridLines = GridLines.Both;
-            gv.DataBind();
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=Brands.xls");
-            Response.ContentType = "application/ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            gv.RenderControl(htw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+
+                excelApplication.Cells[1, 1] = "ID";
+                excelApplication.Cells[1, 2] = "BrandCode";
+                excelApplication.Cells[1, 3] = "Brand";
+                excelApplication.Cells[1, 4] = "AddedDate";
+                excelApplication.Cells[1, 5] = "ChangedDate";
+                excelApplication.Cells[1, 6] = "DeletedDate";
+                excelApplication.Cells[1, 7] = "ModifiedById";
+                excelApplication.Cells[1, 8] = "isDeleted";
+
+                for (int j = 1; j < 9; j++)
+                {
+                    excelWorkSheet.Columns[j].ColumnWidth = 18;
+                    switch (j)
+                    {
+                        case 1:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ID;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].BrandCode;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].Brand;
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].AddedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ChangedDate.ToString("MM'/'dd'/'yyyy");
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].DeletedDate.ToString();
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                }
+                                break;
+                            }
+                        case 8:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                {
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
+                                }
+                                break;
+                            }
+                    }
+                }
+                excelWorkBook.SaveAs("Brands.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+        Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+        Excel.XlSaveConflictResolution.xlUserResolution, true,
+        Missing.Value, Missing.Value, Missing.Value);
+                excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return RedirectToAction("Brands");
         }
