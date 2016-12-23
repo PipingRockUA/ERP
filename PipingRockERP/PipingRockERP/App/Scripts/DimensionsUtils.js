@@ -42,7 +42,7 @@
         inputZ = parseFloat($inputZI.val().replace(",", "."));
 
         calculatedDimensions = inputX * inputY * inputZ;
-        $inputResultI.val(calculatedDimensions);
+        $inputResultI.val(Math.round(calculatedDimensions*100)/100);
     }
     function recalculateDimensionsC() {
         inputX = parseFloat($inputXC.val().replace(",", "."));
@@ -50,15 +50,15 @@
         inputZ = parseFloat($inputZC.val().replace(",", "."));
 
         calculatedDimensions = inputX * inputY * inputZ;
-        $inputResultC.val(calculatedDimensions);
+        $inputResultC.val(Math.round(calculatedDimensions * 100) / 100);
     }
     function toInches($inputInches, $inputCm) {
         result = parseFloat($inputCm.val().replace(",", "."));
-        $inputInches.val(result / 2.54);
+        $inputInches.val(Math.round(result / 2.54 * 100) / 100);
     }
     function toCm($inputInches, $inputCm) {
         result = parseFloat($inputInches.val().replace(",", "."));
-        $inputCm.val(result * 2.54);
+        $inputCm.val(Math.round(result * 2.54 * 100) / 100);
     }
 }
 
@@ -67,37 +67,10 @@ function handleDimensionsInput($inputInches, $inputCm) {
 
     $inputInches.on("change", function (event) {
         result = parseFloat($inputInches.val().replace(",", "."));
-        $inputCm.val(result * 2.54);
+        $inputCm.val(Math.round(result * 2.54 * 100) / 100);
     });
     $inputCm.on("change", function (event) {
         result = parseFloat($inputInches.val().replace(",", "."));
-        $inputInches.val(result / 2.54);
+        $inputInches.val(Math.round(result / 2.54 * 100) / 100);
     });
 }
-
-
-//function handleDimensionsUpdate($inputX, $inputY, $inputZ, $inputResult) {
-//    var calculatedDimensions = 0;
-//    var inputX,
-//        inputY,
-//        inputZ;
-
-//    $inputX.on("change", function (event) {
-//        recalculateDimensions()
-//    });
-//    $inputY.on("change", function (event) {
-//        recalculateDimensions()
-//    });
-//    $inputZ.on("change", function (event) {
-//        recalculateDimensions()
-//    });
-
-//    function recalculateDimensions() {
-//        inputX = parseFloat($inputX.val().replace(",","."));
-//        inputY = parseFloat($inputY.val().replace(",","."));
-//        inputZ = parseFloat($inputZ.val().replace(",","."));
-
-//        calculatedDimensions = inputX * inputY * inputZ;
-//        $inputResult.val(calculatedDimensions);
-//    }
-//}

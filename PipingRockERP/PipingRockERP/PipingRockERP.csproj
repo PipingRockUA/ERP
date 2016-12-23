@@ -443,8 +443,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="fonts\Roboto\LICENSE.txt" />
     <Content Include="src\img\bottle.png" />
     <Content Include="src\img\logo.png" />
+    <Content Include="src\img\no-image_130px.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -464,29 +466,29 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_IndexPartial.cshtml" />
-    <Content Include="Views\Maintenance\UnitOfMeasures.cshtml" />
+    <Content Include="Views\Purchasing\UnitOfMeasures.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Maintenance\Edit.cshtml" />
     <Content Include="Views\Maintenance\UserAdd.cshtml" />
     <Content Include="Views\Shared\_MaintenancePartial.cshtml" />
-    <Content Include="Views\Maintenance\BottleChart.cshtml" />
-    <Content Include="Views\Maintenance\BottleAdd.cshtml" />
-    <Content Include="Views\Maintenance\BottleEdit.cshtml" />
-    <Content Include="Views\Maintenance\Quarantines.cshtml" />
-    <Content Include="Views\Maintenance\QuarantineEdit.cshtml" />
-    <Content Include="Views\Maintenance\QuarantineAdd.cshtml" />
-    <Content Include="Views\Maintenance\StorageConditions.cshtml" />
-    <Content Include="Views\Maintenance\StorageConditionAdd.cshtml" />
-    <Content Include="Views\Maintenance\StorageConditionEdit.cshtml" />
-    <Content Include="Views\Maintenance\Brands.cshtml" />
-    <Content Include="Views\Maintenance\BrandAdd.cshtml" />
-    <Content Include="Views\Maintenance\BrandEdit.cshtml" />
+    <Content Include="Views\Purchasing\BottleChart.cshtml" />
+    <Content Include="Views\Purchasing\BottleAdd.cshtml" />
+    <Content Include="Views\Purchasing\BottleEdit.cshtml" />
+    <Content Include="Views\Purchasing\Quarantines.cshtml" />
+    <Content Include="Views\Purchasing\QuarantineEdit.cshtml" />
+    <Content Include="Views\Purchasing\QuarantineAdd.cshtml" />
+    <Content Include="Views\Purchasing\StorageConditions.cshtml" />
+    <Content Include="Views\Purchasing\StorageConditionAdd.cshtml" />
+    <Content Include="Views\Purchasing\StorageConditionEdit.cshtml" />
+    <Content Include="Views\Purchasing\Brands.cshtml" />
+    <Content Include="Views\Purchasing\BrandAdd.cshtml" />
+    <Content Include="Views\Purchasing\BrandEdit.cshtml" />
     <Content Include="Views\Maintenance\Users.cshtml" />
     <Content Include="Views\Shared\_NutritionPartial.cshtml" />
     <Content Include="Views\Nutrition\Index.cshtml" />
     <Content Include="Views\Nutrition\Allergens.cshtml" />
     <Content Include="Views\Nutrition\AllergenAdd.cshtml" />
-    <Content Include="Views\Nutrition\EditAllergen.cshtml" />
+    <Content Include="Views\Nutrition\AllergenEdit.cshtml" />
     <Content Include="Views\Nutrition\RawMaterials.cshtml" />
     <Content Include="Views\Shared\_PackagingPartial.cshtml" />
     <Content Include="Views\Shared\_PurchasingPartial.cshtml" />
@@ -494,6 +496,19 @@
     <Content Include="Views\Packaging\Index.cshtml" />
     <Content Include="Views\Purchasing\Index.cshtml" />
     <Content Include="Views\Receiving\Index.cshtml" />
+    <Content Include="Views\Maintenance\Settings.cshtml" />
+    <Content Include="fonts\Roboto\Roboto-Black.ttf" />
+    <Content Include="fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Bold.ttf" />
+    <Content Include="fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Italic.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Light.ttf" />
+    <Content Include="fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Medium.ttf" />
+    <Content Include="fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Regular.ttf" />
+    <Content Include="fonts\Roboto\Roboto-Thin.ttf" />
+    <Content Include="fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
