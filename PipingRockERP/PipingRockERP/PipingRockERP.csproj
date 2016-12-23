@@ -245,9 +245,6 @@
     <Compile Include="FinishedGoodLocation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="FinishedGood_BuyItems.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="FinishedGood_QcTest.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -325,7 +322,7 @@
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="PackagingComponent.cs">
+    <Compile Include="PackagingUnit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PackagingUOM.cs">
@@ -355,9 +352,6 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="StorageCondition.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Supply.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">

@@ -269,6 +269,7 @@ namespace PipingRockERP.Controllers
                 BottleAddedDate = DateTime.Now,
                 BottleChangedDate = DateTime.Now,
                 BottleModifiedById = 1,
+                isDeleted = false
             };
 
             db.Bottle2.Add(bottle);
@@ -424,6 +425,7 @@ namespace PipingRockERP.Controllers
                                  ChangedDate = Bottle.BottleChangedDate,
                                  DeletedDate = Bottle.BottleDeletedDate,
                                  ModifiedById = Bottle.BottleModifiedById,
+                                 isDeleted = (Bottle.isDeleted ? 1 : 0)
                              }).ToList();
 
                 excelApplication.Cells[1, 1] = "ID";
@@ -459,8 +461,9 @@ namespace PipingRockERP.Controllers
                 excelApplication.Cells[1, 31] = "ChangedDate";
                 excelApplication.Cells[1, 32] = "DeletedDate";
                 excelApplication.Cells[1, 33] = "ModifiedById";
+                excelApplication.Cells[1, 34] = "isDeleted";
 
-                for (int j = 1; j < 34; j++)
+                for (int j = 1; j < 35; j++)
                 {
                     excelWorkSheet.Columns[j].ColumnWidth = 18;
                     switch (j)
@@ -662,6 +665,12 @@ namespace PipingRockERP.Controllers
                             {
                                 for (int i = 2; i < table.Count + 1; i++)
                                     excelApplication.Cells[i, j] = table[i - 2].ModifiedById;
+                                break;
+                            }
+                        case 34:
+                            {
+                                for (int i = 2; i < table.Count + 1; i++)
+                                    excelApplication.Cells[i, j] = table[i - 2].isDeleted;
                                 break;
                             }
                     }
