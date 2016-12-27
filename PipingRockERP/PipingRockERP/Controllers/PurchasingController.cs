@@ -795,18 +795,26 @@ namespace PipingRockERP.Controllers
                 excelWorkSheet.Columns[1].ColumnWidth = 12;
                 excelWorkSheet.Columns[2].ColumnWidth = 25;
                 excelWorkSheet.Columns[3].ColumnWidth = 50;
-                excelWorkBook.SaveAs("Bottles.xlsx", Exc.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+
+                System.IO.File.Delete(@"C:\Temp\Bottles.xlsx");
+
+                excelWorkBook.SaveAs("C:\\Temp\\Bottles.xlsx", Exc.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
         Missing.Value, false, false, Exc.XlSaveAsAccessMode.xlNoChange,
         Exc.XlSaveConflictResolution.xlUserResolution, true,
         Missing.Value, Missing.Value, Missing.Value);
                 excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
+
+               // string fullPath = Path.Combine(Server.MapPath("C:\\Temp\\"), "Bottles.xlsx");
+               // return File(fullPath, "application/vnd.ms-excel", "Bottles.xlsx");
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-
-            return RedirectToAction("BottleChart");
+            string fullPath2 = "C:\\Temp\\Bottles.xlsx";
+            return File(fullPath2, "application/vnd.ms-excel", "Bottles.xlsx");
+            //return RedirectToAction("BottleChart");
         }
         #endregion
 
