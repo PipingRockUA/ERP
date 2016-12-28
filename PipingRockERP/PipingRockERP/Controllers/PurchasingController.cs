@@ -366,10 +366,10 @@ namespace PipingRockERP.Controllers
                             data.isDeleted = false;
 
                             add(data);
-                            //db.Bottle1.Add(data);
-                            //db.SaveChanges();
+                            db.Bottle1.Add(data);
+                            db.SaveChanges();
                         }
-                        //db.SaveChanges();
+                        db.SaveChanges();
                         
                         return View(result.Tables[0]);
                     }
@@ -492,7 +492,7 @@ namespace PipingRockERP.Controllers
         public ActionResult ExportBottle()
         {
             PipingRockEntities db = new PipingRockEntities();
-
+            string path = "";
             try
             {
                 Exc.Application excelApplication = new Exc.Application();
@@ -796,24 +796,31 @@ namespace PipingRockERP.Controllers
                 excelWorkSheet.Columns[2].ColumnWidth = 25;
                 excelWorkSheet.Columns[3].ColumnWidth = 50;
 
-                System.IO.File.Delete(@"C:\Temp\Bottles.xlsx");
+                // System.IO.File.Delete(@"C:\Test\Bottles2016.xlsx");
 
-                excelWorkBook.SaveAs("C:\\Temp\\Bottles.xlsx", Exc.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
-        Missing.Value, false, false, Exc.XlSaveAsAccessMode.xlNoChange,
-        Exc.XlSaveConflictResolution.xlUserResolution, true,
-        Missing.Value, Missing.Value, Missing.Value);
+                path = Path.GetTempFileName();
+
+              //  excelWorkBook.SaveAs(@"C:\Test\Bottles2016.xlsx", Exc.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+      //  Missing.Value, false, false, Exc.XlSaveAsAccessMode.xlNoChange,
+      //  Exc.XlSaveConflictResolution.xlUserResolution, true,
+      //  Missing.Value, Missing.Value, Missing.Value);
+
+
+                excelWorkBook.SaveCopyAs(path);
+                //return File.ReadAllBytes(path);
+
                 excelWorkBook.Close(Missing.Value, Missing.Value, Missing.Value);
 
                // string fullPath = Path.Combine(Server.MapPath("C:\\Temp\\"), "Bottles.xlsx");
                // return File(fullPath, "application/vnd.ms-excel", "Bottles.xlsx");
-
+               return File(path, "application/vnd.ms-excel", "Bottles2016.xlsx");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-            string fullPath2 = "C:\\Temp\\Bottles.xlsx";
-            return File(fullPath2, "application/vnd.ms-excel", "Bottles.xlsx");
+            // string fullPath2 = @"C:\Test\Bottles2016.xlsx";
+             return File(path, "application/vnd.ms-excel", "Bottles2016.xlsx");
             //return RedirectToAction("BottleChart");
         }
         #endregion

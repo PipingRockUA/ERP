@@ -161,7 +161,6 @@ C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.
 C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.csprojResolveAssemblyReference.cache
 C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.dll
 C:\Users\Valeriy\Documents\GitHub\ERP\PipingRockERP\PipingRockERP\obj\Debug\PipingRockERP.pdb
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\ERP\PipingRockERP\PipingRockERP\bin\ApplicationInsights.config
